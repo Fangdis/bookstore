@@ -1,0 +1,188 @@
+.leftNav {
+	width: 160px;
+	float: left;
+	margin-top: 35px;
+}
+
+.leftNavItem {
+	margin-bottom: 20px;
+}
+
+.leftNavItem:last-child {
+	margin-bottom: 0;
+}
+
+.leftNavItem li {
+	line-height: 30px;
+	padding-left: 20px;
+}
+
+.leftNavItem li.active {
+	color: #f69;
+}
+
+.leftNavItem .leftNavTitle {
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 40px;
+	padding-left: 20px;
+}
+
+.userWrap {
+	width: 995px;
+	float: left;
+	margin: 35px 0 0 20px;
+}
+
+.userInfoDetail {
+	height: 89px;
+	border: 1px solid #ededed;
+    border-radius: 5px;
+    padding: 25px 30px;
+}
+
+.userLogo {
+	float: left;
+	padding: 2px;
+	border: 5px solid #fabebe;
+	border-radius: 50%;
+	width: 75px;
+	height: 75px;
+}
+
+.userLogo img {
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+}
+
+.userInfo {
+	margin-left: 110px;
+}
+
+.userInfo .userName {
+	margin-top: 15px;
+	line-height: 35px;
+}
+
+.orderBox {
+	padding: 0 23px 50px;
+	border: 1px solid #ededed;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.orderBox .tabBox {
+	border-bottom: 3px solid #f8f8f8;
+	height: 57px;
+	margin-bottom: 25px;
+}
+
+.orderBox .tabBox li {
+	padding: 0 20px;
+	height: 57px;
+	line-height: 57px;
+	float: left;
+	cursor: pointer;
+	font-size: 15px;
+}
+
+.orderBox .tabBox li.active {
+	border-bottom: 3px solid #f69;
+}
+
+.updatePswForm .sex {
+	line-height: 36px;
+	margin-right: 20px;
+}
+
+.form-item .summary {
+	width: 450px;
+	height: 100px;
+}
+
+.updateLogo {
+	display: inline-block;
+}
+
+.updateLogo img {
+	width: 64px;
+	height: 64px;
+	float: left;
+}
+
+.updateLogo .updateLogoInfo {
+	margin-left: 80px;
+}
+
+.updateLogo .updateLogoBtn {
+	position: relative;
+	overflow: hidden;
+	width: 80px;
+	margin: 5px 0 10px;
+}
+
+.updateLogoInfo input[type="file"] {
+    font-size: 100px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    height: 30px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+}
+
+.evaluateTable .productName {
+	display: inline-block;
+	vertical-align: top;
+	line-height: 40px;
+}
+
+.evaluateTable .goods td img {
+	width: 80px;
+	height: 80px;
+} 
+
+.evaluateForm {
+	padding: 30px 0;
+	border: 1px solid #ededed;
+	border-top: none;
+	position: relative;
+}
+
+.evaluateForm.top:before, .evaluateForm.top:after {
+	content: "";
+	display: block;
+	width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    position: absolute;
+    right: 178px;
+}
+
+.evaluateForm.top:before {
+	top: -15px;
+	border-bottom: 15px solid #ededed;
+}
+
+.evaluateForm.top:after {
+	top: -13px;
+	border-bottom: 15px solid #fff;
+}
+
+.updateBox {
+	margin: 20px 0;
+}
+
+.ui-table .ui-table-title .icon {
+	color: #ccc;
+	font-size: 18px;
+}
+
+.ui-table .ui-table-title .icon:hover {
+	color: #f69;
+}
