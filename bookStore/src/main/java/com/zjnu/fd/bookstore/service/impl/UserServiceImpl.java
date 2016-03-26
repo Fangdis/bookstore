@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
     public int register(User user) {
-        return 0;
+        return userMapper.insertSelective(user);
     }
 
     public int login(User user) {

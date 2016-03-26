@@ -29,13 +29,13 @@
             <img src="">
         </div>
         <div class="loginForm">
-            <form>
+            <form wx-validator wx-validator-error-tag="p" wx-validator-ajax autocomplete="off" method="get" action="${ctx}/user/login.html" name="loginForm" >
                 <p class="loginSpec">没有账号？<a href="${ctx}/user/registerPage.html" class="pink">注册</a></p>
                 <div class="form-item">
-                    <input type="text" placeholder="手机号" class="w300">
+                    <input type="text" placeholder="手机号" class="w300" name="phone">
                 </div>
                 <div class="form-item">
-                    <input type="password" placeholder="密码" class="w300">
+                    <input type="password" placeholder="密码" class="w300" name="password">
                 </div>
                 <div class="form-item mt25">
                     <span><input type="checkbox">记住我</span>
@@ -48,5 +48,18 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.config.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.upload.js"></script>
+<script>
+    function loginForm(data){
+        if (data["data"]["pojos"]["login"]=="success"){
+            setTimeout(function(){
+                alert("登录成功");
+                window.location.href="${ctx}/user/userOrder.html";
+            },3000);
+        }else alert("手机或密码不对");
+    }
+</script>
 </body>
 </html>

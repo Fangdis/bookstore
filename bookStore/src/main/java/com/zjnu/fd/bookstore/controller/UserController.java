@@ -1,6 +1,8 @@
 package com.zjnu.fd.bookstore.controller;
 
+import com.zjnu.fd.bookstore.model.CartRefOrderModel;
 import com.zjnu.fd.bookstore.po.User;
+import com.zjnu.fd.bookstore.service.OrderService;
 import com.zjnu.fd.bookstore.service.UserService;
 import com.zjnu.fd.bookstore.util.JsonUtil;
 import com.zjnu.fd.bookstore.util.OutPut;
@@ -9,11 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,8 +26,12 @@ import java.util.Map;
 @RequestMapping("user")
 @Controller
 public class UserController {
+
     @Resource
     private UserService userService;
+
+    @Resource
+    private OrderService orderService;
 
     @RequestMapping("register")
     @ResponseBody
@@ -31,10 +39,11 @@ public class UserController {
         HttpSession session = request.getSession();
         String sessionCode= (String) session.getAttribute("code");
         Map map=new HashMap();
-        if (sessionCode!=null&&sessionCode.equals(code)){
+        if (userService.findByPhone(phone)==null&&sessionCode!=null&&sessionCode.equals(code)){
             User user=new User();
             user.setPhone(phone);
             user.setPassword(password);
+            user.setAvatar("imgs/user.png");
             user.setNickname("用户"+RandomUtil.randCode());
             userService.register(user);
             map.put("register","success");
@@ -56,10 +65,12 @@ public class UserController {
     }
     @ResponseBody
     @RequestMapping("login")
-    public String login(@RequestParam("phone") String phone,@RequestParam("password") String password){
+    public String login(@RequestParam("phone") String phone,@RequestParam("password") String password,HttpServletRequest request){
         User user=userService.findByPhone(phone);
+        HttpSession session = request.getSession();
         Map map=new HashMap();
         if (user!=null&&user.getPassword().equals(password)){
+            session.setAttribute("user",user);
             map.put("login","success");
         }else
             map.put("login","error");
@@ -72,5 +83,19 @@ public class UserController {
     @RequestMapping("registerPage")
     public String registerPage(){
         return "login/register";
+    }
+    @RequestMapping("userCenter")
+    public String userCenter(){
+        return "userCenter/myInformation";
+    }
+
+    @RequestMapping("userOrder")
+    public ModelAndView userOrder(HttpServletRequest request,ModelAndView modelAndView){
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        List<CartRefOrderModel> cartRefOrderModels = orderService.listByUserId(user.getId());
+        modelAndView.setViewName("userCenter/myOrder");
+        modelAndView.addObject("orders",cartRefOrderModels);
+        return  modelAndView;
     }
 }

@@ -3,29 +3,50 @@
 <mapper namespace="com.zjnu.fd.bookstore.dao.OrderMapper" >
   <resultMap id="BaseResultMap" type="com.zjnu.fd.bookstore.po.Order" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="addressId" property="addressid" jdbcType="INTEGER" />
-    <result column="shopIds" property="shopids" jdbcType="VARCHAR" />
-    <result column="totalPrice" property="totalprice" jdbcType="REAL" />
-    <result column="purchaseMeg" property="purchasemeg" jdbcType="VARCHAR" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
+    <result column="cart_id" property="cartId" jdbcType="INTEGER" />
+    <result column="total_price" property="totalPrice" jdbcType="REAL" />
+    <result column="purchase_msg" property="purchaseMsg" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="oder_number" property="oderNumber" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, addressId, shopIds, totalPrice, purchaseMeg
+    id, address_id, cart_id, total_price, purchase_msg, status, oder_number, add_time, 
+    user_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+  select
+  <include refid="Base_Column_List" />
+  from ss_order
+  where id = #{id,jdbcType=INTEGER}
+</select>
+  <select id="list" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
     <include refid="Base_Column_List" />
     from ss_order
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{0}
+  </select>
+  <select id="listOrderByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from ss_order
+    where user_id = #{0}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from ss_order
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zjnu.fd.bookstore.po.Order" >
-    insert into ss_order (id, addressId, shopIds, 
-      totalPrice, purchaseMeg)
-    values (#{id,jdbcType=INTEGER}, #{addressid,jdbcType=INTEGER}, #{shopids,jdbcType=VARCHAR}, 
-      #{totalprice,jdbcType=REAL}, #{purchasemeg,jdbcType=VARCHAR})
+    insert into ss_order (id, address_id, cart_id, 
+      total_price, purchase_msg, status, 
+      oder_number, add_time, user_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}, #{cartId,jdbcType=INTEGER}, 
+      #{totalPrice,jdbcType=REAL}, #{purchaseMsg,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{oderNumber,jdbcType=VARCHAR}, #{addTime,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zjnu.fd.bookstore.po.Order" >
     insert into ss_order
@@ -33,61 +54,101 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="addressid != null" >
-        addressId,
+      <if test="addressId != null" >
+        address_id,
       </if>
-      <if test="shopids != null" >
-        shopIds,
+      <if test="cartId != null" >
+        cart_id,
       </if>
-      <if test="totalprice != null" >
-        totalPrice,
+      <if test="totalPrice != null" >
+        total_price,
       </if>
-      <if test="purchasemeg != null" >
-        purchaseMeg,
+      <if test="purchaseMsg != null" >
+        purchase_msg,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="oderNumber != null" >
+        oder_number,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="addressid != null" >
-        #{addressid,jdbcType=INTEGER},
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
       </if>
-      <if test="shopids != null" >
-        #{shopids,jdbcType=VARCHAR},
+      <if test="cartId != null" >
+        #{cartId,jdbcType=INTEGER},
       </if>
-      <if test="totalprice != null" >
-        #{totalprice,jdbcType=REAL},
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=REAL},
       </if>
-      <if test="purchasemeg != null" >
-        #{purchasemeg,jdbcType=VARCHAR},
+      <if test="purchaseMsg != null" >
+        #{purchaseMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="oderNumber != null" >
+        #{oderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zjnu.fd.bookstore.po.Order" >
     update ss_order
     <set >
-      <if test="addressid != null" >
-        addressId = #{addressid,jdbcType=INTEGER},
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=INTEGER},
       </if>
-      <if test="shopids != null" >
-        shopIds = #{shopids,jdbcType=VARCHAR},
+      <if test="cartId != null" >
+        cart_id = #{cartId,jdbcType=INTEGER},
       </if>
-      <if test="totalprice != null" >
-        totalPrice = #{totalprice,jdbcType=REAL},
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=REAL},
       </if>
-      <if test="purchasemeg != null" >
-        purchaseMeg = #{purchasemeg,jdbcType=VARCHAR},
+      <if test="purchaseMsg != null" >
+        purchase_msg = #{purchaseMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="oderNumber != null" >
+        oder_number = #{oderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zjnu.fd.bookstore.po.Order" >
     update ss_order
-    set addressId = #{addressid,jdbcType=INTEGER},
-      shopIds = #{shopids,jdbcType=VARCHAR},
-      totalPrice = #{totalprice,jdbcType=REAL},
-      purchaseMeg = #{purchasemeg,jdbcType=VARCHAR}
+    set address_id = #{addressId,jdbcType=INTEGER},
+      cart_id = #{cartId,jdbcType=INTEGER},
+      total_price = #{totalPrice,jdbcType=REAL},
+      purchase_msg = #{purchaseMsg,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      oder_number = #{oderNumber,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

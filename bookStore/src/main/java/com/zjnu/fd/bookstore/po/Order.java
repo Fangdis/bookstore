@@ -1,15 +1,25 @@
 package com.zjnu.fd.bookstore.po;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
     private Integer id;
 
-    private Integer addressid;
+    private Integer addressId;
 
-    private String shopids;
+    private Integer cartId;
 
-    private Float totalprice;
+    private Float totalPrice;
 
-    private String purchasemeg;
+    private String purchaseMsg;
+
+    private Integer status;
+
+    private String oderNumber;
+
+    private String addTime;
+
+    private Integer userId;
 
     public Integer getId() {
         return id;
@@ -19,35 +29,67 @@ public class Order {
         this.id = id;
     }
 
-    public Integer getAddressid() {
-        return addressid;
+    public Integer getAddressId() {
+        return addressId;
     }
 
-    public void setAddressid(Integer addressid) {
-        this.addressid = addressid;
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
     }
 
-    public String getShopids() {
-        return shopids;
+    public Integer getCartId() {
+        return cartId;
     }
 
-    public void setShopids(String shopids) {
-        this.shopids = shopids == null ? null : shopids.trim();
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
     }
 
-    public Float getTotalprice() {
-        return totalprice;
+    public Float getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotalprice(Float totalprice) {
-        this.totalprice = totalprice;
+    public void setTotalPrice(Float totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public String getPurchasemeg() {
-        return purchasemeg;
+    public String getPurchaseMsg() {
+        return purchaseMsg;
     }
 
-    public void setPurchasemeg(String purchasemeg) {
-        this.purchasemeg = purchasemeg == null ? null : purchasemeg.trim();
+    public void setPurchaseMsg(String purchaseMsg) {
+        this.purchaseMsg = purchaseMsg == null ? null : purchaseMsg.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getOderNumber() {
+        return oderNumber;
+    }
+
+    public void setOderNumber(String oderNumber) {
+        this.oderNumber = oderNumber == null ? null : oderNumber.trim();
+    }
+
+    public String getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(String addTime) {
+        this.addTime = addTime == null ? null : addTime.trim();
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

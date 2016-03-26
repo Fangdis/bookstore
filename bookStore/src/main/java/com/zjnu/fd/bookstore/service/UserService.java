@@ -6,6 +6,7 @@ import com.zjnu.fd.bookstore.po.User;
  * Created by xqYang on 2016/3/26.
  */
 public interface UserService {
+
     public int register(User user);
 
     public int login(User user);

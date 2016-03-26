@@ -2,6 +2,8 @@ package com.zjnu.fd.bookstore.dao;
 
 import com.zjnu.fd.bookstore.po.Order;
 
+import java.util.List;
+
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,8 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    List<Order> listOrderByUserId(int userId);
+
+    List<Order> list(int userId);
 }

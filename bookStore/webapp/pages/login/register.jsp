@@ -29,16 +29,16 @@
             <img src="">
         </div>
         <div class="loginForm">
-            <form wx-validator wx-validator-error-tag="p" wx-validator-ajax autocomplete="off" method="post" action="">
+            <form wx-validator wx-validator-error-tag="p" wx-validator-ajax autocomplete="off" method="get" action="${ctx}/user/register.html" name="registerForm">
                 <p class="loginSpec">已有账号？<a href="${ctx}/user/loginPage.html" class="pink">登录</a></p>
                 <div class="form-item">
-                    <input type="text" placeholder="手机号" class="w300" wx-validator-rule="required|mobile" name="phoneNumber" wx-validator-placeholder="手机号">
+                    <input type="text" placeholder="手机号" class="w300" wx-validator-rule="required|mobile" name="phone" wx-validator-placeholder="手机号">
                 </div>
                 <div class="form-item">
-                    <input type="password" placeholder="密码" class="w300">
+                    <input type="password" placeholder="密码" class="w300" name="password">
                 </div>
                 <div class="form-item">
-                    <input type="text" placeholder="验证码" class="w180">
+                    <input type="text" placeholder="验证码" class="w180" name="code">
                     <input type="button" value="获取验证码" class="ui-btn ui-btn-pink ui-btn-s fr" id="button">
                 </div>
                 <%--<div class="form-item">--%>
@@ -58,15 +58,24 @@
     $(document).ready(function(){
        $("#button").click(function(){
            $.post("${ctx}/user/randCode",function(data){
-//               if (data.data.pojos.randCode=="success"){
-//                   alert("验证码发送成功");
-//               }else{
-//                   alert("验证码发送失败");
-//               }
-               console.log(data["data"]);
+               data= JSON.parse(data);
+               if (data["data"]["pojos"]["randCode"]=="success"){
+                   alert("验证码发送成功");
+               }else{
+                   alert("验证码发送失败");
+               }
            });
        }) ;
     });
+    function registerForm(data){
+        if (data["data"]["pojos"]["register"]=="success"){
+            setTimeout(function(){
+                alert("注册成功");
+                window.location.href="${ctx}/user/loginPage.html";
+            },3000);
+
+        }else alert("手机或验证码不对")
+    }
 </script>
 </body>
 </html>
