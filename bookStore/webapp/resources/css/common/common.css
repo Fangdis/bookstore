@@ -147,6 +147,12 @@ a:hover, .pink {
 	padding-left: 10px;
 }
 
+.form-item input[type='text'].wx-inputErrBorder,
+.form-item textarea.wx-inputErrBorder,
+.form-item input[type='password'].wx-inputErrBorder {
+	border: 1px solid #f56363;
+}
+
 .form-btn {
 	padding-left: 98px;
 }
