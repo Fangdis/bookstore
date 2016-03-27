@@ -14,8 +14,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="shortcut icon" type="text/css" href="../../resources/images/common/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/common.css">
-    <link rel="stylesheet" type="text/css" href="../../resources/css/common/fontello.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/cart/cart.css">
     <script type="text/javascript" src="../../resources/js/plugs/jquery/jquery-1.8.3.min.js"></script>
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
@@ -57,7 +57,7 @@
 <div class="cartTopBox">
     <div class="mainInner2Box clearfix">
         <a href="" class="siteLogo">
-            <img src="../../resources/images/siteLogo.png">
+            <img src="../../resources/images/common/siteLogo.png">
         </a>
         <div class="cartStepBox">
             <div class="cartStepBg step2"></div>

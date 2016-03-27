@@ -1,6 +1,6 @@
 .cartStepBox {
 	float: right;
-	margin: 30px 50px 0 0;
+	margin: 45px 20px 0 0;
 }
 
 .cartStepBg {
@@ -10,11 +10,11 @@
 }
 
 .cartStepBg.step1 {
-	background-position: -54px -113px;
+	background-position: -8px -8px;
 }
 
 .cartStepBg.step2 {
-	background-position: -54px -38px;
+	background-position: -8px -53px;
 }
 
 .caerStep li {
@@ -23,11 +23,11 @@
 }
 
 .caerStep li.active {
-	color: #f69;
+	color: #9ea74b;
 }
 
 .caerStep li.first {
-	width: 166px;
+	width: 159px;
 }
 
 .caerStep li.second {
@@ -40,15 +40,16 @@
 
 .cartTop {
 	height: 44px;
-	border-bottom: 2px solid #f69;
+	border-bottom: 2px solid #9ea74b;
+	margin-top: 15px;
 }
 
 .cartTop .totalPro {
-	width: 170px;
+	width: 227px;
 	color: #fff;
 	text-align: center;
 	line-height: 44px;
-	background-color: #f69;
+	background-color: #9ea74b;
 	font-size: 14px;
 	border-top-left-radius: 5px; 
 	border-top-right-radius: 5px; 
@@ -86,22 +87,22 @@
 
 .cartTable tfoot tr td {
 	text-align: center;
-	border-bottom: 1px solid #f69;
-	border-top: 1px solid #f69;
+	border-bottom: 1px solid #9ea74b;
+	border-top: 1px solid #9ea74b;
 	line-height: 45px;
 }
 
 .cartTable tfoot tr td:first-child {
-	border-left: 1px solid #f69;
+	border-left: 1px solid #9ea74b;
 }
 
 .cartTable tfoot tr td:last-child {
-	border-right: 1px solid #f69;
+	border-right: 1px solid #9ea74b;
 }
 
 .cartTable tfoot .totalNum {
 	font-size: 18px;
-	color: #f69;
+	color: #9ea74b;
 	font-weight: 600;
 	vertical-align: middle;
 }

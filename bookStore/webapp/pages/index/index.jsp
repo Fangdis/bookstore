@@ -12,9 +12,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>您的书店</title>
-    <link rel="stylesheet" type="text/css" href="../../resources/css/common/common.css">
+    <title>菠萝书城</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../../resources/images/common/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/fontello.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/common/common.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/index/index.css">
     <script type="text/javascript" src="../../resources/js/plugs/jquery/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="../../resources/js/plugs/slide/jquery.SuperSlide.2.1.1.js"></script>
@@ -36,7 +37,7 @@
 <div class="siteMTopBox">
     <div class="mainInnerBox clearfix">
         <a href="" class="siteLogo">
-            <img src="../../resources/images/siteLogo.png">
+            <img src="../../resources/images/common/siteLogo.png">
         </a>
         <div class="searchBox">
             <ul class="searchTab">
@@ -162,27 +163,6 @@
                     <a href="${ctx}/detail/detail.html"><p class="info">${newBook.name}</p></a>
                 </div>
             </c:forEach>
-
-            <%--<div class="item">--%>
-                <%--<a href="../detail/detail.html"><img src="../../resources/images/temp/item/item1.jpg"></a>--%>
-                <%--<p class="money">￥159.00</p>--%>
-                <%--<a href="../detail/detail.html"><p class="info">YC大翻领显瘦红色呢大衣</p></a>--%>
-            <%--</div>--%>
-            <%--<div class="item">--%>
-                <%--<a href="../detail/detail.html"><img src="../../resources/images/temp/item/item1.jpg"></a>--%>
-                <%--<p class="money">￥159.00</p>--%>
-                <%--<a href="../detail/detail.html"><p class="info">YC大翻领显瘦红色呢大衣</p></a>--%>
-            <%--</div>--%>
-            <%--<div class="item">--%>
-                <%--<a href="../detail/detail.html"><img src="../../resources/images/temp/item/item1.jpg"></a>--%>
-                <%--<p class="money">￥159.00</p>--%>
-                <%--<a href="../detail/detail.html"><p class="info">YC大翻领显瘦红色呢大衣</p></a>--%>
-            <%--</div>--%>
-            <%--<div class="item">--%>
-                <%--<a href="../detail/detail.html"><img src="../../resources/images/temp/item/item1.jpg"></a>--%>
-                <%--<p class="money">￥159.00</p>--%>
-                <%--<a href="../detail/detail.html"><p class="info">YC大翻领显瘦红色呢大衣</p></a>--%>
-            <%--</div>--%>
         </div>
         <div class="floorTitle">特价好书</div>
         <div class="floorBox clearfix">
@@ -193,27 +173,6 @@
                     <a href="../detail/detail.html"><p class="info">${bargainBook.name}</p></a>
                 </div>
             </c:forEach>
-
-            <%--<div class="item">--%>
-                <%--<a href="../detail/detail.html"><img src="../../resources/images/temp/item/item1.jpg"></a>--%>
-                <%--<p class="money">￥159.00</p>--%>
-                <%--<a href="../detail/detail.html"><p class="info">YC大翻领显瘦红色呢大衣</p></a>--%>
-            <%--</div>--%>
-            <%--<div class="item">--%>
-                <%--<a href="../detail/detail.html"><img src="../../resources/images/temp/item/item1.jpg"></a>--%>
-                <%--<p class="money">￥159.00</p>--%>
-                <%--<a href="../detail/detail.html"><p class="info">YC大翻领显瘦红色呢大衣</p></a>--%>
-            <%--</div>--%>
-            <%--<div class="item">--%>
-                <%--<a href="../detail/detail.html"><img src="../../resources/images/temp/item/item1.jpg"></a>--%>
-                <%--<p class="money">￥159.00</p>--%>
-                <%--<a href="../detail/detail.html"><p class="info">YC大翻领显瘦红色呢大衣</p></a>--%>
-            <%--</div>--%>
-            <%--<div class="item">--%>
-                <%--<a href="../detail/detail.html"><img src="../../resources/images/temp/item/item1.jpg"></a>--%>
-                <%--<p class="money">￥159.00</p>--%>
-                <%--<a href="../detail/detail.html"><p class="info">YC大翻领显瘦红色呢大衣</p></a>--%>
-            <%--</div>--%>
         </div>
         <div class="floorTitle">为你推荐</div>
         <div class="floorBox clearfix">
@@ -224,27 +183,6 @@
                     <a href="../detail/detail.html"><p class="info">${recommendBook.name}</p></a>
                 </div>
             </c:forEach>
-
-            <%--<div class="item">--%>
-                <%--<a href="../detail/detail.html"><img src="../../resources/images/temp/item/item1.jpg"></a>--%>
-                <%--<p class="money">￥159.00</p>--%>
-                <%--<a href="../detail/detail.html"><p class="info">YC大翻领显瘦红色呢大衣</p></a>--%>
-            <%--</div>--%>
-            <%--<div class="item">--%>
-                <%--<a href="../detail/detail.html"><img src="../../resources/images/temp/item/item1.jpg"></a>--%>
-                <%--<p class="money">￥159.00</p>--%>
-                <%--<a href="../detail/detail.html"><p class="info">YC大翻领显瘦红色呢大衣</p></a>--%>
-            <%--</div>--%>
-            <%--<div class="item">--%>
-                <%--<a href="../detail/detail.html"><img src="../../resources/images/temp/item/item1.jpg"></a>--%>
-                <%--<p class="money">￥159.00</p>--%>
-                <%--<a href="../detail/detail.html"><p class="info">YC大翻领显瘦红色呢大衣</p></a>--%>
-            <%--</div>--%>
-            <%--<div class="item">--%>
-                <%--<a href="../detail/detail.html"><img src="../../resources/images/temp/item/item1.jpg"></a>--%>
-                <%--<p class="money">￥159.00</p>--%>
-                <%--<a href="../detail/detail.html"><p class="info">YC大翻领显瘦红色呢大衣</p></a>--%>
-            <%--</div>--%>
         </div>
     </div>
 </div>
@@ -265,7 +203,7 @@
             </div>
             <div class="linkItem">
                 <h3>服务支持</h3>
-                <p><a href="">售后政策</a></p>
+                <p><a href="">在线客服</a></p>
                 <p><a href="">自主服务</a></p>
                 <p><a href="">相关下载</a></p>
             </div>
@@ -295,13 +233,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备1101080212535号 京网文[2014]0059-0009号</p>
-            <p>违法和不良信息举报电话：185-0130-1238</p>
-            <ul class="infoLinks">
-                <li><img src="../../resources/images/copyright/v-logo-1.png"></li>
-                <li><img src="../../resources/images/copyright/v-logo-2.png"></li>
-                <li><img src="../../resources/images/copyright/v-logo-3.png"></li>
-            </ul>
+            <p>版权所有&copy; 菠萝书城</p>
         </div>
     </div>
 </div>

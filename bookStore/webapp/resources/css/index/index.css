@@ -1,6 +1,6 @@
 .subNavBox {
 	width: 203px;
-	border: 1px solid #f69;
+	border: 1px solid #9ea74b;
 	border-top: none;
 	padding: 0 10px;
 	float: left;
@@ -64,13 +64,13 @@
 }
 
 .bannerBox .hd li.on {
-	background-color: #f69;
+	background-color: #9ea74b;
 }
 
 .floorTitle {
 	height: 20px;
 	line-height: 20px;
-	border-left: 3px solid #f69;
+	border-left: 3px solid #9ea74b;
 	margin: 10px 0;
 	padding-left: 10px;
 	font-size: 15px;
@@ -101,6 +101,6 @@
 }
 
 .item .money {
-	color: #f69;
+	color: #9ea74b;
 	font-size: 18px;
 }

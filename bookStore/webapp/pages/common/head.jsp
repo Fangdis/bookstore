@@ -17,7 +17,7 @@
         </ul>
         <ul class="siteLoginBox fr clearfix">
             <!-- 未登录 begin -->
-            <li>欢迎来到HiGo，请</li>
+            <li>欢迎来到菠萝书城，请</li>
             <li><a href="${ctx}/user/loginPage.html" class="pink">登录</a></li>
             <li><a href="${ctx}/user/register.html" class="pink">免费注册</a></li>
             <!-- 未登录 end -->
