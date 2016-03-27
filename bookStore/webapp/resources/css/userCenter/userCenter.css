@@ -18,7 +18,7 @@
 }
 
 .leftNavItem li.active {
-	color: #f69;
+	color: #9ea74b;
 }
 
 .leftNavItem .leftNavTitle {
@@ -88,7 +88,7 @@
 }
 
 .orderBox .tabBox li.active {
-	border-bottom: 3px solid #f69;
+	border-bottom: 3px solid #9ea74b;
 }
 
 .updatePswForm .sex {
@@ -184,5 +184,5 @@
 }
 
 .ui-table .ui-table-title .icon:hover {
-	color: #f69;
+	color: #9ea74b;
 }

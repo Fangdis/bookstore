@@ -83,7 +83,7 @@ a {
 }
 
 a:hover, .pink {
-	color: #f69;
+	color: #9ea74b;
 }
 
 .hover:hover {
@@ -134,7 +134,7 @@ a:hover, .pink {
 }
 
 .form-item .require {
-	color: #f69;
+	color: #9ea74b;
 	width: 13px;
 	display: inline-block;
 	text-align: center;
@@ -145,6 +145,12 @@ a:hover, .pink {
 	color: #f00;
 	position: absolute;
 	padding-left: 10px;
+}
+
+.form-item input[type='text'].wx-inputErrBorder,
+.form-item textarea.wx-inputErrBorder,
+.form-item input[type='password'].wx-inputErrBorder {
+	border: 1px solid #f56363;
 }
 
 .form-btn {
@@ -198,7 +204,7 @@ a:hover, .pink {
 }
 
 .ui-btn-pink {
-	background-color: #f69;
+	background-color: #9ea74b;
 	color: #fff;
 }
 
@@ -373,7 +379,7 @@ a:hover, .pink {
 
 .siteHRight .cart-num {
 	padding: 0 6px;
-	background-color: #f69;
+	background-color: #9ea74b;
 	color: #fff;
     font-family: Arial;
 }
@@ -381,22 +387,22 @@ a:hover, .pink {
 
 /*siteMTopBox begain*/
 .siteLogo {
-	width: 279px;
-	height: 116px;
+	width: 227px;
+	height: 120px;
 	float: left;
-	background-color: #f69;
+	/*background-color: #9ea74b;*/
 }
 
 .siteLogo img {
-	width: 279px;
-	height: 116px;
+	width: 100%;
+	height: 100%;
 }
 
 .searchBox {
 	width: 520px;
-	height: 95px;
+	/*height: 90px;*/
 	float: left;
-	margin: 20px 0 0 80px;
+	margin: 28px 0 0 100px;
 }
 
 .searchTab li {
@@ -412,11 +418,11 @@ a:hover, .pink {
 
 .searchTab li.active {
 	color: #fff;
-	background-color: #f69;
+	background-color: #9ea74b;
 }
 
 .searchInner input[type="text"] {
-	border: 2px solid #f69;
+	border: 2px solid #9ea74b;
 	width: 426px;
 	padding: 5px 10px;
 	float: left;
@@ -425,7 +431,7 @@ a:hover, .pink {
 .searchBtn {
 	float: left;
 	color: #fff;
-	background-color: #f69;
+	background-color: #9ea74b;
 	height: 32px;
 	line-height: 32px;
 	font-size: 20px;
@@ -449,7 +455,7 @@ a:hover, .pink {
 
 .basketBox {
 	float: right;
-	margin: 44px 25px 0 0;
+	margin: 52px 25px 0 0;
 	line-height: 32px;
 }
 
@@ -461,7 +467,7 @@ a:hover, .pink {
 
 .basketBox span .num {
 	padding: 0 5px;
-	color: #f69;
+	color: #9ea74b;
 	font-weight: bold;
 }
 
@@ -469,7 +475,7 @@ a:hover, .pink {
 	display: inline-block;
 	width: 60px;
 	line-height: 32px;
-	background-color: #f69;
+	background-color: #9ea74b;
 	color: #fff;
 	text-align: center;
 }
@@ -477,7 +483,7 @@ a:hover, .pink {
 .siteNavBox {
 	height: 35px;
 	line-height: 35px;
-	border-bottom: 1px solid #f69;
+	border-bottom: 1px solid #9ea74b;
 	margin-top: 15px;
 }
 
@@ -501,7 +507,7 @@ a:hover, .pink {
 	right: 50%;
 	bottom: 0;
 	height: 2px;
-	background-color: #f69;
+	background-color: #9ea74b;
 	opacity: 0;
 	-webkit-transition: .2s ease-in;
 	transition: .2s ease-in;
@@ -522,7 +528,7 @@ a:hover, .pink {
 	width: 225px;
 	text-align: center;
 	color: #fff;
-	background-color: #f69;
+	background-color: #9ea74b;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
 	padding: 0;
@@ -589,14 +595,14 @@ a:hover, .pink {
 	font-size: 22px;
 	margin-bottom: 0;
 	margin-bottom: 5px;
-	color: #f69;
+	color: #9ea74b;
 }
 
 .linkList .customItem .customBtn {
 	width: 150px;
 	line-height: 25px;
-	border: 1px solid #f69;
-	color: #f69;
+	border: 1px solid #9ea74b;
+	color: #9ea74b;
 	text-align: center;
 	margin-top: 10px;
 	display: inline-block;

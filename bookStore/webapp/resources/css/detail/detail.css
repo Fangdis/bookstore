@@ -61,7 +61,7 @@
 }
 
 .detailInfo .summary {
-	color: #f69;
+	color: #9ea74b;
 	font-size: 14px;
 }
 
@@ -115,7 +115,7 @@
 
 .detailInfo .nowPrice {
 	font-size: 22px;
-	color: #f69;
+	color: #9ea74b;
 	font-weight: 600;
 }
 
@@ -247,7 +247,7 @@
 }
 
 .slidebar .productList li .money {
-	color: #f69;
+	color: #9ea74b;
 	font-size: 14px;
 }
 
@@ -284,12 +284,12 @@
 
 .tabBox li i {
 	font-size: 12px;
-	color: #f69;
+	color: #9ea74b;
 	padding-left: 5px;
 }
 
 .tabBox li.active {
-	color: #f69;
+	color: #9ea74b;
 	background-color: #fff;
 	border: 1px solid #ddd;
     border-bottom: 0;
@@ -338,7 +338,7 @@
 
 .productDetail .rate span {
 	font-size: 24px;
-	color: #f69;
+	color: #9ea74b;
 	display: block;
 	height: 62px;
 }
@@ -372,7 +372,7 @@
 }
 
 .productDetail .percent dd div {
-	background-color: #f69;
+	background-color: #9ea74b;
 	height: 10px;
 }
 
@@ -405,7 +405,7 @@
 }
 
 .productIntro .title {
-	border-bottom: 2px solid #f69;
+	border-bottom: 2px solid #9ea74b;
 	line-height: 30px;
 	font-size: 14px;
 	font-weight: 500;
@@ -413,7 +413,7 @@
 
 .productIntro .title span {
 	width: 100px;
-	background-color: #f69;
+	background-color: #9ea74b;
 	color: #fff;
 	display: block;
 	text-align: center;
@@ -448,7 +448,7 @@
 }
 
 .productListBox .filter li.active {
-	background-color: #f69;
+	background-color: #9ea74b;
 	color: #fff;
 }
 
@@ -457,5 +457,5 @@
 }
 
 .productListBox .filter li.active:hover {
-	background-color: #f69;
+	background-color: #9ea74b;
 }
