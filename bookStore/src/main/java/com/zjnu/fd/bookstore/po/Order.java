@@ -1,13 +1,9 @@
 package com.zjnu.fd.bookstore.po;
 
-import java.io.Serializable;
-
-public class Order implements Serializable {
+public class Order {
     private Integer id;
 
     private Integer addressId;
-
-    private Integer cartId;
 
     private Float totalPrice;
 
@@ -35,14 +31,6 @@ public class Order implements Serializable {
 
     public void setAddressId(Integer addressId) {
         this.addressId = addressId;
-    }
-
-    public Integer getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(Integer cartId) {
-        this.cartId = cartId;
     }
 
     public Float getTotalPrice() {

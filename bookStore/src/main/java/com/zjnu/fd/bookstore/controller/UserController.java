@@ -1,10 +1,9 @@
 package com.zjnu.fd.bookstore.controller;
 
-import com.zjnu.fd.bookstore.model.CartRefOrderModel;
+import com.zjnu.fd.bookstore.model.OrderModel;
 import com.zjnu.fd.bookstore.po.User;
 import com.zjnu.fd.bookstore.service.OrderService;
 import com.zjnu.fd.bookstore.service.UserService;
-import com.zjnu.fd.bookstore.util.JsonUtil;
 import com.zjnu.fd.bookstore.util.OutPut;
 import com.zjnu.fd.bookstore.util.RandomUtil;
 import org.springframework.stereotype.Controller;
@@ -93,7 +92,7 @@ public class UserController {
     public ModelAndView userOrder(HttpServletRequest request,ModelAndView modelAndView){
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        List<CartRefOrderModel> cartRefOrderModels = orderService.listByUserId(user.getId());
+        List<OrderModel> cartRefOrderModels = orderService.listByUserId(user.getId());
         modelAndView.setViewName("userCenter/myOrder");
         modelAndView.addObject("orders",cartRefOrderModels);
         return  modelAndView;
