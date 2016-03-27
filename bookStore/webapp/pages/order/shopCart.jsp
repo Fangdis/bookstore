@@ -75,7 +75,7 @@
                             <td class="text-left pl27"><input type="checkbox"><input type="hidden" value="${cart.id}"></td>
                             <td class="text-left">
                                 <img src="${ctx}/${cart.cover}">
-                                <a href="" class="productItem">${cart.name}</a>
+                                <a href="${ctx}/detail/detail.html?id=${cart.bookid}" class="productItem">${cart.name}</a>
                             </td>
                             <td>${cart.price}</td>
                             <td>

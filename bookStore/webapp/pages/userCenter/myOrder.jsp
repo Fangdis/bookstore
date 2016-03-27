@@ -113,7 +113,7 @@
                                     <tr class="goods">
                                         <td class="text-left pl27">
                                             <img src="${ctx}/${cart.cover}">
-                                            <a href="" class="productItem">${cart.name}</a>
+                                            <a href="${ctx}/detail/detail.html?id=${cart.bookid}" class="productItem">${cart.name}</a>
                                         </td>
                                         <td>${cart.price}</td>
                                         <td>${cart.total}</td>
