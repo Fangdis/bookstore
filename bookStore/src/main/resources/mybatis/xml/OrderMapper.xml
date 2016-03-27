@@ -4,7 +4,6 @@
   <resultMap id="BaseResultMap" type="com.zjnu.fd.bookstore.po.Order" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="address_id" property="addressId" jdbcType="INTEGER" />
-    <result column="cart_id" property="cartId" jdbcType="INTEGER" />
     <result column="total_price" property="totalPrice" jdbcType="REAL" />
     <result column="purchase_msg" property="purchaseMsg" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
@@ -13,22 +12,15 @@
     <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, address_id, cart_id, total_price, purchase_msg, status, oder_number, add_time, 
-    user_id
+    id, address_id, total_price, purchase_msg, status, oder_number, add_time, user_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-  select
-  <include refid="Base_Column_List" />
-  from ss_order
-  where id = #{id,jdbcType=INTEGER}
-</select>
-  <select id="list" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from ss_order
-    where user_id = #{0}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="listOrderByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  <select id="list" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from ss_order
@@ -39,14 +31,12 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zjnu.fd.bookstore.po.Order" >
-    insert into ss_order (id, address_id, cart_id, 
-      total_price, purchase_msg, status, 
-      oder_number, add_time, user_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}, #{cartId,jdbcType=INTEGER}, 
-      #{totalPrice,jdbcType=REAL}, #{purchaseMsg,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{oderNumber,jdbcType=VARCHAR}, #{addTime,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
-      )
+    insert into ss_order (id, address_id, total_price, 
+      purchase_msg, status, oder_number, 
+      add_time, user_id)
+    values (#{id,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}, #{totalPrice,jdbcType=REAL}, 
+      #{purchaseMsg,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{oderNumber,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zjnu.fd.bookstore.po.Order" >
     insert into ss_order
@@ -56,9 +46,6 @@
       </if>
       <if test="addressId != null" >
         address_id,
-      </if>
-      <if test="cartId != null" >
-        cart_id,
       </if>
       <if test="totalPrice != null" >
         total_price,
@@ -86,9 +73,6 @@
       <if test="addressId != null" >
         #{addressId,jdbcType=INTEGER},
       </if>
-      <if test="cartId != null" >
-        #{cartId,jdbcType=INTEGER},
-      </if>
       <if test="totalPrice != null" >
         #{totalPrice,jdbcType=REAL},
       </if>
@@ -115,9 +99,6 @@
       <if test="addressId != null" >
         address_id = #{addressId,jdbcType=INTEGER},
       </if>
-      <if test="cartId != null" >
-        cart_id = #{cartId,jdbcType=INTEGER},
-      </if>
       <if test="totalPrice != null" >
         total_price = #{totalPrice,jdbcType=REAL},
       </if>
@@ -142,7 +123,6 @@
   <update id="updateByPrimaryKey" parameterType="com.zjnu.fd.bookstore.po.Order" >
     update ss_order
     set address_id = #{addressId,jdbcType=INTEGER},
-      cart_id = #{cartId,jdbcType=INTEGER},
       total_price = #{totalPrice,jdbcType=REAL},
       purchase_msg = #{purchaseMsg,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},

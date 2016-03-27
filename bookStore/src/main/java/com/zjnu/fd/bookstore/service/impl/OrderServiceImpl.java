@@ -2,9 +2,11 @@ package com.zjnu.fd.bookstore.service.impl;
 
 import com.zjnu.fd.bookstore.dao.CartMapper;
 import com.zjnu.fd.bookstore.dao.OrderMapper;
-import com.zjnu.fd.bookstore.model.CartRefOrderModel;
+import com.zjnu.fd.bookstore.dao.OrderRefCartMapper;
+import com.zjnu.fd.bookstore.model.OrderModel;
 import com.zjnu.fd.bookstore.po.Cart;
 import com.zjnu.fd.bookstore.po.Order;
+import com.zjnu.fd.bookstore.po.OrderRefCart;
 import com.zjnu.fd.bookstore.service.OrderService;
 import org.springframework.stereotype.Service;
 
@@ -21,21 +23,21 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
     @Resource
     private CartMapper cartMapper;
-    public List<CartRefOrderModel> listByUserId(int userId) {
+    @Resource
+    private OrderRefCartMapper orderRefCartMapper;
 
+    public List<OrderModel> listByUserId(int userId) {
         List<Order> orderList=orderMapper.list(userId);
-        List<CartRefOrderModel> lists=new ArrayList<CartRefOrderModel>();
+        List<OrderModel> lists=new ArrayList<OrderModel>();
         for (int i=0;i<orderList.size();i++){
-            CartRefOrderModel cartRefOrderModel = new CartRefOrderModel();
-            Cart cart = cartMapper.selectByPrimaryKey(orderList.get(i).getCartId());
-            cartRefOrderModel.setAddTime(orderList.get(i).getAddTime());
-            cartRefOrderModel.setCover(cart.getCover());
-            cartRefOrderModel.setName(cart.getName());
-            cartRefOrderModel.setNum(cart.getTotal());
-            cartRefOrderModel.setPrice(cart.getPrice());
-            cartRefOrderModel.setOrderNumber(orderList.get(i).getOderNumber());
-            cartRefOrderModel.setStatus(orderList.get(i).getStatus());
-            lists.add(cartRefOrderModel);
+            OrderModel orderModel=new OrderModel();
+            OrderRefCart orderRefCart= orderRefCartMapper.selectByOrderNumber(orderList.get(i).getOderNumber());
+            Cart cart=cartMapper.selectByPrimaryKey(orderRefCart.getCartId());
+            orderModel.setStatus(orderList.get(i).getStatus());
+            orderModel.setOrderNumber(orderList.get(i).getOderNumber());
+            orderModel.setAddTime(orderList.get(i).getAddTime());
+            orderModel.setCart(cart);
+            lists.add(orderModel);
         }
         return lists;
     }
