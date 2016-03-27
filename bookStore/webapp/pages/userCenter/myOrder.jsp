@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +19,10 @@
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/fontello.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/userCenter/userCenter.css">
     <script type="text/javascript" src="../../resources/js/plugs/jquery/jquery-1.8.3.min.js"></script>
+    <c:set var="ctx" value="${pageContext.request.contextPath}" />
+    <c:if test="${sessionScope.get('user')==null}">
+        <c:redirect url="${ctx}/user/loginPage"></c:redirect>
+    </c:if>
 </head>
 <body>
 <ul class="rightBar">
@@ -93,30 +101,9 @@
 </div>
 <div class="mainWrapper">
     <div class="mainInnerBox clearfix">
-        <div class="leftNav">
-            <ul class="leftNavItem">
-                <h3 class="leftNavTitle">我的</h3>
-                <li class="active"><a href="myOrder.html">我的订单</a></li>
-                <li><a href="myEvaluate.html">我的评价</a></li>
-                <li><a href="../order/cart.html">我的购物车</a></li>
-            </ul>
-            <ul class="leftNavItem">
-                <h3 class="leftNavTitle">设置</h3>
-                <li><a href="myAddress.html">收货地址</a></li>
-                <li><a href="myPassword.html">修改密码</a></li>
-                <li><a href="myInformation.html">个人资料</a></li>
-            </ul>
-        </div>
+        <jsp:include page="common/left.jsp" />
         <div class="userWrap">
-            <div class="userInfoDetail">
-                <div class="userLogo">
-                    <img src="../../resources/images/mrLogo.png">
-                </div>
-                <div class="userInfo">
-                    <h2 class="userName">童心未泯_X</h2>
-                    <p>浙江  杭州</p>
-                </div>
-            </div>
+            <jsp:include page="common/user.jsp" />
             <div class="orderBox">
                 <ul class="tabBox clearfix">
                     <li class="active">全部订单</li>
@@ -146,43 +133,37 @@
                         </thead>
                         <tbody>
                         <tr class="empty"><td colspan="6"></td></tr>
-                        <tr class="ui-table-title">
-                            <td colspan="6" class="text-left pl27">
-                                <span class="mr10">2015-11-27 00:39</span>
-                                <span>订单编号：2286466</span>
-                            </td>
-                        </tr>
-                        <tr class="goods">
-                            <td class="text-left pl27">
-                                <img src="../../resources/images/temp/item/items.jpg">
-                                <a href="" class="productItem">人生需要揭穿</a>
-                            </td>
-                            <td>17.78</td>
-                            <td>1</td>
-                            <td>17.78</td>
-                            <td>待收货</td>
-                            <td><input type="button" value="确认收货" class="ui-btn ui-btn-pink ui-btn-xs"></td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-                        <tr class="empty"><td colspan="6"></td></tr>
-                        <tr class="ui-table-title">
-                            <td colspan="6" class="text-left pl27">
-                                <span class="mr10">2015-11-27 00:39</span>
-                                <span>订单编号：2286466</span>
-                            </td>
-                        </tr>
-                        <tr class="goods">
-                            <td class="text-left pl27">
-                                <img src="../../resources/images/temp/item/items.jpg">
-                                <a href="" class="productItem">人生需要揭穿</a>
-                            </td>
-                            <td>17.78</td>
-                            <td>1</td>
-                            <td>17.78</td>
-                            <td>待收货</td>
-                            <td><input type="button" value="确认收货" class="ui-btn ui-btn-pink ui-btn-xs"></td>
-                        </tr>
+                        <c:forEach items="${orders}" var="orders">
+                                <tr class="ui-table-title">
+                                    <td colspan="6" class="text-left pl27">
+                                        <span class="mr10">${orders.addTime}</span>
+                                        <span>订单编号：${orders.orderNumber}</span>
+                                    </td>
+                                </tr>
+                                <c:forEach items="${orders.cart}" var="cart">
+                                    <tr class="goods">
+                                        <td class="text-left pl27">
+                                            <img src="${ctx}/${cart.cover}">
+                                            <a href="" class="productItem">${cart.name}</a>
+                                        </td>
+                                        <td>${cart.price}</td>
+                                        <td>${cart.total}</td>
+                                        <td><fmt:formatNumber value="${cart.total*cart.price}" pattern="##.##" minFractionDigits="2"/> </td>
+                                        <td><c:if test="${orders.status==0}">
+                                            待付款
+                                        <td><input type="button" value="确认付款" class="ui-btn ui-btn-pink ui-btn-xs"></td>
+                                        </c:if><c:if test="${orders.status==1}">
+                                                待收货
+                                        <td><input type="button" value="确认收货" class="ui-btn ui-btn-pink ui-btn-xs"></td>
+                                            </c:if>
+                                            <c:if test="${orders.status==2}">
+                                                待发货 <td><input type="button" value="确认催货" class="ui-btn ui-btn-pink ui-btn-xs"></td>
+                                            </c:if>
+                                            </td>
+
+                                    </tr>
+                                </c:forEach>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -208,43 +189,29 @@
                         </thead>
                         <tbody>
                         <tr class="empty"><td colspan="6"></td></tr>
-                        <tr class="ui-table-title">
-                            <td colspan="6" class="text-left pl27">
-                                <span class="mr10">2015-11-27 00:39</span>
-                                <span>订单编号：2286466</span>
-                            </td>
-                        </tr>
-                        <tr class="goods">
-                            <td class="text-left pl27">
-                                <img src="../../resources/images/temp/item/items.jpg">
-                                <a href="" class="productItem">人生需要揭穿</a>
-                            </td>
-                            <td>17.78</td>
-                            <td>1</td>
-                            <td>17.78</td>
-                            <td>待收货</td>
-                            <td><input type="button" value="确认收货" class="ui-btn ui-btn-pink ui-btn-xs"></td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-                        <tr class="empty"><td colspan="6"></td></tr>
-                        <tr class="ui-table-title">
-                            <td colspan="6" class="text-left pl27">
-                                <span class="mr10">2015-11-27 00:39</span>
-                                <span>订单编号：2286466</span>
-                            </td>
-                        </tr>
-                        <tr class="goods">
-                            <td class="text-left pl27">
-                                <img src="../../resources/images/temp/item/items.jpg">
-                                <a href="" class="productItem">人生需要揭穿</a>
-                            </td>
-                            <td>17.78</td>
-                            <td>1</td>
-                            <td>17.78</td>
-                            <td>待收货</td>
-                            <td><input type="button" value="确认收货" class="ui-btn ui-btn-pink ui-btn-xs"></td>
-                        </tr>
+                        <c:forEach items="${orders}" var="orders">
+                            <c:if test="${orders.status==0}">
+                                <tr class="ui-table-title">
+                                    <td colspan="6" class="text-left pl27">
+                                        <span class="mr10">${orders.addTime}</span>
+                                        <span>订单编号：${orders.orderNumber}</span>
+                                    </td>
+                                </tr>
+                                <c:forEach items="${orders.cart}" var="cart">
+                                    <tr class="goods">
+                                        <td class="text-left pl27">
+                                            <img src="${ctx}/${cart.cover}">
+                                            <a href="" class="productItem">${cart.name}</a>
+                                        </td>
+                                        <td>${cart.price}</td>
+                                        <td>${cart.total}</td>
+                                        <td><fmt:formatNumber value="${cart.total*cart.price}" pattern="##.##" minFractionDigits="2"/> </td>
+                                        <td>待付款</td>
+                                        <td><input type="button" value="确认付款" class="ui-btn ui-btn-pink ui-btn-xs"></td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -270,43 +237,29 @@
                         </thead>
                         <tbody>
                         <tr class="empty"><td colspan="6"></td></tr>
-                        <tr class="ui-table-title">
-                            <td colspan="6" class="text-left pl27">
-                                <span class="mr10">2015-11-27 00:39</span>
-                                <span>订单编号：2286466</span>
-                            </td>
-                        </tr>
-                        <tr class="goods">
-                            <td class="text-left pl27">
-                                <img src="../../resources/images/temp/item/items.jpg">
-                                <a href="" class="productItem">人生需要揭穿</a>
-                            </td>
-                            <td>17.78</td>
-                            <td>1</td>
-                            <td>17.78</td>
-                            <td>待收货</td>
-                            <td><input type="button" value="确认收货" class="ui-btn ui-btn-pink ui-btn-xs"></td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-                        <tr class="empty"><td colspan="6"></td></tr>
-                        <tr class="ui-table-title">
-                            <td colspan="6" class="text-left pl27">
-                                <span class="mr10">2015-11-27 00:39</span>
-                                <span>订单编号：2286466</span>
-                            </td>
-                        </tr>
-                        <tr class="goods">
-                            <td class="text-left pl27">
-                                <img src="../../resources/images/temp/item/items.jpg">
-                                <a href="" class="productItem">人生需要揭穿</a>
-                            </td>
-                            <td>17.78</td>
-                            <td>1</td>
-                            <td>17.78</td>
-                            <td>待收货</td>
-                            <td><input type="button" value="确认收货" class="ui-btn ui-btn-pink ui-btn-xs"></td>
-                        </tr>
+                        <c:forEach items="${orders}" var="orders">
+                            <c:if test="${orders.status==1}">
+                                <tr class="ui-table-title">
+                                    <td colspan="6" class="text-left pl27">
+                                        <span class="mr10">${orders.addTime}</span>
+                                        <span>订单编号：${orders.orderNumber}</span>
+                                    </td>
+                                </tr>
+                                <c:forEach items="${orders.cart}" var="cart">
+                                    <tr class="goods">
+                                        <td class="text-left pl27">
+                                            <img src="${ctx}/${cart.cover}">
+                                            <a href="" class="productItem">${cart.name}</a>
+                                        </td>
+                                        <td>${cart.price}</td>
+                                        <td>${cart.total}</td>
+                                        <td><fmt:formatNumber value="${cart.total*cart.price}" pattern="##.##" minFractionDigits="2"/> </td>
+                                        <td>待发货</td>
+                                        <td><input type="button" value="确认催货" class="ui-btn ui-btn-pink ui-btn-xs"></td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -334,45 +287,29 @@
                         <tr><td colspan="6"></td></tr>
                         </tbody>
                         <tbody>
-                        <tr class="ui-table-title">
-                            <td colspan="6" class="text-left pl27">
-                                <span class="mr10">2015-11-27 00:39</span>
-                                <span>订单编号：2286466</span>
-                            </td>
-                        </tr>
-                        <tr class="goods">
-                            <td class="text-left pl27">
-                                <img src="../../resources/images/temp/item/items.jpg">
-                                <a href="" class="productItem">人生需要揭穿</a>
-                            </td>
-                            <td>17.78</td>
-                            <td>1</td>
-                            <td>17.78</td>
-                            <td>待收货</td>
-                            <td><input type="button" value="确认收货" class="ui-btn ui-btn-pink ui-btn-xs"></td>
-                        </tr>
-                        </tbody>
-                        <tbody class="empty">
-                        <tr><td colspan="6"></td></tr>
-                        </tbody>
-                        <tbody>
-                        <tr class="ui-table-title">
-                            <td colspan="6" class="text-left pl27">
-                                <span class="mr10">2015-11-27 00:39</span>
-                                <span>订单编号：2286466</span>
-                            </td>
-                        </tr>
-                        <tr class="goods">
-                            <td class="text-left pl27">
-                                <img src="../../resources/images/temp/item/items.jpg">
-                                <a href="" class="productItem">人生需要揭穿</a>
-                            </td>
-                            <td>17.78</td>
-                            <td>1</td>
-                            <td>17.78</td>
-                            <td>待收货</td>
-                            <td><input type="button" value="确认收货" class="ui-btn ui-btn-pink ui-btn-xs"></td>
-                        </tr>
+                        <c:forEach items="${orders}" var="orders">
+                            <c:if test="${orders.status==2}">
+                                <tr class="ui-table-title">
+                                    <td colspan="6" class="text-left pl27">
+                                        <span class="mr10">${orders.addTime}</span>
+                                        <span>订单编号：${orders.orderNumber}</span>
+                                    </td>
+                                </tr>
+                                <c:forEach items="${orders.cart}" var="cart">
+                                    <tr class="goods">
+                                        <td class="text-left pl27">
+                                            <img src="${ctx}/${cart.cover}">
+                                            <a href="" class="productItem">${cart.name}</a>
+                                        </td>
+                                        <td>${cart.price}</td>
+                                        <td>${cart.total}</td>
+                                        <td><fmt:formatNumber value="${cart.total*cart.price}" pattern="##.##" minFractionDigits="2"/> </td>
+                                        <td>待收货</td>
+                                        <td><input type="button" value="确认收货" class="ui-btn ui-btn-pink ui-btn-xs"></td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

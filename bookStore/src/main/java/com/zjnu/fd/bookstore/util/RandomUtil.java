@@ -14,4 +14,12 @@ public class RandomUtil {
         }
         return stb.toString();
     }
+    public static String randOrderNumber(){
+        Random random=new Random();
+        StringBuilder stb=new StringBuilder();
+        for (int i=0;i<8;i++){
+            stb.append(random.nextInt(10));
+        }
+        return stb.toString();
+    }
 }

@@ -19,6 +19,8 @@ public class User {
 
     private String introduction;
 
+    private String posnum;
+
     public Integer getId() {
         return id;
     }
@@ -89,5 +91,13 @@ public class User {
 
     public void setIntroduction(String introduction) {
         this.introduction = introduction == null ? null : introduction.trim();
+    }
+
+    public String getPosnum() {
+        return posnum;
+    }
+
+    public void setPosnum(String posnum) {
+        this.posnum = posnum == null ? null : posnum.trim();
     }
 }

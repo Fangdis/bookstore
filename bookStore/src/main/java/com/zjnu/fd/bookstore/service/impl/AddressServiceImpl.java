@@ -18,4 +18,8 @@ public class AddressServiceImpl implements AddressService {
     public List<Address> listByUserId(int userId) {
        return addressMapper.listByUserId(userId);
     }
+
+    public int insert(Address address) {
+        return addressMapper.insert(address);
+    }
 }

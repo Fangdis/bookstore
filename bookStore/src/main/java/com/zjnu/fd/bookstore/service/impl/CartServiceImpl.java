@@ -6,6 +6,7 @@ import com.zjnu.fd.bookstore.service.CartService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,5 +29,15 @@ public class CartServiceImpl implements CartService {
     public int deleteById(int id) {
         cartMapper.deleteByPrimaryKey(id);
         return 0;
+    }
+
+    public List<Cart> listByUserIdAndIds(int userId, String ids) {
+        String[] stts=ids.split(",");
+        List<Cart> lists=new ArrayList<Cart>();
+        for (int i=0;i<stts.length;i++){
+            if(stts[i]!=null&&stts[i]!="")
+             lists.add(cartMapper.findByUserIdAndIds(userId,Integer.parseInt(stts[i])));
+        }
+        return lists;
     }
 }

@@ -18,4 +18,6 @@ public interface CartMapper {
     int updateByPrimaryKey(Cart record);
 
     List<Cart> listByUserId(int userId);
+
+    Cart findByUserIdAndIds(int userId, int stt);
 }

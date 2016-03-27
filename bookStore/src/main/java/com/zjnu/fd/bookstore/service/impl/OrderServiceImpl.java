@@ -31,14 +31,22 @@ public class OrderServiceImpl implements OrderService {
         List<OrderModel> lists=new ArrayList<OrderModel>();
         for (int i=0;i<orderList.size();i++){
             OrderModel orderModel=new OrderModel();
-            OrderRefCart orderRefCart= orderRefCartMapper.selectByOrderNumber(orderList.get(i).getOderNumber());
-            Cart cart=cartMapper.selectByPrimaryKey(orderRefCart.getCartId());
+            List<OrderRefCart> orderRefCarts = orderRefCartMapper.selectByOrderNumber(orderList.get(i).getOderNumber());
+            ArrayList<Cart> carts = new ArrayList<Cart>();
+            for (int j=0;j<orderRefCarts.size();j++){
+                Cart cart=cartMapper.selectByPrimaryKey(orderRefCarts.get(j).getCartId());
+                carts.add(cart);
+            }
             orderModel.setStatus(orderList.get(i).getStatus());
             orderModel.setOrderNumber(orderList.get(i).getOderNumber());
             orderModel.setAddTime(orderList.get(i).getAddTime());
-            orderModel.setCart(cart);
+            orderModel.setCart(carts);
             lists.add(orderModel);
         }
         return lists;
+    }
+
+    public int insert(Order order) {
+        return orderMapper.insert(order);
     }
 }

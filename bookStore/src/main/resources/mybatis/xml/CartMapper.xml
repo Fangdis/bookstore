@@ -25,6 +25,12 @@
     from ss_cart
     where userId = #{0}
   </select>
+  <select id="findByUserIdAndIds" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from ss_cart
+    where userId = #{0} AND id=#{1}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from ss_cart
     where id = #{id,jdbcType=INTEGER}

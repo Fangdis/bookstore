@@ -1,4 +1,4 @@
-    package com.zjnu.fd.bookstore.po;
+package com.zjnu.fd.bookstore.po;
 
 public class Address {
     private Integer id;
@@ -14,6 +14,8 @@ public class Address {
     private String contantphone;
 
     private String streetaddress;
+
+    private String posnum;
 
     public Integer getId() {
         return id;
@@ -69,5 +71,13 @@ public class Address {
 
     public void setStreetaddress(String streetaddress) {
         this.streetaddress = streetaddress == null ? null : streetaddress.trim();
+    }
+
+    public String getPosnum() {
+        return posnum;
+    }
+
+    public void setPosnum(String posnum) {
+        this.posnum = posnum == null ? null : posnum.trim();
     }
 }

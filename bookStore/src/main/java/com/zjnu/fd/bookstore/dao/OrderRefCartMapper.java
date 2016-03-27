@@ -2,6 +2,8 @@ package com.zjnu.fd.bookstore.dao;
 
 import com.zjnu.fd.bookstore.po.OrderRefCart;
 
+import java.util.List;
+
 public interface OrderRefCartMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -15,5 +17,5 @@ public interface OrderRefCartMapper {
 
     int updateByPrimaryKey(OrderRefCart record);
 
-    OrderRefCart selectByOrderNumber(String oderNumber);
+    List<OrderRefCart> selectByOrderNumber(String oderNumber);
 }

@@ -3,6 +3,7 @@ package com.zjnu.fd.bookstore.model;
 import com.zjnu.fd.bookstore.po.Cart;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by xqYang on 2016/3/27.
@@ -11,7 +12,7 @@ public class OrderModel implements Serializable {
     private String addTime;
     private String orderNumber;
     private int status;
-    private Cart cart;
+    private List<Cart> cart;
 
     public String getAddTime() {
         return addTime;
@@ -37,11 +38,11 @@ public class OrderModel implements Serializable {
         this.status = status;
     }
 
-    public Cart getCart() {
+    public List<Cart> getCart() {
         return cart;
     }
 
-    public void setCart(Cart cart) {
+    public void setCart(List<Cart> cart) {
         this.cart = cart;
     }
 }

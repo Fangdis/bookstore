@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface AddressService {
     public List<Address> listByUserId(int userId);
+
+    public int insert(Address address);
 }

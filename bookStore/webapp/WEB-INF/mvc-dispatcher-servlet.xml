@@ -37,4 +37,10 @@
 	<mvc:resources location="/" mapping="/**/*.jpg"/>
 	<mvc:resources location="/" mapping="/**/*.woff"/>
 	<mvc:resources location="/" mapping="/**/*.ttf"/>
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="maxUploadSize" value="10485760000"></property>
+		<property name="maxInMemorySize" value="40960"></property>
+	</bean>
 </beans>

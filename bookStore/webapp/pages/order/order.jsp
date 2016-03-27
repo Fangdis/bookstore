@@ -19,6 +19,9 @@
     <link rel="stylesheet" type="text/css" href="../../resources/css/cart/cart.css">
     <script type="text/javascript" src="../../resources/js/plugs/jquery/jquery-1.8.3.min.js"></script>
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
+    <c:if test="${sessionScope.get('user')==null}">
+        <c:redirect url="${ctx}/user/loginPage"></c:redirect>
+    </c:if>
 </head>
 <body>
 <ul class="rightBar">
@@ -78,9 +81,9 @@
             <ul class="addressList">
                 <c:forEach items="${addressList}" var="address">
                     <li>
-                        <input type="radio">
+                        <input type="radio" class="addressRadio"><input type="hidden" value="${address.id}">
                         <span>${address.province}${address.city}${address.streetaddress}  ${address.addressee}  ${address.contantphone}</span>
-                        <a href="" class="fr pink">修改此地址</a>
+
                     </li>
                 </c:forEach>
 
@@ -90,33 +93,42 @@
                     <%--<a href="" class="fr pink">修改此地址</a>--%>
                 <%--</li>--%>
             </ul>
-            <div class="updateBox">
-                <form>
-                    <div class="form-item">
-                        <label><i class="require">*</i>所在地：</label>
-                        <select class="w150 mr10"></select>
-                        <select class="w150"></select>
-                    </div>
-                    <div class="form-item">
-                        <label><i class="require">*</i>街道地址：</label>
-                        <input type="text" class="w450">
-                    </div>
-                    <div class="form-item">
-                        <label><i class="require">*</i>收件人：</label>
-                        <input type="text" class="w300">
-                    </div>
-                    <div class="form-item">
-                        <label><i class="require">*</i>联系电话：</label>
-                        <input type="text" class="w300">
-                        <p class="error-text"></p>
-                    </div>
-                    <div class="form-btn">
-                        <input type="submit" value="保存并使用" class="ui-btn ui-btn-pink ui-btn-s mr10">
-                        <input type="button" value="取消" class="ui-btn ui-btn-gray ui-btn-s">
-                    </div>
-                </form>
-            </div>
+            <ul>
+                <li>  <a href="javascript:void(0)" class="fr pink" id="addressNew">新增地址</a></li>
+            </ul>
+
+                <div class="updateBox" style="display: none;">
+                    <form method="post" action="${ctx}/address/add" wx-validator wx-validator-error-tag="p" wx-validator-ajax autocomplete="off"  name="addressAdd">
+                        <input type="hidden" wx-validator-rule="required" name="posNum" wx-validator-param="" id="city" placeholder="" >
+                        <div class="form-item">
+                            <label><i class="require">*</i>所在地：</label>
+                            <div  id="city_region_selector1"></div>
+                            <input type="hidden" name="province" class="province">
+                            <input type="hidden" name="city" class="city">
+                        </div>
+                        <div class="form-item">
+                            <label><i class="require">*</i>街道地址：</label>
+                            <input type="text" class="w450" name="streetaddress">
+                        </div>
+                        <div class="form-item">
+                            <label><i class="require">*</i>收件人：</label>
+                            <input type="text" class="w300" name="addressee">
+                        </div>
+                        <div class="form-item">
+                            <label><i class="require">*</i>联系电话：</label>
+                            <input type="text" class="w300" name="contantphone">
+                            <p class="error-text"></p>
+                        </div>
+                        <div class="form-btn">
+                            <input type="submit" value="保存并使用" class="ui-btn ui-btn-pink ui-btn-s mr10">
+                            <input type="button" value="取消" class="ui-btn ui-btn-gray ui-btn-s">
+                        </div>
+                    </form>
+                </div>
         </div>
+        <form method="post" action="${ctx}/order/makeOrder">
+            <input name="addressId" type="hidden" id="orderRefAddressId">
+            <input name="totalPrice" type="hidden" id="orderTotalPrice">
         <div class="cartContainer">
             <table width="100%" class="ui-table cartTable">
                 <colgroup>
@@ -135,6 +147,7 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${cart}" var="cart">
+                    <input type="hidden" name="ids" value="${cart.id}">
                     <tr class="goods">
                         <td class="text-left pl27">
                             <img src="${ctx}/${cart.cover}">
@@ -161,13 +174,15 @@
                 <tr>
                     <td colspan="2" class="text-right"><a href="${ctx}/order/shopCart.html" class="pink">返回购物车</a></td>
                     <td>商品总价：<span class="totalNum">￥0.00</span></td>
-                    <td><a href="" class="ui-btn-pink toChargrBtn">提交订单</a></td>
+                    <td><input type="submit" class="ui-btn-pink toChargrBtn" value="提交订单"></td>
                 </tr>
                 </tfoot>
             </table>
         </div>
+        </form>
     </div>
 </div>
+
 <div class="siteFooterBox">
     <div class="mainInnerBox">
         <ul class="serviceList clearfix">
@@ -226,8 +241,57 @@
     </div>
 </div>
 <script type="text/javascript" src="../../resources/js/plugs/seajs/sea.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/region/region.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.config.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.upload.js"></script>
 <script type="text/javascript">
     seajs.use("../../resources/js/index/index");
+</script>
+<script>
+    $("#" + "city_region_selector1").city_selector('city', '');
+    $("#province").change(function(){
+        $(".province").val($(this).find("option:selected").text());
+    });
+    $("#city").change(function(){
+        $(".city").val($(this).find("option:selected").text());
+    });
+    function  addressAdd(data){
+        if (data["status"]=="success"){
+            window.location.reload(true);
+        }
+    }
+    $(document).ready(function(){
+        $("#addressNew").click(function(){
+            if($(".updateBox").is(":hidden")){
+                $(".updateBox").show();
+            }else{
+                $(".updateBox").hide();
+            }
+        });
+        var total=0;
+        $(".goods").children("td").eq(3).each(function(){
+            total+=parseFloat($(this).text());
+        });
+        $(".totalNum").text("$"+total.toFixed(2));
+        $(".goods:last").children("td").eq(2).text("$"+total.toFixed(2));
+        $("#orderTotalPrice").val(total.toFixed(2));
+        $(".toChargrBtn").click(function(){
+//            if(isEmptyObject()){
+//                alert("请选择地址");
+//            }
+            if($("#orderRefAddressId").val()==null||$("#orderRefAddressId").val()==""){
+                alert("请选择地址");
+                return false;
+            }
+        });
+        $(".addressRadio").click(function(){
+            if($(this).is(":checked")){
+                $("#orderRefAddressId").val($(this).next().val());
+            }
+        })
+    });
+
 </script>
 </body>
 </html>

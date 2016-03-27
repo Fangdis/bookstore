@@ -19,6 +19,9 @@
     <link rel="stylesheet" type="text/css" href="../../resources/css/cart/cart.css">
     <script type="text/javascript" src="../../resources/js/plugs/jquery/jquery-1.8.3.min.js"></script>
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
+    <c:if test="${sessionScope.get('user')==null}">
+        <c:redirect url="${ctx}/user/loginPage"></c:redirect>
+    </c:if>
 </head>
 <body>
 <ul class="rightBar">
@@ -76,30 +79,31 @@
         </div>
 
         <div class="cartContainer">
-            <table width="100%" class="ui-table cartTable">
-                <colgroup>
-                    <col width="10%"></col>
-                    <col width="30%"></col>
-                    <col width="15%"></col>
-                    <col width="15%"></col>
-                    <col width="15%"></col>
-                    <col width="15%"></col>
-                </colgroup>
-                <thead>
+            <form >
+                <table width="100%" class="ui-table cartTable">
+                    <colgroup>
+                        <col width="10%"></col>
+                        <col width="30%"></col>
+                        <col width="15%"></col>
+                        <col width="15%"></col>
+                        <col width="15%"></col>
+                        <col width="15%"></col>
+                    </colgroup>
+                    <thead>
 
-                <tr>
-                    <th><input type="checkbox">全选</th>
-                    <th>商品信息</th>
-                    <th>单价（元）</th>
-                    <th>数量</th>
-                    <th>小计（元）</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
+                    <tr>
+                        <th><input type="checkbox" class="quanxuan">全选</th>
+                        <th>商品信息</th>
+                        <th>单价（元）</th>
+                        <th>数量</th>
+                        <th>小计（元）</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <c:forEach items="${cart}" var="cart">
                         <tr class="goods">
-                            <td class="text-left pl27"><input type="checkbox"></td>
+                            <td class="text-left pl27"><input type="checkbox"><input type="hidden" value="${cart.id}"></td>
                             <td class="text-left">
                                 <img src="${ctx}/${cart.cover}">
                                 <a href="" class="productItem">${cart.name}</a>
@@ -114,19 +118,20 @@
                             <td><a href="${ctx}/order/delete.html?id=${cart.id}" class="pink">删除</a></td>
                         </tr>
                     </c:forEach>
-                </tbody>
-                <tbody class="empty">
-                <tr><td colspan="6"></td></tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td class="text-left pl27"><input type="checkbox">全选</td>
-                    <td><a href="" class="pink">删除选中的商品</a></td>
-                    <td colspan="3">商品总价（不含运费和优惠扣减）<span class="totalNum">￥0.00</span></td>
-                    <td><a href="${ctx}/order/shopOrder" class="ui-btn-pink toChargrBtn">去结算</a></td>
-                </tr>
-                </tfoot>
-            </table>
+                    </tbody>
+                    <tbody class="empty">
+                    <tr><td colspan="6"></td></tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td class="text-left pl27"><input type="checkbox" class="quanxuan">全选</td>
+                        <td></td>
+                        <td colspan="3">商品总价（不含运费和优惠扣减）<span class="totalNum">￥0.00</span></td>
+                        <td> <a  href="javascript:void(0)" class="ui-btn-pink toChargrBtn">去结算</a></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </form>
         </div>
     </div>
 </div>
@@ -190,6 +195,51 @@
 <script type="text/javascript" src="../../resources/js/plugs/seajs/sea.js"></script>
 <script type="text/javascript">
     seajs.use("../../resources/js/index/index");
+</script>
+<script>
+    $(document).ready(function(){
+        $(".quanxuan").click(function(){
+            if($(this).is(":checked")){
+                $(".goods").children("td").children("input").attr("checked",true);
+            }else{
+                $(".goods").children("td").children("input").removeAttr("checked");
+            }
+            sum();
+        }) ;
+        function sum(){
+            var total=0;
+            $(".goods").children("td").children("input").each(function(){
+                if ($(this).is(":checked")){
+                    total+=parseFloat($(this).parent().parent().children("td").eq(4).text());
+                }
+            });
+            $(".totalNum").text("$"+parseFloat(total).toFixed(2));
+        }
+        $(".goods").children("td").children("input").click(function(){
+            sum();
+        });
+        $(".toChargrBtn").click(function(){
+            var url="${ctx}/order/shopOrder";
+            var size= $(".goods").children("td").children("input").length;
+            var total=0;
+            $(".goods").children("td").children("input").each(function(){
+                if(!$(this).is(":checked"))
+                    total++;
+            });
+            if(total==size){
+                alert("没有选择商品");
+                return ;
+            }
+            var ids="";
+            $(".goods").children("td").children("input").each(function(){
+                if($(this).is(":checked")){
+                    ids=ids+$(this).next().val()+",";
+                }
+            });
+
+            window.location.href=url+"?ids="+encodeURI(ids);
+        });
+    });
 </script>
 </body>
 </html>

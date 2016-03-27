@@ -9,9 +9,10 @@
     <result column="addressee" property="addressee" jdbcType="VARCHAR" />
     <result column="contantPhone" property="contantphone" jdbcType="VARCHAR" />
     <result column="streetAddress" property="streetaddress" jdbcType="VARCHAR" />
+    <result column="posNum" property="posnum" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, userId, province, city, addressee, contantPhone, streetAddress
+    id, userId, province, city, addressee, contantPhone, streetAddress, posNum
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -32,10 +33,10 @@
   <insert id="insert" parameterType="com.zjnu.fd.bookstore.po.Address" >
     insert into ss_address (id, userId, province, 
       city, addressee, contantPhone, 
-      streetAddress)
+      streetAddress, posNum)
     values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, 
       #{city,jdbcType=VARCHAR}, #{addressee,jdbcType=VARCHAR}, #{contantphone,jdbcType=VARCHAR}, 
-      #{streetaddress,jdbcType=VARCHAR})
+      #{streetaddress,jdbcType=VARCHAR}, #{posnum,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zjnu.fd.bookstore.po.Address" >
     insert into ss_address
@@ -61,6 +62,9 @@
       <if test="streetaddress != null" >
         streetAddress,
       </if>
+      <if test="posnum != null" >
+        posNum,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -83,6 +87,9 @@
       </if>
       <if test="streetaddress != null" >
         #{streetaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="posnum != null" >
+        #{posnum,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -107,6 +114,9 @@
       <if test="streetaddress != null" >
         streetAddress = #{streetaddress,jdbcType=VARCHAR},
       </if>
+      <if test="posnum != null" >
+        posNum = #{posnum,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -117,7 +127,8 @@
       city = #{city,jdbcType=VARCHAR},
       addressee = #{addressee,jdbcType=VARCHAR},
       contantPhone = #{contantphone,jdbcType=VARCHAR},
-      streetAddress = #{streetaddress,jdbcType=VARCHAR}
+      streetAddress = #{streetaddress,jdbcType=VARCHAR},
+      posNum = #{posnum,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
