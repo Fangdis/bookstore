@@ -24,43 +24,12 @@
     </c:if>
 </head>
 <body>
-<ul class="rightBar">
-    <li class="rightBarItem">
-        <a href="../order/cart.html"><i class="icon-basket"></i>购物车</a>
-    </li>
-    <li class="rightBarItem">
-        <a href=""><i class="icon-basket"></i>优惠券</a>
-    </li>
-    <li class="rightBarItem">
-        <a href=""><i class="icon-basket"></i>优惠券</a>
-    </li>
-</ul>
-<div class="siteHTopBox">
-    <div class="mainInnerBox">
-        <ul class="siteHRight fr clearfix">
-            <li><a href=""><i class="icon icon-list-bullet"></i>我的订单</a></li>
-            <li><a href="../order/cart.html"><i class="icon icon-basket"></i>我的购物车 <span class="cart-num">0</span></a></li>
-            <li><a href=""><i class="icon icon-chat"></i>在线客服</a></li>
-            <li><a href=""><i class="icon icon-help-circled"></i>帮助中心</a></li>
-        </ul>
-        <ul class="siteLoginBox fr clearfix">
-            <!-- 未登录 begin -->
-            <li>欢迎来到HiGo，请</li>
-            <li><a href="../login/login.html" class="pink">登录</a></li>
-            <li><a href="../login/register.html" class="pink">免费注册</a></li>
-            <!-- 未登录 end -->
-
-            <!-- 已登录 begin -->
-            <!-- <li><a href="">童心未泯_X</a></li>
-            <li><a href="">我的收藏<i class="icon-down-dir"></i></a></li> -->
-            <!-- 已登录 end -->
-        </ul>
-    </div>
-</div>
+<jsp:include page="${ctx}/pages/common/right.jsp"></jsp:include>
+<jsp:include page="${ctx}/pages/common/head.jsp"></jsp:include>
 <div class="siteMTopBox">
     <div class="mainInnerBox clearfix">
         <a href="" class="siteLogo">
-            <img src="../../resources/images/siteLogo.png">
+            <img src="../../resources/images/common/siteLogo.png">
         </a>
         <div class="searchBox">
             <ul class="searchTab">

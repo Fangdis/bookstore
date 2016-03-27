@@ -22,17 +22,7 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
 </head>
 <body>
-<ul class="rightBar">
-    <li class="rightBarItem">
-        <a href="../order/cart.html"><i class="icon-basket"></i>购物车</a>
-    </li>
-    <li class="rightBarItem">
-        <a href=""><i class="icon-basket"></i>优惠券</a>
-    </li>
-    <li class="rightBarItem">
-        <a href=""><i class="icon-basket"></i>优惠券</a>
-    </li>
-</ul>
+<jsp:include page="${ctx}/pages/common/right.jsp"></jsp:include>
 <jsp:include page="${ctx}/pages/common/head.jsp"></jsp:include>
 <div class="siteMTopBox">
     <div class="mainInnerBox clearfix">

@@ -129,6 +129,27 @@ public class UserController {
         modelAndView.setViewName("userCenter/myInformation");
         return modelAndView;
     }
+    @RequestMapping("updateInformation")
+    @ResponseBody
+    public String updateInformation(HttpServletRequest request,User user){
+        HttpSession session = request.getSession();
+       User us= (User) session.getAttribute("user");
+        if (user.getAvatar()!=null)
+            us.setAvatar(user.getAvatar());
+        if (user.getNickname()!=null)
+            us.setNickname(user.getNickname());
+        if (user.getIntroduction()!=null)
+            us.setIntroduction(user.getIntroduction());
+        if (user.getPosnum()!=null)
+            us.setPosnum(user.getPosnum());
+        if (user.getProvince()!=null)
+            us.setProvince(user.getProvince());
+        if (user.getCity()!=null)
+            us.setCity(user.getCity());
+        userService.update(us);
+        session.setAttribute("user",us);
+        return OutPut.json(200, "success", "", 0);
+    }
     @RequestMapping("upLoadPhoto")
     @ResponseBody
     public String upLoadUserPhoto( HttpServletRequest request){
@@ -158,7 +179,7 @@ public class UserController {
     private  String uploadFile(MultipartFile file, HttpServletRequest request) throws IOException {
         String fileName = file.getOriginalFilename();
         String path=request.getServletContext().getRealPath("/imgs/");
-        File tempFile = new File(path, new Date().getTime() + String.valueOf(fileName));
+        File tempFile = new File(path, new Date().getTime() + fileName.substring(fileName.lastIndexOf(".")));
         if (!tempFile.getParentFile().exists()) {
             tempFile.getParentFile().mkdir();
         }
@@ -173,4 +194,22 @@ public class UserController {
         return new File(FILE_PATH, fileName);
     }
     public static final String FILE_PATH = "/imgs/";
+
+    @RequestMapping("myPassword")
+    public  String myPassword(){
+        return "userCenter/myPassword";
+    }
+    @RequestMapping("updatePsw")
+    @ResponseBody
+    public String updatePsw(String oldPassword,String password,String newPassword,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (password==null||!password.equals(newPassword)||user==null||!user.getPassword().equals(oldPassword)){
+            return OutPut.json(200, "error", "error", 0);
+        }
+        user.setPassword(newPassword);
+        userService.update(user);
+        session.setAttribute("user",user);
+        return OutPut.json(200, "success", "success", 0);
+    }
 }

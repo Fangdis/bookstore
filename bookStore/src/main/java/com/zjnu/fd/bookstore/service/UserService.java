@@ -12,4 +12,6 @@ public interface UserService {
     public int login(User user);
 
     User findByPhone(String phone);
+
+    int update(User user);
 }

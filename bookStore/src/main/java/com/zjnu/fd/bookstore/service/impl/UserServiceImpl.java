@@ -26,4 +26,9 @@ public class UserServiceImpl implements UserService {
     public User findByPhone(String phone) {
       return userMapper.findByPhone(phone);
     }
+
+    public int update(User user) {
+        userMapper.updateByPrimaryKeySelective(user);
+        return 0;
+    }
 }

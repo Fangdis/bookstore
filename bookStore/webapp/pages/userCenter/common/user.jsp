@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="userInfoDetail">
     <div class="userLogo">
-        <img src="${ctx}/${(sessionScope.get('user')).avatar}">
+        <img src="${(sessionScope.get('user')).avatar}">
     </div>
     <div class="userInfo">
         <h2 class="userName">${(sessionScope.get('user')).nickname}</h2>
