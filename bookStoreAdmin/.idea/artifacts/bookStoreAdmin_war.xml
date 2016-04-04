@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="bookStoreAdmin:war">
-    <output-path>$PROJECT_DIR$/build</output-path>
-    <root id="archive" name="zjnu-fd-admin-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="bookStoreAdmin:war exploded" />
-    </root>
-  </artifact>
-</component>
