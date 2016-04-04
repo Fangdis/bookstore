@@ -28,7 +28,7 @@
 <jsp:include page="${ctx}/pages/common/head.jsp"></jsp:include>
 <div class="cartTopBox">
     <div class="mainInner2Box clearfix">
-        <a href="" class="siteLogo">
+        <a href="/" class="siteLogo">
             <img src="../../resources/images/common/siteLogo.png">
         </a>
         <div class="cartStepBox">
@@ -165,6 +165,10 @@
 <script type="text/javascript">
     seajs.use("../../resources/js/index/index");
 </script>
+
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.config.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.upload.js"></script>
 <script>
     $(document).ready(function(){
         $(".quanxuan").click(function(){
@@ -196,7 +200,7 @@
                     total++;
             });
             if(total==size){
-                alert("没有选择商品");
+                wx.alert("没有选择商品");
                 return ;
             }
             var ids="";

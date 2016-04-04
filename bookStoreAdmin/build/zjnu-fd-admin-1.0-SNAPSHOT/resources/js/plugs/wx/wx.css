@@ -1,0 +1,109 @@
+/**
+* wx.css
+*
+* 妗嗘灦閲屾墍闇�瑕佷娇鐢ㄧ殑css鏍峰紡
+*
+* @author xuyong <xuyong@ucfgroup.com>
+* @createTime 2014-03-18
+* @projectHome https://github.com/xu-yong/wx
+*
+* Released under the MIT license:
+*   http://www.opensource.org/licenses/mit-license.php
+*/
+
+/*
+    寮规
+*/
+.pop-bg {
+	background: rgba(0,0,0,0.3);
+	/* 鍏煎ie8 */
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000);  
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+
+.pop-container {
+	z-index: 10001;
+	position: absolute;
+}
+
+.ui-dialog {
+	background-color: #fff;
+	font-size: 14px;
+	color: #333;
+	border-radius: 4px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.ui-dialog.confirm {
+	width: 404px;
+	height: 190px;
+}
+
+.ui-dialog.alert {
+	width: 300px;
+	height: 170px;
+}
+
+.ui-dialog-header {
+	border-bottom: 1px solid #EEE;
+	line-height: 37px;
+	height: 37px;
+	position: relative;
+}
+
+.ui-dialog-title {
+	padding-left: 18px;
+	color: #666;
+}
+
+.ui-dialog-close {
+	float: right;
+	font-size: 21px;
+	font-weight: bold;
+	color: #000;
+	text-shadow: 0 1px 0 #FFF;
+	opacity: .2;
+	filter: alpha(opacity=20);
+	background: transparent;
+	margin-right: 10px;
+	line-height: 37px;
+}
+
+.ui-dialog-body {
+	  padding: 10px 20px 0;
+}
+
+.ui-dialog-content {
+	color: #999;
+	font-size: 14px;
+}
+
+/* .ui-dialog-content h3 {
+	font-size: 16px;
+	color: #666;
+	margin-bottom: 10px;
+} */
+
+
+.ui-dialog-button {
+	float: right;
+	margin-right: 15px;
+}
+
+.ui-dialog-footer button {
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	font-size: 14px;
+	text-align: center;
+	border-radius: 4px;
+	background-color: #f4f2f2;
+	border: 1px solid #d0d0d0;
+	color: #666;
+}

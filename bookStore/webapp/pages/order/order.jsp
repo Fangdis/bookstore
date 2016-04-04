@@ -28,7 +28,7 @@
 <jsp:include page="${ctx}/pages/common/head.jsp"></jsp:include>
 <div class="cartTopBox">
     <div class="mainInner2Box clearfix">
-        <a href="" class="siteLogo">
+        <a href="/" class="siteLogo">
             <img src="../../resources/images/common/siteLogo.png">
         </a>
         <div class="cartStepBox">
@@ -250,7 +250,7 @@
 //                alert("请选择地址");
 //            }
             if($("#orderRefAddressId").val()==null||$("#orderRefAddressId").val()==""){
-                alert("请选择地址");
+                wx.alert("请选择地址");
                 return false;
             }
         });

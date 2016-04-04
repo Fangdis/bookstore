@@ -31,4 +31,12 @@ public class BookServiceImpl implements BookService {
     public Book getBookById(int id) {
        return bookMapper.selectByPrimaryKey(id);
     }
+
+    public List<Book> findByKindAndMinK(String kind, String minKind) {
+        if (minKind==null||minKind==""){
+            return bookMapper.findByKind(kind);
+        }else{
+            return bookMapper.findByKindAndMink(kind,minKind);
+        }
+    }
 }

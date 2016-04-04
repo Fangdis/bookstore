@@ -22,10 +22,10 @@
                 <c:when test="${sessionScope.get('user')==null}">
                     <li>欢迎来到菠萝书城，请</li>
                     <li><a href="${ctx}/user/loginPage.html" class="pink">登录</a></li>
-                    <li><a href="${ctx}/user/register.html" class="pink">免费注册</a></li>
+                    <li><a href="${ctx}/user/registerPage.html" class="pink">免费注册</a></li>
                 </c:when>
                 <c:otherwise>
-                    <li><a href="">童心未泯_X</a></li>
+                    <li><a href="${ctx}/user/userOrder.html">${(sessionScope.get('user')).nickname}</a></li>
                     <li><a href="">我的收藏<i class="icon-down-dir"></i></a></li>
                 </c:otherwise>
             </c:choose>

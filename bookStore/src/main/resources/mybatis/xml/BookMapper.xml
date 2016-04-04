@@ -47,6 +47,18 @@
     from ss_book
     where book_type = #{0}
   </select>
+  <select id="findByKind" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from ss_book
+    where kind = #{0}
+  </select>
+  <select id="findByKindAndMink" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from ss_book
+    where kind = #{0} AND minKind=#{1}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from ss_book
     where id = #{id,jdbcType=INTEGER}

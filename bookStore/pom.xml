@@ -36,6 +36,11 @@
         <tomcat-maven-plugin.version>1.1</tomcat-maven-plugin.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.github.zhanhb</groupId>
+            <artifactId>character-encoding-filter</artifactId>
+            <version>2.1.6.1</version>
+        </dependency>
     <!-- jsonObject 所需 begin -->
     <dependency>
         <groupId>commons-logging</groupId>

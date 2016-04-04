@@ -18,4 +18,8 @@ public interface BookMapper {
     int updateByPrimaryKey(Book record);
 
     List<Book> getBookListByType(int type);
+
+    List<Book> findByKind(String kind);
+
+    List<Book> findByKindAndMink(String kind, String minKind);
 }

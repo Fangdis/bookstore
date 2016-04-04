@@ -49,10 +49,10 @@
     function loginForm(data){
         if (data["data"]["pojos"]["login"]=="success"){
             setTimeout(function(){
-                alert("登录成功");
+                wx.alert("登录成功");
                 window.location.href="${ctx}/user/userOrder.html";
             },3000);
-        }else alert("手机或密码不对");
+        }else wx.alert("手机或密码不对");
     }
 </script>
 </body>

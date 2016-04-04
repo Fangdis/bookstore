@@ -26,7 +26,7 @@
 <jsp:include page="${ctx}/pages/common/head.jsp"></jsp:include>
 <div class="siteMTopBox">
     <div class="mainInnerBox clearfix">
-        <a href="" class="siteLogo">
+        <a href="/" class="siteLogo">
             <img src="../../resources/images/common/siteLogo.png">
         </a>
         <div class="searchBox">
@@ -70,8 +70,8 @@
         <ul class="subNavBox">
             <li class="subNavItem">
                 <dl>
-                    <dt><a href="">文艺</a></dt>
-                    <dd><a href="" class="pink">小说</a><a href="">青春文学</a><a href="">传记</a></dd>
+                    <dt><a href="${ctx}/product/list?kind=文艺">文艺</a></dt>
+                    <dd><a href="${ctx}/product/list?kind=文艺&minKind=小说" class="pink">小说</a><a href="${ctx}/product/list?kind=文艺&minKind=青春文学">青春文学</a><a href="${ctx}/product/list?kind=文艺&minKind=传记">传记</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">

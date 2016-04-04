@@ -99,6 +99,10 @@ public class UserController {
     public ModelAndView userOrder(HttpServletRequest request,ModelAndView modelAndView){
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        if (user==null) {
+            modelAndView.setViewName("redirect:/user/loginPage");
+            return modelAndView;
+        }
         List<OrderModel> cartRefOrderModels = orderService.listByUserId(user.getId());
         modelAndView.setViewName("userCenter/myOrder");
         modelAndView.addObject("orders",cartRefOrderModels);

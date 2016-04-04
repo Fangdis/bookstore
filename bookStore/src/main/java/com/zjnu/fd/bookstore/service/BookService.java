@@ -34,4 +34,5 @@ public interface BookService {
     public Book getBookById(int id);
 
 
+    List<Book> findByKindAndMinK(String kind, String minKind);
 }
