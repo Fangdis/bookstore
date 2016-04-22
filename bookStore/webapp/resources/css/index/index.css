@@ -104,3 +104,9 @@
 	color: #9ea74b;
 	font-size: 18px;
 }
+
+.item .info {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

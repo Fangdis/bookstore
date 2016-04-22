@@ -170,7 +170,7 @@
             </div>
             <div class="linkItem">
                 <h3>服务支持</h3>
-                <p><a href="">售后政策</a></p>
+                <p><a href="">在线客服</a></p>
                 <p><a href="">自主服务</a></p>
                 <p><a href="">相关下载</a></p>
             </div>
@@ -200,13 +200,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备1101080212535号 京网文[2014]0059-0009号</p>
-            <p>违法和不良信息举报电话：185-0130-1238</p>
-            <ul class="infoLinks">
-                <li><img src="../../resources/images/copyright/v-logo-1.png"></li>
-                <li><img src="../../resources/images/copyright/v-logo-2.png"></li>
-                <li><img src="../../resources/images/copyright/v-logo-3.png"></li>
-            </ul>
+            <p>版权所有&copy; 菠萝书城</p>
         </div>
     </div>
 </div>

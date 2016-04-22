@@ -90,8 +90,8 @@
         <ul class="navList clearfix">
             <li class="allGoods"><a href="javascript:;">精选图书分类</a></li>
             <li><a href="">图书首页</a></li>
-            <li><a href="">特价好书</a></li>
             <li><a href="">新品精选</a></li>
+            <li><a href="">特价好书</a></li>
         </ul>
     </div>
 </div>
@@ -182,9 +182,14 @@
                 <h2 class="title">看了又看</h2>
                 <ul class="productList">
                     <li>
-                        <img src="../../resources/images/temp/item/items.jpg">
-                        <p><a href="">别告诉我你懂PPT：全新升级版</a></p>
-                        <p class="money">￥29.00</p>
+                        <img src="../../imgs/22499337-1_w_1.jpg">
+                        <p><a href="">拆掉思维里的墙</a></p>
+                        <p class="money">￥13.41</p>
+                    </li>
+                    <li>
+                        <img src="../../imgs/21048364-1_w_2.jpg">
+                        <p><a href="">我的第一本会讲故事的单词书</a></p>
+                        <p class="money">￥31.50</p>
                     </li>
                     <li>
                         <img src="../../resources/images/temp/item/items.jpg">
@@ -192,19 +197,14 @@
                         <p class="money">￥29.00</p>
                     </li>
                     <li>
-                        <img src="../../resources/images/temp/item/items.jpg">
-                        <p><a href="">别告诉我你懂PPT：全新升级版</a></p>
-                        <p class="money">￥29.00</p>
+                        <img src="../../imgs/567d0933N4232ccec.jpg">
+                        <p><a href="">世界上另一个你</a></p>
+                        <p class="money">￥24.50</p>
                     </li>
                     <li>
-                        <img src="../../resources/images/temp/item/items.jpg">
-                        <p><a href="">别告诉我你懂PPT：全新升级版</a></p>
-                        <p class="money">￥29.00</p>
-                    </li>
-                    <li>
-                        <img src="../../resources/images/temp/item/items.jpg">
-                        <p><a href="">别告诉我你懂PPT：全新升级版</a></p>
-                        <p class="money">￥29.00</p>
+                        <img src="../../imgs/5695cd02Nbeafd000.jpg">
+                        <p><a href="">蝴蝶梦</a></p>
+                        <p class="money">￥33.12</p>
                     </li>
                 </ul>
             </div>
@@ -330,7 +330,7 @@
             </div>
             <div class="linkItem">
                 <h3>服务支持</h3>
-                <p><a href="">售后政策</a></p>
+                <p><a href="">在线客服</a></p>
                 <p><a href="">自主服务</a></p>
                 <p><a href="">相关下载</a></p>
             </div>
@@ -360,13 +360,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备1101080212535号 京网文[2014]0059-0009号</p>
-            <p>违法和不良信息举报电话：185-0130-1238</p>
-            <ul class="infoLinks">
-                <li><img src="../../resources/images/copyright/v-logo-1.png"></li>
-                <li><img src="../../resources/images/copyright/v-logo-2.png"></li>
-                <li><img src="../../resources/images/copyright/v-logo-3.png"></li>
-            </ul>
+            <p>版权所有&copy; 菠萝书城</p>
         </div>
     </div>
 </div>

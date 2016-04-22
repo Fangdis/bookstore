@@ -60,8 +60,8 @@
         <ul class="navList clearfix">
             <li class="allGoods"><a href="javascript:;">精选图书分类</a></li>
             <li><a href="">图书首页</a></li>
-            <li><a href="">特价好书</a></li>
             <li><a href="">新品精选</a></li>
+            <li><a href="">特价好书</a></li>
         </ul>
     </div>
 </div>
@@ -70,62 +70,62 @@
         <ul class="subNavBox">
             <li class="subNavItem">
                 <dl>
-                    <dt><a href="${ctx}/product/list?kind=文艺">文艺</a></dt>
-                    <dd><a href="${ctx}/product/list?kind=文艺&minKind=小说" class="pink">小说</a><a href="${ctx}/product/list?kind=文艺&minKind=青春文学">青春文学</a><a href="${ctx}/product/list?kind=文艺&minKind=传记">传记</a></dd>
+                    <dt><a href="${ctx}/product/list?kind=文学">文学</a></dt>
+                    <dd><a href="${ctx}/product/list?kind=文艺&minKind=小说" class="pink">小说</a><a href="${ctx}/product/list?kind=文艺&minKind=青春文学">传记</a><a href="${ctx}/product/list?kind=文艺&minKind=传记">动漫</a><a href="${ctx}/product/list?kind=文艺&minKind=传记" class="pink">散文</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
                     <dt><a href="">少儿</a></dt>
-                    <dd><a href="">儿童文学</a><a href="" class="pink">绘本</a><a href="">科普</a></dd>
+                    <dd><a href="">卡通</a><a href="" class="pink">绘本</a><a href="">科普百科</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
                     <dt><a href="">教育</a></dt>
-                    <dd><a href="">教材</a><a href="" class="pink">外语</a><a href="">字典词典</a></dd>
+                    <dd><a href="">教材</a><a href="" class="pink">外语</a><a href="">字典</a><a href="">考试</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
                     <dt><a href="">经管</a></dt>
-                    <dd><a href="" class="pink">管理</a><a href="">经济</a><a href="">投资理财</a></dd>
+                    <dd><a href="" class="pink">管理</a><a href="">经济</a><a href="">投资</a><a href="" class="pink">股票</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
                     <dt><a href="">励志</a></dt>
-                    <dd><a href="">心灵鸡汤</a><a href="" class="pink">成功学</a><a href="">职场</a></dd>
+                    <dd><a href="">社交</a><a href="" class="pink">心灵鸡汤</a><a href="">职场</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
                     <dt><a href="">生活</a></dt>
-                    <dd><a href="" class="pink">旅游地图</a><a href="" class="pink">美食</a><a href="">DIY</a></dd>
+                    <dd><a href="" class="pink">家居</a><a href="" class="pink">美食</a><a href="">出行</a><a href="">服饰</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
                     <dt><a href="">科技</a></dt>
-                    <dd><a href="" class="pink">建筑设计</a><a href="">通信</a><a href="">医学</a></dd>
+                    <dd><a href="">建筑</a><a href="">医学</a><a href="">农业</a><a href="">电子</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
                     <dt><a href="">艺术</a></dt>
-                    <dd><a href="" class="pink">摄影</a><a href="">连环画</a><a href="" class="pink">绘画</a></dd>
+                    <dd><a href="" class="pink">摄影</a><a href="">设计</a><a href="" class="pink">绘画</a><a href="">音乐</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
                     <dt><a href="">杂志</a></dt>
-                    <dd><a href="" class="pink">美妆</a><a href="">家居装修</a><a href="">旅游</a></dd>
+                    <dd><a href="" class="pink">美妆</a><a href="">时尚</a><a href="">数码</a><a href="">影视</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
                     <dt><a href="">音像</a></dt>
-                    <dd><a href="">音乐</a><a href="" class="pink">动画片</a><a href="" class="pink">影视</a></dd>
+                    <dd><a href="">音乐</a><a href="" class="pink">卡通动漫</a><a href="" class="pink">影视</a></dd>
                 </dl>
             </li>
         </ul>
@@ -164,7 +164,8 @@
                 </div>
             </c:forEach>
         </div>
-        <div class="floorTitle">为你推荐</div>
+        <!--
+        <div class="floorTitle">为您推荐</div>
         <div class="floorBox clearfix">
             <c:forEach items="${recommendBook}" var="recommendBook">
                 <div class="item">
@@ -174,6 +175,7 @@
                 </div>
             </c:forEach>
         </div>
+        -->
     </div>
 </div>
 <div class="siteFooterBox">
