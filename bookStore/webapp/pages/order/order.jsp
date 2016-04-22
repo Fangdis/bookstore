@@ -17,6 +17,7 @@
     <link rel="shortcut icon" type="text/css" href="../../resources/images/common/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/common.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/cart/cart.css">
+    <link type="text/css" rel="stylesheet" href="../../resources/js/plugs/wx/wx.css" />
     <script type="text/javascript" src="../../resources/js/plugs/jquery/jquery-1.8.3.min.js"></script>
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
     <c:if test="${sessionScope.get('user')==null}">

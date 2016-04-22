@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/fontello.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/common.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/login/login.css">
+    <link type="text/css" rel="stylesheet" href="../../resources/js/plugs/wx/wx.css" />
     <script type="text/javascript" src="../../resources/js/plugs/jquery/jquery-1.8.3.min.js"></script>
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
 </head>
@@ -34,7 +35,7 @@
             </div>
             <div class="form-item mt25">
                 <span><input type="checkbox">记住我</span>
-                <a href="findPsw.html"class="pink fr">忘记密码</a>
+                <a href="${ctx}/user/tofindPwd.html"class="pink fr">忘记密码</a>
             </div>
             <div class="form-button">
                 <input type="submit" value="立即登录" class="ui-btn ui-btn-pink ui-btn-xl">

@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/fontello.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/detail/detail.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/index/index.css">
+    <link type="text/css" rel="stylesheet" src="../../resources/js/plugs/wx/wx.css" />
     <script type="text/javascript" src="../../resources/js/plugs/jquery/jquery-1.8.3.min.js"></script>
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
 </head>
