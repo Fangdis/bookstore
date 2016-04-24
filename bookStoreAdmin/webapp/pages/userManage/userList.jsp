@@ -21,6 +21,9 @@
     <link rel="stylesheet" type="text/css" href="../../resources/font/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="../../resources/css/admin/admin.css" />
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
+    <c:if test="${sessionScope.get('user')==null}">
+        <c:redirect url="${ctx}/user/loginPage"></c:redirect>
+    </c:if>
 </head>
 <body class="skin-black">
 <!-- header logo: style can be found in header.less -->

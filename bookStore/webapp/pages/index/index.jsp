@@ -17,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/fontello.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/common.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/index/index.css">
+
+    <link type="text/css" rel="stylesheet" href="../../resources/js/plugs/wx/wx.css" />
     <script type="text/javascript" src="../../resources/js/plugs/jquery/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="../../resources/js/plugs/slide/jquery.SuperSlide.2.1.1.js"></script>
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
@@ -26,42 +28,16 @@
 <jsp:include page="${ctx}/pages/common/head.jsp"></jsp:include>
 <div class="siteMTopBox">
     <div class="mainInnerBox clearfix">
-        <a href="/" class="siteLogo">
-            <img src="../../resources/images/common/siteLogo.png">
-        </a>
-        <div class="searchBox">
-            <ul class="searchTab">
-                <li class="active">书名</li><li>作者</li>
-            </ul>
-            <div class="searchInner clearfix">
-                <input type="text" placeholder="你的美腿还缺一条牛仔裤">
-                <span class="searchBtn icon-search-1"></span>
-            </div>
-            <div class="hotWord">
-                <span>热门搜索：</span>
-                <a href="">童书优惠</a>
-                <a href="" class="pink">动漫</a>
-                <a href="">中华书局</a>
-                <a href="" class="pink">语文高考</a>
-                <a href="" class="pink">教材</a>
-                <a href="">字典词典</a>
-                <a href="">投资</a>
-                <a href="">青春</a>
-                <a href="">文学名著</a>
-            </div>
-        </div>
-        <div class="basketBox">
-            <span><i class="icon icon-basket"></i>购物车<i class="num">0</i>件</span><a href="../order/cart.html" class="goPayLink">去结算></a>
-        </div>
+        <jsp:include page="${ctx}/pages/common/top.jsp" />
     </div>
 </div>
 <div class="siteNavBox">
     <div class="mainInnerBox">
         <ul class="navList clearfix">
             <li class="allGoods"><a href="javascript:;">精选图书分类</a></li>
-            <li><a href="">图书首页</a></li>
-            <li><a href="">新品精选</a></li>
-            <li><a href="">特价好书</a></li>
+            <li><a href="#">图书首页</a></li>
+            <li><a href="#tab1">新品精选</a></li>
+            <li><a href="#tab2">特价好书</a></li>
         </ul>
     </div>
 </div>
@@ -71,61 +47,63 @@
             <li class="subNavItem">
                 <dl>
                     <dt><a href="${ctx}/product/list?kind=文学">文学</a></dt>
-                    <dd><a href="${ctx}/product/list?kind=文艺&minKind=小说" class="pink">小说</a><a href="${ctx}/product/list?kind=文艺&minKind=青春文学">传记</a><a href="${ctx}/product/list?kind=文艺&minKind=传记">动漫</a><a href="${ctx}/product/list?kind=文艺&minKind=传记" class="pink">散文</a></dd>
+                    <dd>
+                        <a href="${ctx}/product/list?kind=文艺&minKind=小说" class="pink">小说</a><a href="${ctx}/product/list?kind=文艺&minKind=青春文学">传记</a><a href="${ctx}/product/list?kind=文艺&minKind=传记">动漫</a><a href="${ctx}/product/list?kind=文艺&minKind=传记" class="pink">散文</a>
+                    </dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
-                    <dt><a href="">少儿</a></dt>
-                    <dd><a href="">卡通</a><a href="" class="pink">绘本</a><a href="">科普百科</a></dd>
+                    <dt><a href="${ctx}/product/list?kind=少儿">少儿</a></dt>
+                    <dd><a href="${ctx}/product/list?kind=少儿&minKind=卡通">卡通</a><a href="${ctx}/product/list?kind=少儿&minKind=绘本" class="pink">绘本</a><a href="${ctx}/product/list?kind=少儿&minKind=科普百科">科普百科</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
-                    <dt><a href="">教育</a></dt>
-                    <dd><a href="">教材</a><a href="" class="pink">外语</a><a href="">字典</a><a href="">考试</a></dd>
+                    <dt><a href="${ctx}/product/list?kind=教育">教育</a></dt>
+                    <dd><a href="${ctx}/product/list?kind=教育&minKind=教材">教材</a><a href="${ctx}/product/list?kind=教育&minKind=外语" class="pink">外语</a><a href="${ctx}/product/list?kind=教育&minKind=字典">字典</a><a href="${ctx}/product/list?kind=教育&minKind=考试">考试</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
-                    <dt><a href="">经管</a></dt>
-                    <dd><a href="" class="pink">管理</a><a href="">经济</a><a href="">投资</a><a href="" class="pink">股票</a></dd>
+                    <dt><a href="${ctx}/product/list?kind=经管">经管</a></dt>
+                    <dd><a href="${ctx}/product/list?kind=经管&minKind=管理" class="pink">管理</a><a href="${ctx}/product/list?kind=经管&minKind=经济">经济</a><a href="${ctx}/product/list?kind=经管&minKind=投资">投资</a><a href="${ctx}/product/list?kind=经管&minKind=股票" class="pink">股票</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
-                    <dt><a href="">励志</a></dt>
-                    <dd><a href="">社交</a><a href="" class="pink">心灵鸡汤</a><a href="">职场</a></dd>
+                    <dt><a href="${ctx}/product/list?kind=励志">励志</a></dt>
+                    <dd><a href="${ctx}/product/list?kind=社交">社交</a><a href="${ctx}/product/list?kind=心灵鸡汤" class="pink">心灵鸡汤</a><a href="${ctx}/product/list?kind=职场">职场</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
-                    <dt><a href="">生活</a></dt>
-                    <dd><a href="" class="pink">家居</a><a href="" class="pink">美食</a><a href="">出行</a><a href="">服饰</a></dd>
+                    <dt><a href="${ctx}/product/list?kind=生活">生活</a></dt>
+                    <dd><a href="${ctx}/product/list?kind=生活&minKind=家居" class="pink">家居</a><a href="${ctx}/product/list?kind=生活&minKind=美食" class="pink">美食</a><a href="${ctx}/product/list?kind=生活&minKind=出行">出行</a><a href="${ctx}/product/list?kind=生活&minKind=服饰">服饰</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
-                    <dt><a href="">科技</a></dt>
-                    <dd><a href="">建筑</a><a href="">医学</a><a href="">农业</a><a href="">电子</a></dd>
+                    <dt><a href="${ctx}/product/list?kind=科技">科技</a></dt>
+                    <dd><a href="${ctx}/product/list?kind=科技&minKind=建筑">建筑</a><a href="${ctx}/product/list?kind=科技&minKind=医学">医学</a><a href="${ctx}/product/list?kind=科技&minKind=农业">农业</a><a href="${ctx}/product/list?kind=科技&minKind=电子">电子</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
-                    <dt><a href="">艺术</a></dt>
-                    <dd><a href="" class="pink">摄影</a><a href="">设计</a><a href="" class="pink">绘画</a><a href="">音乐</a></dd>
+                    <dt><a href="${ctx}/product/list?kind=艺术">艺术</a></dt>
+                    <dd><a href="${ctx}/product/list?kind=艺术&minKind=摄影" class="pink">摄影</a><a href="${ctx}/product/list?kind=艺术&minKind=设计">设计</a><a href="${ctx}/product/list?kind=艺术&minKind=绘画" class="pink">绘画</a><a href="${ctx}/product/list?kind=艺术&minKind=音乐">音乐</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
-                    <dt><a href="">杂志</a></dt>
-                    <dd><a href="" class="pink">美妆</a><a href="">时尚</a><a href="">数码</a><a href="">影视</a></dd>
+                    <dt><a href="${ctx}/product/list?kind=杂志">杂志</a></dt>
+                    <dd><a href="${ctx}/product/list?kind=杂志&minKind=美妆" class="pink">美妆</a><a href="${ctx}/product/list?kind=杂志&minKind=时尚">时尚</a><a href="${ctx}/product/list?kind=杂志&minKind=数码">数码</a><a href="${ctx}/product/list?kind=杂志&minKind=影视">影视</a></dd>
                 </dl>
             </li>
             <li class="subNavItem">
                 <dl>
-                    <dt><a href="">音像</a></dt>
-                    <dd><a href="">音乐</a><a href="" class="pink">卡通动漫</a><a href="" class="pink">影视</a></dd>
+                    <dt><a href="${ctx}/product/list?kind=音像">音像</a></dt>
+                    <dd><a href="${ctx}/product/list?kind=音像&minKind=音乐">音乐</a> <a href="${ctx}/product/list?kind=音像&minKind=卡通动漫" class="pink">卡通动漫</a><a href="${ctx}/product/list?kind=音像&minKind=影视" class="pink">影视</a></dd>
                 </dl>
             </li>
         </ul>
@@ -144,7 +122,7 @@
 </div>
 <div class="mainWrapper">
     <div class="mainInnerBox">
-        <div class="floorTitle">新品精选</div>
+        <div class="floorTitle" name="tab1" id="tab1">新品精选</div>
         <div class="floorBox clearfix" id="lastedList">
             <c:forEach items="${newBook}" var="newBook">
                 <div class="item">
@@ -154,7 +132,7 @@
                 </div>
             </c:forEach>
         </div>
-        <div class="floorTitle">特价好书</div>
+        <div class="floorTitle" name="tab2" id="tab2">特价好书</div>
         <div class="floorBox clearfix">
             <c:forEach items="${bargainBook}" var="bargainBook">
                 <div class="item">
@@ -178,69 +156,19 @@
         -->
     </div>
 </div>
-<div class="siteFooterBox">
-    <div class="mainInnerBox">
-        <ul class="serviceList clearfix">
-            <li>品类齐全 轻松购物</li>
-            <li>多仓直发 极速配送</li>
-            <li>正品行货 精致服务</li>
-            <li>天天低价 畅选无忧</li>
-        </ul>
-        <div class="linkList clearfix">
-            <div class="linkItem">
-                <h3>帮助中心</h3>
-                <p><a href="">购物指南</a></p>
-                <p><a href="">支付方式</a></p>
-                <p><a href="">配送方式</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>服务支持</h3>
-                <p><a href="">在线客服</a></p>
-                <p><a href="">自主服务</a></p>
-                <p><a href="">相关下载</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>关于我们</h3>
-                <p><a href="">了解我们</a></p>
-                <p><a href="">加入我们</a></p>
-                <p><a href="">联系我们</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>关注我们</h3>
-                <p><a href="">新浪微博</a></p>
-                <p><a href="">官方微信</a></p>
-                <p><a href="">腾讯微博</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>售后服务</h3>
-                <p><a href="">售后政策</a></p>
-                <p><a href="">价格保护</a></p>
-                <p><a href="">退款说明</a></p>
-            </div>
-            <div class="customItem">
-                <h3>4000-800-577</h3>
-                <p>周一至周日：09:00-22:00</p>
-                <p>（仅收市话费）</p>
-                <span class="customBtn"><i class="icon icon-chat"></i>24小时在线客服</span>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>版权所有&copy; 菠萝书城</p>
-        </div>
-    </div>
-</div>
+<jsp:include page="${ctx}/pages/common/foot.jsp"></jsp:include>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.config.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.upload.js"></script>
+<script type="text/javascript" src="../../resources/js/common.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('.searchTab li').click(function(){
-            $(this).addClass('active').siblings().removeClass('active');
-        });
         $('#slideBox').slide({
             mainCell: '.bd ul',
             autoPlay: true
         });
         var width=$('#slideBox .hd').width();
         $('#slideBox .hd').css('margin-left', -width/2+'px');
-
     });
 </script>
 </body>

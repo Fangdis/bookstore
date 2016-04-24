@@ -51,50 +51,46 @@
             <ul class="addressList">
                 <c:forEach items="${addressList}" var="address">
                     <li>
-                        <input type="radio" class="addressRadio"><input type="hidden" value="${address.id}">
-                        <span>${address.province}${address.city}${address.streetaddress}  ${address.addressee}  ${address.contantphone}</span>
 
+                        <label for="address_${index}"><input type="checkbox" class="addressRadio" id="address_${index}"> <input type="hidden" value="${address.id}">${address.province}${address.city}${address.streetaddress}  ${address.addressee}  ${address.contantphone}</label>
                     </li>
                 </c:forEach>
-
-                <%--<li>--%>
-                    <%--<input type="radio">--%>
-                    <%--<span>浙江省绍兴市越城区马山镇丽都花园  方迪  1832****983</span>--%>
-                    <%--<a href="" class="fr pink">修改此地址</a>--%>
-                <%--</li>--%>
             </ul>
-            <ul>
-                <li>  <a href="javascript:void(0)" class="fr pink" id="addressNew">新增地址</a></li>
-            </ul>
-
-                <div class="updateBox" style="display: none;">
-                    <form method="post" action="${ctx}/address/add" wx-validator wx-validator-error-tag="p" wx-validator-ajax autocomplete="off"  name="addressAdd">
-                        <input type="hidden" wx-validator-rule="required" name="posNum" wx-validator-param="" id="city" placeholder="" >
-                        <div class="form-item">
-                            <label><i class="require">*</i>所在地：</label>
-                            <div  id="city_region_selector1"></div>
-                            <input type="hidden" name="province" class="province">
-                            <input type="hidden" name="city" class="city">
-                        </div>
-                        <div class="form-item">
-                            <label><i class="require">*</i>街道地址：</label>
-                            <input type="text" class="w450" name="streetaddress">
-                        </div>
-                        <div class="form-item">
-                            <label><i class="require">*</i>收件人：</label>
-                            <input type="text" class="w300" name="addressee">
-                        </div>
-                        <div class="form-item">
-                            <label><i class="require">*</i>联系电话：</label>
-                            <input type="text" class="w300" name="contantphone">
-                            <p class="error-text"></p>
-                        </div>
-                        <div class="form-btn">
-                            <input type="submit" value="保存并使用" class="ui-btn ui-btn-pink ui-btn-s mr10">
-                            <input type="button" value="取消" class="ui-btn ui-btn-gray ui-btn-s">
-                        </div>
-                    </form>
-                </div>
+            <div>
+                <a href="javascript:;" class="fr pink" id="addressNew">新增地址</a>
+            </div>
+            <div class="updateBox" style="display: none;">
+                <form method="post" action="${ctx}/address/add" wx-validator wx-validator-error-tag="p" wx-validator-ajax autocomplete="off"  name="addressAdd">
+                    <div class="form-item">
+                        <label><i class="require">*</i>收件人：</label>
+                        <input type="text" class="w300" name="addressee" id="addressee" wx-validator-rule="required" wx-validator-addressee-required="收件人不能为空" wx-validator-placeholder="收件人">
+                    </div>
+                    <div class="form-item">
+                        <label><i class="require">*</i>手机号码：</label>
+                        <input type="text" class="w300" name="contantphone" id="contantphone" wx-validator-rule="required|mobile" wx-validator-contantphone-mobile="请输入正确的手机号码" wx-validator-contantphone-required="手机号码不能为空" wx-validator-placeholder="请输入手机号码">
+                        <p class="error-text"></p>
+                    </div>
+                    <div class="form-item">
+                        <label><i class="require">*</i>地区：</label>
+                        <div  id="city_region_selector1"></div>
+                        <input type="hidden" name="posNum" id="city" wx-validator-rule="required" wx-validator-posnum-required="请选择地区">
+                        <input type="hidden" name="province" id="province_1">
+                        <input type="hidden" name="city" id="city_1">
+                    </div>
+                    <div class="form-item">
+                        <label><i class="require">*</i>详细地址：</label>
+                        <input type="text" class="w300" name="streetaddress" id="streetaddress" wx-validator-rule="required" wx-validator-streetaddress-required="详细地址不能为空" wx-validator-placeholder="详细地址">
+                    </div>
+                    <div class="form-item">
+                        <label><i class="require">*</i>邮政编码：</label>
+                        <input type="text" class="w300" name="code" id="code" wx-validator-rule="required" wx-validator-code-required="邮政编码不能为空" wx-validator-placeholder="邮政编码">
+                    </div>
+                    <div class="form-btn">
+                        <input type="submit" value="保存" class="ui-btn ui-btn-pink ui-btn-s mr10">
+                        <input type="button" value="取消" class="ui-btn ui-btn-gray ui-btn-s" id="cancleBtn">
+                    </div>
+                </form>
+            </div>
         </div>
         <form method="post" action="${ctx}/order/makeOrder">
             <input name="addressId" type="hidden" id="orderRefAddressId">
@@ -121,7 +117,7 @@
                     <tr class="goods">
                         <td class="text-left pl27">
                             <img src="${ctx}/${cart.cover}">
-                            <a href="" class="productItem">${cart.name}</a>
+                            <a href="${ctx}/detail/detail?id=${cart.bookid}" class="productItem">${cart.name}</a>
                         </td>
                         <td>${cart.price}</td>
                         <td>${cart.total}</td>
@@ -152,74 +148,18 @@
         </form>
     </div>
 </div>
-
-<div class="siteFooterBox">
-    <div class="mainInnerBox">
-        <ul class="serviceList clearfix">
-            <li>品类齐全 轻松购物</li>
-            <li>多仓直发 极速配送</li>
-            <li>正品行货 精致服务</li>
-            <li>天天低价 畅选无忧</li>
-        </ul>
-        <div class="linkList clearfix">
-            <div class="linkItem">
-                <h3>帮助中心</h3>
-                <p><a href="">购物指南</a></p>
-                <p><a href="">支付方式</a></p>
-                <p><a href="">配送方式</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>服务支持</h3>
-                <p><a href="">在线客服</a></p>
-                <p><a href="">自主服务</a></p>
-                <p><a href="">相关下载</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>关于我们</h3>
-                <p><a href="">了解我们</a></p>
-                <p><a href="">加入我们</a></p>
-                <p><a href="">联系我们</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>关注我们</h3>
-                <p><a href="">新浪微博</a></p>
-                <p><a href="">官方微信</a></p>
-                <p><a href="">腾讯微博</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>售后服务</h3>
-                <p><a href="">售后政策</a></p>
-                <p><a href="">价格保护</a></p>
-                <p><a href="">退款说明</a></p>
-            </div>
-            <div class="customItem">
-                <h3>4000-800-577</h3>
-                <p>周一至周日：09:00-22:00</p>
-                <p>（仅收市话费）</p>
-                <span class="customBtn"><i class="icon icon-chat"></i>24小时在线客服</span>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>版权所有&copy; 菠萝书城</p>
-        </div>
-    </div>
-</div>
+<jsp:include page="${ctx}/pages/common/foot.jsp"></jsp:include>
 <script type="text/javascript" src="../../resources/js/plugs/seajs/sea.js"></script>
 <script type="text/javascript" src="../../resources/js/plugs/region/region.js"></script>
 <script type="text/javascript" src="../../resources/js/plugs/wx/wx.js"></script>
 <script type="text/javascript" src="../../resources/js/plugs/wx/wx.config.js"></script>
 <script type="text/javascript" src="../../resources/js/plugs/wx/wx.upload.js"></script>
+
+<script type="text/javascript" src="../../resources/js/common.js"></script>
 <script type="text/javascript">
     seajs.use("../../resources/js/index/index");
 </script>
 <script>
-    $("#" + "city_region_selector1").city_selector('city', '');
-    $("#province").change(function(){
-        $(".province").val($(this).find("option:selected").text());
-    });
-    $("#city").change(function(){
-        $(".city").val($(this).find("option:selected").text());
-    });
     function  addressAdd(data){
         if (data["status"]=="success"){
             window.location.reload(true);
@@ -227,35 +167,48 @@
     }
     $(document).ready(function(){
         $("#addressNew").click(function(){
+
             if($(".updateBox").is(":hidden")){
-                $(".updateBox").show();
+                $("#" + "city_region_selector1").city_selector('city', '');
+                $(".updateBox").slideDown();
+                $("#province").change(function(){
+                    $("#province_1").val($(this).find("option:selected").text());
+                });
+                $("#city").change(function(){
+                    $("#city_1").val($(this).find("option:selected").text());
+                    if (($(this).find("option:selected").text()) != "请选择城市") {
+                        $(this).next().hide();
+                    }
+                });
             }else{
-                $(".updateBox").hide();
+                $(".updateBox").slideUp();
             }
         });
-        var total=0;
-        $(".goods").children("td").eq(3).each(function(){
-            total+=parseFloat($(this).text());
+        $("#cancleBtn").click(function(){
+            $(".updateBox").slideUp();
         });
-        $(".totalNum").text("$"+total.toFixed(2));
-        $(".goods:last").children("td").eq(2).text("$"+total.toFixed(2));
+        var total=0;
+        $(".goods").each(function(){
+            if ($(this).index()!=$(".goods:last").index()){
+                var value=$(this).children("td").eq(3).text();
+                total+=parseFloat(value);
+            }
+        });
+        $(".totalNum").text("￥"+total.toFixed(2));
+        $(".goods:last").children("td").eq(2).text("￥"+total.toFixed(2));
         $("#orderTotalPrice").val(total.toFixed(2));
         $(".toChargrBtn").click(function(){
-//            if(isEmptyObject()){
-//                alert("请选择地址");
-//            }
             if($("#orderRefAddressId").val()==null||$("#orderRefAddressId").val()==""){
                 wx.alert("请选择地址");
                 return false;
             }
         });
         $(".addressRadio").click(function(){
-            if($(this).is(":checked")){
-                $("#orderRefAddressId").val($(this).next().val());
-            }
+            $(".addressRadio").removeAttr("checked");
+           $(this).attr("checked","checked");
+            $("#orderRefAddressId").val($(this).next().val());
         })
     });
-
 </script>
 </body>
 </html>

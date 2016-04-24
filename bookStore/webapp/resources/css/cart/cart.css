@@ -140,6 +140,11 @@
 	background-color: #ffeff5;
 }
 
+.addressList li .addressRadio {
+	vertical-align: -2px;
+	margin-right: 5px;
+}
+
 .updateBox {
-	margin: 20px 0 0 10px;
+	margin: 40px 0 0 10px;
 }

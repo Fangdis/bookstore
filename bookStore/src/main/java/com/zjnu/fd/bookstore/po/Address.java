@@ -17,6 +17,10 @@ public class Address {
 
     private String posnum;
 
+    private String code;
+
+    private Integer status;
+
     public Integer getId() {
         return id;
     }
@@ -79,5 +83,21 @@ public class Address {
 
     public void setPosnum(String posnum) {
         this.posnum = posnum == null ? null : posnum.trim();
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

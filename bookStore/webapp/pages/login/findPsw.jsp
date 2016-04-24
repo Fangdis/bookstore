@@ -23,14 +23,14 @@
     <h2 class="title">通过您的手机号找回密码</h2>
     <form class="findPswForm" wx-validator wx-validator-error-tag="p" wx-validator-ajax autocomplete="off" method="post" action="${ctx}/user/findPwdStepOne.html" name="findPwd1">
         <div class="form-item">
-            <label><i class="require">*</i>手机号：</label>
-            <input type="text" placeholder="手机号" class="w300" name="phone">
+            <label><i class="require">*</i>手机号码：</label>
+            <input type="text" placeholder="请输入手机号码" class="w300" name="phone" id="phone" wx-validator-rule="required|mobile" wx-validator-placeholder="请输入手机号码">
         </div>
         <div class="form-item">
             <label><i class="require">*</i>验证码：</label>
-            <input type="text" placeholder="验证码" class="w150" name="code">
+            <input type="text" placeholder="请输入验证码" class="w150" name="code" wx-validator-rule="required" wx-validator-placeholder="请输入验证码">
             <a href="javascript:;" class="changeCaptcha pink fr">换一张</a>
-            <img width="90" height="36" isblank="true" src="${ctx}/user/code.html" class="fr">
+            <img width="90" height="36" isblank="true" src="${ctx}/user/code.html" class="fr" id="randImage" style="cursor: pointer">
         </div>
         <div class="form-btn">
             <input type="submit" value="下一步" class="ui-btn ui-btn-pink ui-btn-m">
@@ -41,8 +41,8 @@
     <h2 class="title">“菠萝书城手机验证短信”已发送至您的手机</h2>
     <form class="findPswForm" wx-validator wx-validator-error-tag="p" wx-validator-ajax autocomplete="off" method="post" action="${ctx}/user/findPwdStepTwo.html" name="findPwd2">
         <div class="form-item">
-            <label><i class="require">*</i>验证码：</label>
-            <input type="text" placeholder="验证码" class="w300" name="code">
+            <label><i class="require">*</i>手机验证码：</label>
+            <input type="text" placeholder="手机验证码" class="w300" name="code">
         </div>
         <div class="form-item mt25" style="padding-left: 98px;">没收到短信？<input type="button" value="60s重新发送" class="reGetPhoneCode ui-btn ui-btn-pink" id="getVoiceCode"></div>
         <div class="form-btn">
@@ -75,6 +75,12 @@
 <script type="text/javascript" src="../../resources/js/plugs/wx/wx.config.js"></script>
 <script type="text/javascript" src="../../resources/js/plugs/wx/wx.upload.js"></script>
 <script>
+    $("#randImage").click(function() {
+        $(this).attr("src", "${ctx}/user/code.html?" + Math.random());
+    });
+    $(".changeCaptcha").click(function(){
+       $("#randImage").trigger("click");
+    });
     function findPwd1(data){
         if (data["data"]["pojos"]["findPwd"]=="success"){
 
@@ -106,7 +112,6 @@
             $("#findPswBox4").show();
         }else wx.alert("验证码错误");
     }
-    // 获取手机验证码
     function getPhoneCode() {
         var btn = $("#getCodeBtn");
         var count = 60;
@@ -121,7 +126,6 @@
             count--;
         }, 1000);
     }
-    // 增加按钮disable
     function addBtnDisable(clickitem) {
         clickitem.attr("disabled", "disabled");
         clickitem.css({
@@ -130,7 +134,6 @@
             "color": "#999"
         });
     }
-    // 移除按钮disable
     function removeBtnDisable(clickitem) {
         clickitem.removeAttr("disabled");
         clickitem.css({

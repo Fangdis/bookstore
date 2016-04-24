@@ -29,30 +29,7 @@
 <jsp:include page="${ctx}/pages/common/head.jsp"></jsp:include>
 <div class="siteMTopBox">
     <div class="mainInnerBox clearfix">
-        <a href="" class="siteLogo">
-            <img src="../../resources/images/common/siteLogo.png">
-        </a>
-        <div class="searchBox">
-            <ul class="searchTab">
-                <li class="active">书名</li><li>作者</li>
-            </ul>
-            <div class="searchInner clearfix">
-                <input type="text" placeholder="你的美腿还缺一条牛仔裤">
-                <span class="searchBtn icon-search-1"></span>
-            </div>
-            <div class="hotWord">
-                <span>热门搜索：</span>
-                <a href="">童书优惠</a>
-                <a href="" class="pink">动漫</a>
-                <a href="">中华书局</a>
-                <a href="" class="pink">语文高考</a>
-                <a href="" class="pink">教材</a>
-                <a href="">字典词典</a>
-                <a href="">投资</a>
-                <a href="">青春</a>
-                <a href="">文学名著</a>
-            </div>
-        </div>
+        <jsp:include page="${ctx}/pages/common/top.jsp" />
         <div class="basketBox">
             <span><i class="icon icon-basket"></i>购物车<i class="num">0</i>件</span><a href="../order/cart.html" class="goPayLink">去结算></a>
         </div>
@@ -61,10 +38,10 @@
 <div class="siteNavBox">
     <div class="mainInnerBox">
         <ul class="navList clearfix">
-            <li class="allGoods"><a href="javascript:;">精选图书分类</a></li>
-            <li><a href="">图书首页</a></li>
-            <li><a href="">特价好书</a></li>
-            <li><a href="">新品精选</a></li>
+            <li class="allGoods"><a href="/">精选图书分类</a></li>
+            <li><a href="/">图书首页</a></li>
+            <li><a href="/">特价好书</a></li>
+            <li><a href="/">新品精选</a></li>
         </ul>
     </div>
 </div>
@@ -76,6 +53,7 @@
             <div class="orderBox">
                 <ul class="tabBox clearfix">
                     <li class="active">收货地址</li>
+                    <input type="button" class="ui-btn ui-btn-pink ui-btn-m" style="float: right; margin-top: 21px;" id="addNewAddress" value="添加新地址" />
                 </ul>
                 <div class="tabInfo">
                     <table width="100%" class="ui-table orderTable">
@@ -97,155 +75,130 @@
                             <th>操作</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr class="empty"><td colspan="6"></td></tr>
-                        <tr class="ui-table-title">
-                            <td colspan="5"></td>
-                            <td>
-                                <a href="" class="icon icon-basket"></a>
-                            </td>
-                        </tr>
                         <c:forEach items="${addressList}" var="address">
-                            <tr class="goods">
-                                <td>${address.addressee}</td>
-                                <td>${address.province}${address.city}</td>
-                                <td>${address.streetaddress}</td>
-                                <td>${address.posnum}</td>
-                                <td>${address.contantphone}</td>
-                                <td>
-                                    <p><a href="" class="pink">修改</a></p>
-                                    <p><a href="" class="pink">设为默认地址</a></p>
-                                </td>
-                            </tr>
-
+                            <tbody>
+                                <tr class="empty"><td colspan="6"></td></tr>
+                                <tr class="ui-table-title">
+                                    <td colspan="5"></td>
+                                    <td>
+                                        <a href="${ctx}/address/delete?addressId=${address.id}" class="icon icon-basket"></a>
+                                    </td>
+                                </tr>
+                                <tr class="goods">
+                                    <td>${address.addressee}</td>
+                                    <td>${address.province}${address.city}</td>
+                                    <td>${address.streetaddress}</td>
+                                    <td>${address.code}</td>
+                                    <td>${address.contantphone}</td>
+                                    <td>
+                                        <p><a href="javascript:;" class="pink updateAddress" >修改</a><span style="display: none">${address.id}</span><span style="display: none">${address.province}</span><span style="display: none">${address.city}</span><span style="display: none">${address.posnum}</span></p>
+                                        <p><c:if test="${address.status!=1}">
+                                            <a href="${ctx}/address/setMask?addressId=${address.id}" class="pink">设为默认地址</a>
+                                        </c:if></p>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </c:forEach>
-
-                        <tr class="goods" style="display: none;">
-                            <td colspan="6" class="text-left">
-                                <div class="updateBox">
-                                    <form>
-                                        <div class="form-item">
-                                            <label><i class="require">*</i>所在地：</label>
-                                            <select class="w150 mr10"></select>
-                                            <select class="w150"></select>
-                                        </div>
-                                        <div class="form-item">
-                                            <label><i class="require">*</i>街道地址：</label>
-                                            <input type="text" class="w450">
-                                        </div>
-                                        <div class="form-item">
-                                            <label><i class="require">*</i>收件人：</label>
-                                            <input type="text" class="w300">
-                                        </div>
-                                        <div class="form-item">
-                                            <label><i class="require">*</i>联系电话：</label>
-                                            <input type="text" class="w300">
-                                            <p class="error-text"></p>
-                                        </div>
-                                        <div class="form-btn">
-                                            <input type="submit" value="保存并使用" class="ui-btn ui-btn-pink ui-btn-s mr10">
-                                            <input type="button" value="取消" class="ui-btn ui-btn-gray ui-btn-s">
-                                        </div>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-
-                        <tr class="goods" style="display: none;">
-                            <td colspan="6" class="text-left">
-                                <div class="updateBox">
-                                    <form>
-                                        <div class="form-item">
-                                            <label><i class="require">*</i>所在地：</label>
-                                            <select class="w150 mr10"></select>
-                                            <select class="w150"></select>
-                                        </div>
-                                        <div class="form-item">
-                                            <label><i class="require">*</i>街道地址：</label>
-                                            <input type="text" class="w450">
-                                        </div>
-                                        <div class="form-item">
-                                            <label><i class="require">*</i>收件人：</label>
-                                            <input type="text" class="w300">
-                                        </div>
-                                        <div class="form-item">
-                                            <label><i class="require">*</i>联系电话：</label>
-                                            <input type="text" class="w300">
-                                            <p class="error-text"></p>
-                                        </div>
-                                        <div class="form-btn">
-                                            <input type="submit" value="保存并使用" class="ui-btn ui-btn-pink ui-btn-s mr10">
-                                            <input type="button" value="取消" class="ui-btn ui-btn-gray ui-btn-s">
-                                        </div>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="siteFooterBox">
-    <div class="mainInnerBox">
-        <ul class="serviceList clearfix">
-            <li>品类齐全 轻松购物</li>
-            <li>多仓直发 极速配送</li>
-            <li>正品行货 精致服务</li>
-            <li>天天低价 畅选无忧</li>
-        </ul>
-        <div class="linkList clearfix">
-            <div class="linkItem">
-                <h3>帮助中心</h3>
-                <p><a href="">购物指南</a></p>
-                <p><a href="">支付方式</a></p>
-                <p><a href="">配送方式</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>服务支持</h3>
-                <p><a href="">售后政策</a></p>
-                <p><a href="">自主服务</a></p>
-                <p><a href="">相关下载</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>关于我们</h3>
-                <p><a href="">了解我们</a></p>
-                <p><a href="">加入我们</a></p>
-                <p><a href="">联系我们</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>关注我们</h3>
-                <p><a href="">新浪微博</a></p>
-                <p><a href="">官方微信</a></p>
-                <p><a href="">腾讯微博</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>售后服务</h3>
-                <p><a href="">售后政策</a></p>
-                <p><a href="">价格保护</a></p>
-                <p><a href="">退款说明</a></p>
-            </div>
-            <div class="customItem">
-                <h3>4000-800-577</h3>
-                <p>周一至周日：09:00-22:00</p>
-                <p>（仅收市话费）</p>
-                <span class="customBtn"><i class="icon icon-chat"></i>24小时在线客服</span>
-            </div>
+<div class="hide-background" style="display: none;"></div>
+<div class="addAddressBox" style="display: none;">
+    <form method="post" action="${ctx}/address/add" wx-validator wx-validator-error-tag="p" wx-validator-ajax autocomplete="off"  name="addressAdd">
+        <input id="addressId" name="id" style="display: none">
+        <div class="form-item">
+            <label><i class="require">*</i>收件人：</label>
+            <input type="text" class="w300" name="addressee" id="addressee" wx-validator-rule="required" wx-validator-addressee-required="收件人不能为空" wx-validator-placeholder="收件人">
         </div>
-        <div class="copyright">
-            <p>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备1101080212535号 京网文[2014]0059-0009号</p>
-            <p>违法和不良信息举报电话：185-0130-1238</p>
-            <ul class="infoLinks">
-                <li><img src="../../resources/images/copyright/v-logo-1.png"></li>
-                <li><img src="../../resources/images/copyright/v-logo-2.png"></li>
-                <li><img src="../../resources/images/copyright/v-logo-3.png"></li>
-            </ul>
+        <div class="form-item">
+            <label><i class="require">*</i>手机号码：</label>
+            <input type="text" class="w300" name="contantphone" id="contantphone" wx-validator-rule="required|mobile" wx-validator-contantphone-mobile="请输入正确的手机号码" wx-validator-contantphone-required="手机号码不能为空" wx-validator-placeholder="请输入手机号码">
+            <p class="error-text"></p>
         </div>
-    </div>
+        <div class="form-item">
+            <label><i class="require">*</i>地区：</label>
+            <div  id="city_region_selector1"></div>
+            <input type="hidden" name="posnum" id="city" wx-validator-rule="required" wx-validator-posnum-required="请选择地区">
+            <input type="hidden" name="province" id="province_1">
+            <input type="hidden" name="city" id="city_1">
+        </div>
+        <div class="form-item">
+            <label><i class="require">*</i>详细地址：</label>
+            <input type="text" class="w300" name="streetaddress" id="streetaddress" wx-validator-rule="required" wx-validator-streetaddress-required="详细地址不能为空" wx-validator-placeholder="详细地址">
+        </div>
+        <div class="form-item">
+            <label><i class="require">*</i>邮政编码：</label>
+            <input type="text" class="w300" name="code" id="code" wx-validator-rule="required" wx-validator-code-required="邮政编码不能为空" wx-validator-placeholder="邮政编码">
+        </div>
+        <div class="form-btn">
+            <input type="submit" value="保存并使用" class="ui-btn ui-btn-pink ui-btn-s mr10">
+            <input type="button" value="取消" class="ui-btn ui-btn-gray ui-btn-s" id="cancelBtn">
+        </div>
+    </form>
 </div>
+<jsp:include page="${ctx}/pages/common/foot.jsp"></jsp:include>
+
+<script type="text/javascript" src="../../resources/js/plugs/region/region.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.config.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.upload.js"></script>
+
+<script type="text/javascript" src="../../resources/js/common.js"></script>
+<script>
+
+   // $("#" + "city_region_selector2").city_selector('city', '');
+//    $("#province").change(function(){
+//        $("#province_1").val($(this).find("option:selected").text());
+//    });
+//    $("#city").change(function(){
+//        $("#city_1").val($(this).find("option:selected").text());
+//        if (($(this).find("option:selected").text()) != "请选择城市") {
+//            $(this).next().hide();
+//        }
+//    });
+    function  addressAdd(data){
+        if (data["status"]=="success"){
+            window.location.reload(true);
+        }
+    }
+    $("#addNewAddress").click(function(){
+        $(".hide-background, .addAddressBox").show();
+        $("#" + "city_region_selector1").city_selector('city', '');
+        $("#province").change(function(){
+            $("#province_1").val($(this).find("option:selected").text());
+        });
+        $("#city").change(function(){
+            $("#city_1").val($(this).find("option:selected").text());
+            if (($(this).find("option:selected").text()) != "请选择城市") {
+                $(this).next().hide();
+            }
+        });
+    });
+    $("#cancelBtn").click(function(){
+        $(".hide-background, .addAddressBox").hide();
+    });
+    $(".updateAddress").click(function(){
+        $("#" + "city_region_selector1").city_selector('city',$(this).next().next().next().next().text() );
+        $("#province").change(function(){
+            $("#province_1").val($(this).find("option:selected").text());
+        });
+        $("#city").change(function(){
+            $("#city_1").val($(this).find("option:selected").text());
+            if (($(this).find("option:selected").text()) != "请选择城市") {
+                $(this).next().hide();
+            }
+        });
+        $(".hide-background, .addAddressBox").show();
+        $("#addressId").val($(this).next().text());
+        $("#addressee").val($(this).parent().parent().parent().children().eq(0).text());
+        $("#contantphone").val($(this).parent().parent().parent().children("td").eq(4).text());
+        $("#province_1").val($(this).next().next().text());
+        $("#city_1").val($(this).next().next().next().text());
+        $("#streetaddress").val($(this).parent().parent().parent().children("td").eq(2).text());
+    });
+</script>
 </body>
 </html>

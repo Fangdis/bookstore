@@ -14,4 +14,6 @@ public interface CartService {
     public int deleteById(int id);
 
     List<Cart> listByUserIdAndIds(int i, String ids);
+
+    int updateCart(Integer id, int num);
 }

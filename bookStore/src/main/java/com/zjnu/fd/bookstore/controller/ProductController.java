@@ -27,4 +27,12 @@ public class ProductController {
         modelAndView.addObject("minKind",minKind);
         return modelAndView;
     }
+
+    @RequestMapping("search")
+    public ModelAndView search(ModelAndView modelAndView, @RequestParam("flag") String flag,@RequestParam(value = "searchName",required = false) String searchName){
+        List<Book> byKindAndMinK = bookService.findByFlagAndSearchName(flag, searchName);
+        modelAndView.setViewName("detail/list");
+        modelAndView.addObject("books",byKindAndMinK);
+        return modelAndView;
+    }
 }

@@ -16,7 +16,8 @@
     <link rel="shortcut icon" type="text/css" href="../../resources/images/common/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/common.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/detail/detail.css">
-    <link type="text/css" rel="stylesheet" src="../../resources/js/plugs/wx/wx.css" />
+    <link type="text/css" rel="stylesheet" href="../../resources/js/plugs/wx/wx.css" />
+    <link type="text/css" rel="stylesheet" href="../../resources/js/plugs/location/location.css" />
     <script type="text/javascript" src="../../resources/js/plugs/jquery/jquery-1.8.3.min.js"></script>
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
 </head>
@@ -56,33 +57,7 @@
 </div>
 <div class="siteMTopBox">
     <div class="mainInnerBox clearfix">
-        <a href="" class="siteLogo">
-            <img src="../../resources/images/common/siteLogo.png">
-        </a>
-        <div class="searchBox">
-            <ul class="searchTab">
-                <li class="active">宝贝</li><li>店铺</li>
-            </ul>
-            <div class="searchInner clearfix">
-                <input type="text" placeholder="你的美腿还缺一条牛仔裤">
-                <span class="searchBtn icon-search-1"></span>
-            </div>
-            <div class="hotWord">
-                <span>热门搜索：</span>
-                <a href="">童书优惠</a>
-                <a href="" class="pink">动漫</a>
-                <a href="">中华书局</a>
-                <a href="" class="pink">语文高考</a>
-                <a href="" class="pink">教材</a>
-                <a href="">字典词典</a>
-                <a href="">投资</a>
-                <a href="">青春</a>
-                <a href="">文学名著</a>
-            </div>
-        </div>
-        <div class="basketBox">
-            <span><i class="icon icon-basket"></i>购物车<i class="num">0</i>件</span><a class="goPayLink">去结算></a>
-        </div>
+        <jsp:include page="${ctx}/pages/common/top.jsp"></jsp:include>
     </div>
 </div>
 <div class="siteNavBox">
@@ -134,24 +109,25 @@
                         </div>
                     </div>
                     <div class="detailItem clearfix">
-                        <div class="left letter5">京东价</div>
+                        <div class="left letter22">现价</div>
                         <div class="right">
                             <span class="nowPrice">¥<fmt:formatNumber value="${detail.discount*detail.price}" pattern="##.##" minFractionDigits="2"/><i>[<fmt:formatNumber value="${detail.discount*10}" pattern="##.##" minFractionDigits="2"/>折]</i></span>
                         </div>
                     </div>
                 </div>
                 <div class="otherinfo">
-                    <div class="detailItem clearfix">
+                    <div class="detailItem clearfix" id="summary-stock">
                         <div class="left letter5">配送至</div>
-                        <div class="right">
-                            <div class="address"><span>北京朝阳区三环以内</span><i class="icon icon-down-dir"></i></div>
-                            <%--<div class="addressInfo"><span>有货</span>支持79免运费</div>--%>
+                        <div id="store-selector">
+                            <div class="text"><div></div><b></b></div>
+                            <div onclick="$('#store-selector').removeClass('active')" class="close"></div>
                         </div>
+                        <div id="store-prompt"><strong></strong></div>
                     </div>
                     <div class="detailItem clearfix">
                         <div class="left letter22">服务</div>
                         <div class="right">
-                            <div>由"文轩网"直接销售和发货，并提供售后服务</div>
+                            <div>由"菠萝书城"直接销售和发货，并提供售后服务</div>
                             <div class="ad">
                                 <span>正品低价<span class="space">|</span>闪电发货<span class="space">|</span>货到付款<span class="space">|</span>高效退换货</span>
                             </div>
@@ -166,9 +142,9 @@
                     <div class="detailItem clearfix">
                         <div class="left">购买数量</div>
                         <div class="right">
-                            <a href="javascript:;" class="reduce-btn">-</a>
-                            <input type="text" class="buy-num-text" value="1" name="total">
-                            <a href="javascript:;" class="add-btn">+</a>
+                            <a href="javascript:;" class="reduce-btn" id="reduceBtn">-</a>
+                            <input type="text" class="buy-num-text" value="1" name="total" id="buyNum">
+                            <a href="javascript:;" class="add-btn" id="addBtn">+</a>
                         </div>
                     </div>
                      <div class="addToCart">
@@ -227,7 +203,7 @@
                         <li>包装：${detail.bookpackage}</li>
                         <li>开本：${detail.format}</li>
                         <li>出版时间：${detail.publishtime}</li>
-                        <li>用纸：=${detail.paper}</li>
+                        <li>用纸：${detail.paper}</li>
                         <li>页数：${detail.pages}</li>
                         <li>正文语种：${detail.booklanguage}</li>
                     </ul>
@@ -313,57 +289,15 @@
         </div>
     </div>
 </div>
-<div class="siteFooterBox">
-    <div class="mainInnerBox">
-        <ul class="serviceList clearfix">
-            <li>品类齐全 轻松购物</li>
-            <li>多仓直发 极速配送</li>
-            <li>正品行货 精致服务</li>
-            <li>天天低价 畅选无忧</li>
-        </ul>
-        <div class="linkList clearfix">
-            <div class="linkItem">
-                <h3>帮助中心</h3>
-                <p><a href="">购物指南</a></p>
-                <p><a href="">支付方式</a></p>
-                <p><a href="">配送方式</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>服务支持</h3>
-                <p><a href="">在线客服</a></p>
-                <p><a href="">自主服务</a></p>
-                <p><a href="">相关下载</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>关于我们</h3>
-                <p><a href="">了解我们</a></p>
-                <p><a href="">加入我们</a></p>
-                <p><a href="">联系我们</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>关注我们</h3>
-                <p><a href="">新浪微博</a></p>
-                <p><a href="">官方微信</a></p>
-                <p><a href="">腾讯微博</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>售后服务</h3>
-                <p><a href="">售后政策</a></p>
-                <p><a href="">价格保护</a></p>
-                <p><a href="">退款说明</a></p>
-            </div>
-            <div class="customItem">
-                <h3>4000-800-577</h3>
-                <p>周一至周日：09:00-22:00</p>
-                <p>（仅收市话费）</p>
-                <span class="customBtn"><i class="icon icon-chat"></i>24小时在线客服</span>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>版权所有&copy; 菠萝书城</p>
-        </div>
-    </div>
-</div>
+
+<jsp:include page="${ctx}/pages/common/foot.jsp"></jsp:include>
+
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.config.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/wx/wx.upload.js"></script>
+
+<script type="text/javascript" src="../../resources/js/common.js"></script>
+<script type="text/javascript" src="../../resources/js/plugs/location/location.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $(".tabBox li").each(function(index,domEle){
@@ -373,9 +307,23 @@
                 $("#tab"+Math.floor(index+1)).show();
             });
         });
+
         $(window).scroll(function(){
             var scrollTop = $(window).scrollTop();
             scrollTop > 713 ? $("#topNav").addClass("ui-fixed") : $("#topNav").removeClass("ui-fixed");
+        });
+        var count = "${detail.nowtotal}"-1;
+        $('#reduceBtn').click(function(){
+            if($('#buyNum').val()>1){
+                $('#buyNum').val($('#buyNum').val()-1);
+                count = count + 1;
+            }
+        });
+        $('#addBtn').click(function(){
+            if($('#buyNum').val()<count){
+                $('#buyNum').val(Number($('#buyNum').val())+1);
+                count = count - 1;
+            }
         });
     });
 </script>

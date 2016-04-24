@@ -47,11 +47,23 @@
     from ss_book
     where book_type = #{0}
   </select>
+  <select id="findByBookName" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from ss_book
+    where  name LIKE #{0}
+  </select>
   <select id="findByKind" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
     from ss_book
     where kind = #{0}
+  </select>
+  <select id="findByAuthor" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from ss_book
+    where author LIKE #{0}
   </select>
   <select id="findByKindAndMink" resultMap="BaseResultMap" >
     select

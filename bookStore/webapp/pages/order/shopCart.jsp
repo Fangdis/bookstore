@@ -80,9 +80,11 @@
                             </td>
                             <td>${cart.price}</td>
                             <td>
-                                <a href="javascript:;" class="reduce-btn">-</a>
-                                <input type="text" class="buy-num-text" value="1">
-                                <a href="javascript:;" class="add-btn">+</a>
+                                <a href="javascript:;" class="reduce-btn" id="reduceBtn">-</a>
+                                <input type="text" class="buy-num-text" value="${cart.total}" name="total" id="buyNum">
+                                <a href="javascript:;" class="add-btn" id="addBtn">+</a>
+                                <span style="display: none">${cart.totalBook}</span>
+                                <b style="display: none">${cart.id}</b>
                             </td>
                             <td><fmt:formatNumber value="${cart.total*cart.price}" pattern="##.##" minFractionDigits="2"/> </td>
                             <td><a href="${ctx}/order/delete.html?id=${cart.id}" class="pink">删除</a></td>
@@ -105,57 +107,7 @@
         </div>
     </div>
 </div>
-<div class="siteFooterBox">
-    <div class="mainInnerBox">
-        <ul class="serviceList clearfix">
-            <li>品类齐全 轻松购物</li>
-            <li>多仓直发 极速配送</li>
-            <li>正品行货 精致服务</li>
-            <li>天天低价 畅选无忧</li>
-        </ul>
-        <div class="linkList clearfix">
-            <div class="linkItem">
-                <h3>帮助中心</h3>
-                <p><a href="">购物指南</a></p>
-                <p><a href="">支付方式</a></p>
-                <p><a href="">配送方式</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>服务支持</h3>
-                <p><a href="">在线客服</a></p>
-                <p><a href="">自主服务</a></p>
-                <p><a href="">相关下载</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>关于我们</h3>
-                <p><a href="">了解我们</a></p>
-                <p><a href="">加入我们</a></p>
-                <p><a href="">联系我们</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>关注我们</h3>
-                <p><a href="">新浪微博</a></p>
-                <p><a href="">官方微信</a></p>
-                <p><a href="">腾讯微博</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>售后服务</h3>
-                <p><a href="">售后政策</a></p>
-                <p><a href="">价格保护</a></p>
-                <p><a href="">退款说明</a></p>
-            </div>
-            <div class="customItem">
-                <h3>4000-800-577</h3>
-                <p>周一至周日：09:00-22:00</p>
-                <p>（仅收市话费）</p>
-                <span class="customBtn"><i class="icon icon-chat"></i>24小时在线客服</span>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>版权所有&copy; 菠萝书城</p>
-        </div>
-    </div>
-</div>
+<jsp:include page="${ctx}/pages/common/foot.jsp"></jsp:include>
 <script type="text/javascript" src="../../resources/js/plugs/seajs/sea.js"></script>
 <script type="text/javascript">
     seajs.use("../../resources/js/index/index");
@@ -169,23 +121,26 @@
         $(".quanxuan").click(function(){
             if($(this).is(":checked")){
                 $(".goods").children("td").children("input").attr("checked",true);
+                sum();
             }else{
                 $(".goods").children("td").children("input").removeAttr("checked");
+                $(".totalNum").text("￥"+"0.00");
             }
-            sum();
+
         }) ;
+
         function sum(){
             var total=0;
-            $(".goods").children("td").children("input").each(function(){
-                if ($(this).is(":checked")){
-                    total+=parseFloat($(this).parent().parent().children("td").eq(4).text());
-                }
+            $(".goods").each(function(){
+                var price=$(this).children("td").eq(2).text();
+                var num=$(this).children("td").eq(3).children("input").val();
+                var totalPrice=parseFloat(parseFloat(price).toFixed(2)*num);
+                $(this).children("td").eq(4).text(totalPrice);
+                total=total+totalPrice;
             });
-            $(".totalNum").text("$"+parseFloat(total).toFixed(2));
+            $(".totalNum").text("￥"+parseFloat(total).toFixed(2));
         }
-        $(".goods").children("td").children("input").click(function(){
-            sum();
-        });
+
         $(".toChargrBtn").click(function(){
             var url="${ctx}/order/shopOrder";
             var size= $(".goods").children("td").children("input").length;
@@ -195,7 +150,7 @@
                     total++;
             });
             if(total==size){
-                wx.alert("没有选择商品");
+                wx.alert("请选择想要结算的图书");
                 return ;
             }
             var ids="";
@@ -204,9 +159,35 @@
                     ids=ids+$(this).next().val()+",";
                 }
             });
-
             window.location.href=url+"?ids="+encodeURI(ids);
         });
+
+        $('#reduceBtn').click(function(){
+            var count = $(this).siblings("span").text();
+            var cartId=$(this).siblings("b").text();
+            if($('#buyNum').val()>1){
+                $('#buyNum').val($('#buyNum').val()-1);
+                count = count + 1;
+                updateCart(cartId,-1);
+            }
+        });
+        $('#addBtn').click(function(){
+            var count = $(this).siblings("span").text();
+            var cartId=$(this).siblings("b").text();
+            if($('#buyNum').val()<count){
+                $('#buyNum').val(Number($('#buyNum').val())+1);
+                 updateCart(cartId,1);
+                count = count - 1;
+            }
+        });
+        function updateCart(cartId,num){
+            $.get("${ctx}/order/updateCart.html",{
+                "cartId":cartId,
+                "num":num
+            },function(data){
+                sum();
+            });
+        }
     });
 </script>
 </body>

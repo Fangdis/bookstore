@@ -9,7 +9,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>菠萝书城 | 后台管理平台</title>
@@ -17,29 +17,21 @@
 
     <link rel="stylesheet" type="text/css" href="../resources/js/plugs/bootstrap/bootstrap.min.css" />
     <!-- font Awesome -->
-    <link rel="stylesheet" type="text/css" href="../resources/font/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="../resources/css/admin/admin.css" />
+    <link rel="stylesheet" type="text/css" href="../resources/css/login/login.css" />
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
 </head>
-<body class="skin-black">
-<!-- header logo: style can be found in header.less -->
-<jsp:include page="${ctx}/pages/common/head.jsp"></jsp:include>
-<div class="wrapper row-offcanvas row-offcanvas-left">
-    <!-- Left side column. contains the logo and sidebar -->
-    <jsp:include page="${ctx}/pages/common/left.jsp"></jsp:include>
-    <aside class="right-side">
-        <!-- Main content -->
-        <section class="content"></section><!-- /.content -->
-        <!-- <div class="footer-main">
-            版权所有&copy; 菠萝书城
-        </div> -->
-    </aside><!-- /.right-side -->
-</div><!-- ./wrapper -->
-<!-- jQuery 2.0.2 -->
-<script type="text/javascript" src="../resources/js/plugs/jquery/jquery-1.8.3.min.js"></script>
-<!-- Bootstrap -->
-<script type="text/javascript" src="../resources/js/plugs/bootstrap/bootstrap.min.js"></script>
-<!-- Director App -->
-<script type="text/javascript" src="../resources/js/plugs/director/app.js"></script>
+<body>
+<div class="login-box">
+    <div class="login-title">菠萝书城</div>
+    <form class="login-form" action="${ctx}/user/login.html" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="用户名" name="phone">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="密码" name="password">
+        </div>
+        <input type="submit" class="btn btn-primary login-btn" value="登  录">
+    </form>
+</div>
 </body>
 </html>

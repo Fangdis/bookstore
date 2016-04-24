@@ -39,4 +39,11 @@ public class BookServiceImpl implements BookService {
             return bookMapper.findByKindAndMink(kind,minKind);
         }
     }
+
+    public List<Book> findByFlagAndSearchName(String flag, String searchName) {
+        if ("1".equals(flag)){
+            return bookMapper.findByBookName("%"+searchName+"%");
+        }else
+        return bookMapper.findByAuthor("%"+searchName+"%");
+    }
 }

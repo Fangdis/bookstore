@@ -35,4 +35,6 @@ public interface BookService {
 
 
     List<Book> findByKindAndMinK(String kind, String minKind);
+
+    List<Book> findByFlagAndSearchName(String flag, String searchName);
 }

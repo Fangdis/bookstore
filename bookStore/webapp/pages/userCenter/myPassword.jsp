@@ -29,42 +29,16 @@
 <jsp:include page="${ctx}/pages/common/head.jsp"></jsp:include>
 <div class="siteMTopBox">
     <div class="mainInnerBox clearfix">
-        <a href="" class="siteLogo">
-            <img src="../../resources/images/common/siteLogo.png">
-        </a>
-        <div class="searchBox">
-            <ul class="searchTab">
-                <li class="active">书名</li><li>作者</li>
-            </ul>
-            <div class="searchInner clearfix">
-                <input type="text" placeholder="你的美腿还缺一条牛仔裤">
-                <span class="searchBtn icon-search-1"></span>
-            </div>
-            <div class="hotWord">
-                <span>热门搜索：</span>
-                <a href="">童书优惠</a>
-                <a href="" class="pink">动漫</a>
-                <a href="">中华书局</a>
-                <a href="" class="pink">语文高考</a>
-                <a href="" class="pink">教材</a>
-                <a href="">字典词典</a>
-                <a href="">投资</a>
-                <a href="">青春</a>
-                <a href="">文学名著</a>
-            </div>
-        </div>
-        <div class="basketBox">
-            <span><i class="icon icon-basket"></i>购物车<i class="num">0</i>件</span><a href="../order/cart.html" class="goPayLink">去结算></a>
-        </div>
+        <jsp:include page="${ctx}/pages/common/top.jsp"></jsp:include>
     </div>
 </div>
 <div class="siteNavBox">
     <div class="mainInnerBox">
         <ul class="navList clearfix">
-            <li class="allGoods"><a href="javascript:;">精选图书分类</a></li>
-            <li><a href="">图书首页</a></li>
-            <li><a href="">特价好书</a></li>
-            <li><a href="">新品精选</a></li>
+            <li class="allGoods"><a href="/">精选图书分类</a></li>
+            <li><a href="/">图书首页</a></li>
+            <li><a href="/">特价好书</a></li>
+            <li><a href="/">新品精选</a></li>
         </ul>
     </div>
 </div>
@@ -103,67 +77,16 @@
         </div>
     </div>
 </div>
-<div class="siteFooterBox">
-    <div class="mainInnerBox">
-        <ul class="serviceList clearfix">
-            <li>品类齐全 轻松购物</li>
-            <li>多仓直发 极速配送</li>
-            <li>正品行货 精致服务</li>
-            <li>天天低价 畅选无忧</li>
-        </ul>
-        <div class="linkList clearfix">
-            <div class="linkItem">
-                <h3>帮助中心</h3>
-                <p><a href="">购物指南</a></p>
-                <p><a href="">支付方式</a></p>
-                <p><a href="">配送方式</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>服务支持</h3>
-                <p><a href="">售后政策</a></p>
-                <p><a href="">自主服务</a></p>
-                <p><a href="">相关下载</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>关于我们</h3>
-                <p><a href="">了解我们</a></p>
-                <p><a href="">加入我们</a></p>
-                <p><a href="">联系我们</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>关注我们</h3>
-                <p><a href="">新浪微博</a></p>
-                <p><a href="">官方微信</a></p>
-                <p><a href="">腾讯微博</a></p>
-            </div>
-            <div class="linkItem">
-                <h3>售后服务</h3>
-                <p><a href="">售后政策</a></p>
-                <p><a href="">价格保护</a></p>
-                <p><a href="">退款说明</a></p>
-            </div>
-            <div class="customItem">
-                <h3>4000-800-577</h3>
-                <p>周一至周日：09:00-22:00</p>
-                <p>（仅收市话费）</p>
-                <span class="customBtn"><i class="icon icon-chat"></i>24小时在线客服</span>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备1101080212535号 京网文[2014]0059-0009号</p>
-            <p>违法和不良信息举报电话：185-0130-1238</p>
-            <ul class="infoLinks">
-                <li><img src="../../resources/images/copyright/v-logo-1.png"></li>
-                <li><img src="../../resources/images/copyright/v-logo-2.png"></li>
-                <li><img src="../../resources/images/copyright/v-logo-3.png"></li>
-            </ul>
-        </div>
-    </div>
+
 </div>
 
+<jsp:include page="${ctx}/pages/common/foot.jsp"></jsp:include>
+<script type="text/javascript" src="../../resources/js/plugs/region/region.js"></script>
 <script type="text/javascript" src="../../resources/js/plugs/wx/wx.js"></script>
 <script type="text/javascript" src="../../resources/js/plugs/wx/wx.config.js"></script>
 <script type="text/javascript" src="../../resources/js/plugs/wx/wx.upload.js"></script>
+
+<script type="text/javascript" src="../../resources/js/common.js"></script>
 <script>
     function  updatePswForm(data){
         if(data["desc"]=="success"){

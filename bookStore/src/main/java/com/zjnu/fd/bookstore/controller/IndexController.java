@@ -25,4 +25,5 @@ public class IndexController {
         modelAndView.addObject("recommendBook",bookService.getRecommendBooks());
         return modelAndView;
     }
+
 }

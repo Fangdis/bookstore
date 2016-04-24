@@ -26,6 +26,10 @@ body {
 	margin-top: 40px;
 }
 
+.loginForm .form-item .error-text {
+	padding-left: 10px;
+}
+
 .loginBox .loginSpec {
 	text-align: right;
 	margin-bottom: 10px;
@@ -59,4 +63,10 @@ body {
 	height: 25px;
 	line-height: 25px;
 	margin-left: 10px;
+}
+
+#verify-login {
+	color: #f00;
+	padding-left: 10px;
+	height: 20px;
 }

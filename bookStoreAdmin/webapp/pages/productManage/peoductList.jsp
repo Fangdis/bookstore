@@ -20,6 +20,9 @@
     <!-- font Awesome -->
     <link rel="stylesheet" type="text/css" href="../../resources/font/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="../../resources/css/admin/admin.css" />
+    <c:if test="${sessionScope.get('user')==null}">
+        <c:redirect url="${ctx}/user/loginPage"></c:redirect>
+    </c:if>
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
 </head>
 <body class="skin-black">
@@ -63,7 +66,7 @@
                             <td>${book.kind}</td>
                             <td>${book.minkind}</td>
                             <td class="tl">${book.name}</td>
-                            <td>${book.author}</td>
+                            <td class="tl">${book.author}</td>
                             <td class="tl">${book.feature}</td>
                             <td>${book.total}</td>
                             <td><a href="${ctx}/product/delete?id=${book.id}" class="tbtn">删除</a><a href="${ctx}/product/edit?id=${book.id}" class="tbtn">编辑</a></td>

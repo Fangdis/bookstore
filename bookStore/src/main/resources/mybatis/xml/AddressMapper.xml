@@ -10,21 +10,24 @@
     <result column="contantPhone" property="contantphone" jdbcType="VARCHAR" />
     <result column="streetAddress" property="streetaddress" jdbcType="VARCHAR" />
     <result column="posNum" property="posnum" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, userId, province, city, addressee, contantPhone, streetAddress, posNum
+    id, userId, province, city, addressee, contantPhone, streetAddress, posNum, code, 
+    status
   </sql>
+  <select id="listByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from ss_address
+    where userId = #{0} AND  status!=2
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from ss_address
     where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="listByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
-    <include refid="Base_Column_List" />
-    from ss_address
-    where userId = #{0}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from ss_address
@@ -33,10 +36,12 @@
   <insert id="insert" parameterType="com.zjnu.fd.bookstore.po.Address" >
     insert into ss_address (id, userId, province, 
       city, addressee, contantPhone, 
-      streetAddress, posNum)
+      streetAddress, posNum, code, 
+      status)
     values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, 
       #{city,jdbcType=VARCHAR}, #{addressee,jdbcType=VARCHAR}, #{contantphone,jdbcType=VARCHAR}, 
-      #{streetaddress,jdbcType=VARCHAR}, #{posnum,jdbcType=VARCHAR})
+      #{streetaddress,jdbcType=VARCHAR}, #{posnum,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zjnu.fd.bookstore.po.Address" >
     insert into ss_address
@@ -65,6 +70,12 @@
       <if test="posnum != null" >
         posNum,
       </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -90,6 +101,12 @@
       </if>
       <if test="posnum != null" >
         #{posnum,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -117,6 +134,12 @@
       <if test="posnum != null" >
         posNum = #{posnum,jdbcType=VARCHAR},
       </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -128,7 +151,9 @@
       addressee = #{addressee,jdbcType=VARCHAR},
       contantPhone = #{contantphone,jdbcType=VARCHAR},
       streetAddress = #{streetaddress,jdbcType=VARCHAR},
-      posNum = #{posnum,jdbcType=VARCHAR}
+      posNum = #{posnum,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

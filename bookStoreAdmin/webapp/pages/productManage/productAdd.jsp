@@ -20,251 +20,207 @@
     <!-- font Awesome -->
     <link rel="stylesheet" type="text/css" href="../../resources/font/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="../../resources/css/admin/admin.css" />
+    <c:if test="${sessionScope.get('user')==null}">
+        <c:redirect url="${ctx}/user/loginPage"></c:redirect>
+    </c:if>
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
-    <style>
-        .updateLogo {
-            display: inline-block;
-        }.updateLogo .updateLogoInfo {
-             margin-left: 80px;
-         }.updateLogo .updateLogoBtn {
-              position: relative;
-              overflow: hidden;
-              width: 80px;
-              margin: 5px 0 10px;
-          }.updateLogoInfo input[type="file"] {
-               font-size: 100px;
-               position: absolute;
-               top: 0;
-               right: 0;
-               display: block;
-               height: 30px;
-               cursor: pointer;
-               opacity: 0;
-               filter: alpha(opacity=0);
-               -moz-opacity: 0;
-           }button, input[type="button"], input[type="reset"], input[type="submit"], input[type="file"] {
-                cursor: pointer;
-                -webkit-appearance: button;
-                border: none;
-            }
-    </style>
 </head>
 <body class="skin-black">
-<!-- header logo: style can be found in header.less -->
-<header class="header">
-    <a href="index.html" class="logo">
-        菠萝书城
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top" role="navigation">
-        <!-- Sidebar toggle button-->
-        <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-        <div class="navbar-right">
-            <ul class="nav navbar-nav">
-                <!-- User Account: style can be found in dropdown.less -->
-                <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-user"></i>
-                        <span>Jane Doe <i class="caret"></i></span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
-                        <li class="dropdown-header text-center">账户</li>
-                        <li>
-                            <a data-toggle="modal" href="#modal-user-settings">
-                                <i class="fa fa-cog fa-fw pull-right"></i>
-                                设置
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="fa fa-ban fa-fw pull-right"></i> 退出</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+<jsp:include page="${ctx}/pages/common/head.jsp"></jsp:include>
 <div class="wrapper row-offcanvas row-offcanvas-left">
     <!-- Left side column. contains the logo and sidebar -->
-    <aside class="left-side sidebar-offcanvas">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="img/26115.jpg" class="img-circle" alt="User Image" />
-                </div>
-                <div class="pull-left info">
-                    <p>Hello, Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                </div>
-            </div>
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            <ul class="sidebar-menu">
-                <li class="active">
-                    <a href="index.html">
-                        <i class="fa fa-dashboard"></i> <span>商品管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="general.html">
-                        <i class="fa fa-gavel"></i> <span>订单管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="general.html">
-                        <i class="fa fa-globe"></i> <span>用户管理</span>
-                    </a>
-                </li>
-            </ul>
-        </section>
-        <!-- /.sidebar -->
-    </aside>
+    <jsp:include page="${ctx}/pages/common/left.jsp"></jsp:include>
+
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
             <div class="panel">
-                <form class="addForm" action="${ctx}/product/add.html" method="post">
+                <form action="${ctx}/product/add.html" method="post" class="form-horizontal" style="padding: 50px 0 50px 90px;">
+                    <input name="id" value="${book.id}" type="hidden">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">一级分类</label>
+                            <div class="col-md-10">
+                                <select class="form-control selectOption" name="kind">
+                                    <c:forEach items="${kind}" var="kind">
+                                        <option value="${kind}" class="optionKind">${kind}</option>
+                                    </c:forEach>
 
-                    <div class="row">
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>一级分类</label>
-                            <select class="w250" name="kind">
-                                <option value="文学">文学</option>
-                            </select>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>二级分类</label>
-                            <select class="w250" name="minkind">
-                                <option value="文学">文学</option>
-                            </select>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">二级分类</label>
+                            <div class="col-md-10">
+                                <select class="form-control minKindSelect" name="minkind" >
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>书名</label>
-                            <input type="text" placeholder="书名" name="name" class="w250">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">书名</label>
+                            <div class="col-md-10">
+                                <input type="text" placeholder="书名" name="name" class="form-control col-md-10">
+                            </div>
                         </div>
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>作者</label>
-                            <input type="text" placeholder="作者" name="author" class="w250">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">作者</label>
+                            <div class="col-md-10">
+                                <input type="text" placeholder="作者" name="author" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>出版社</label>
-                            <input type="text" placeholder="出版社" name="publish" class="w250">
-                        </div>
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>出版时间</label>
-                            <input type="text" placeholder="出版时间" name="publishtime" class="w250">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>单价</label>
-                            <input type="text" placeholder="单价"  name="price" class="w250">
-                        </div>
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>折扣</label>
-                            <input type="text" placeholder="折扣" name="discount" class="w250">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">ISBN</label>
+                            <div class="col-md-10">
+                                <input type="text" placeholder="ISBN" name="isbn" class="form-control">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>总量</label>
-                            <input type="text" placeholder="总量" name="total" class="w250">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">出版社</label>
+                            <div class="col-md-10">
+                                <input type="text" placeholder="出版社" name="publish" class="form-control">
+                            </div>
                         </div>
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>ISBN</label>
-                            <input type="text" placeholder="ISBN" name="isbn" class="w250">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">出版时间</label>
+                            <div class="col-md-10">
+                                <input type="date" placeholder="出版时间" name="publishtime" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>版次</label>
-                            <input type="text" placeholder="版次" name="edition" class="w250">
-                        </div>
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>商品编码</label>
-                            <input type="text" placeholder="商品编码" name="productnumber" class="w250">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>包装</label>
-                            <input type="text" placeholder="包装" name="bookpackage" class="w250">
-                        </div>
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>开本</label>
-                            <input type="text" placeholder="开本" name="format" class="w250">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">版次</label>
+                            <div class="col-md-10">
+                                <input type="text" placeholder="版次" name="edition" class="form-control">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>用纸</label>
-                            <input type="text" placeholder="用纸" name="paper" class="w250">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">单价</label>
+                            <div class="col-md-10">
+                                <input type="text" placeholder="单价"  name="price" class="form-control">
+                            </div>
                         </div>
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>页数</label>
-                            <input type="text" placeholder="页数" name="pages" class="w250">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">折扣</label>
+                            <div class="col-md-10">
+                                <input type="text" placeholder="折扣" name="discount" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>正文语种</label>
-                            <input type="text" placeholder="正文语种" name="booklanguage" class="w250">
-                        </div>
-                        <div class="form-item col-md-6">
-                            <label><i class="require">*</i>图书特色</label>
-                            <input type="text" placeholder="图书特色" name="feature" class="w250">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-item col-md-12">
-                            <label><i class="require">*</i>内容简介</label>
-                            <textarea class="w500 h100" name="introduction"></textarea>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">总量</label>
+                            <div class="col-md-10">
+                                <input type="text" placeholder="总量" name="total" class="form-control">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-item col-md-12">
-                            <label><i class="require">*</i>作者简介</label>
-                            <textarea class="w500 h100" name="authorinduce"></textarea>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">商品编码</label>
+                            <div class="col-md-10">
+                                <input type="text" placeholder="商品编码" name="productnumber" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">包装</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="bookpackage">
+                                    <option value="平装">平装</option>
+                                    <option value="精装">精装</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">开本</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="format">
+                                    <option value="16开">16开</option>
+                                    <option value="24开">24开</option>
+                                    <option value="32开">32开</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-item col-md-12">
-                            <label><i class="require">*</i>产品特色</label>
-                            <textarea class="w500 h100" name="producefeature"></textarea>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">用纸</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="paper">
+                                    <option value="纯质纸">纯质纸</option>
+                                    <option value="胶版纸">胶版纸</option>
+                                    <option value="铜版纸">铜版纸</option>
+                                    <option value="铜版纸">轻涂纸</option>
+                                    <option value="哑粉纸">哑粉纸</option>
+                                    <option value="白板纸">白板纸</option>
+                                    <option value="特种纸">特种纸</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">页数</label>
+                            <div class="col-md-10">
+                                <input type="text" placeholder="页数" name="pages" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">正文语种</label>
+                            <div class="col-md-10">
+                                <input type="text" placeholder="正文语种" name="booklanguage" class="form-control">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-item col-md-12">
-                         <label><i class="require">*</i>封面：</label>
-                            <div class="updateLogo">
-                                <img src="" id="userImg">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-10">图书简介</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" name="feature" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-10">内容介绍</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" name="introduction" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-10">作者介绍</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" name="authorinduce" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-10">图书特色</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" name="producefeature" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-10">封面：</label>
+                            <div class="updateLogo col-md-10">
+                                <div  class="col-md-3">
+                                    <img src="${ctx}${book.cover}" id="userImg" width="80" height="80">
+                                </div>
                                 <input type="hidden" name="cover" id="coverImg">
-                                <div class="updateLogoInfo">
+                                <div class="updateLogoInfo col-md-9">
                                     <div class="updateLogoBtn">
                                         <input wx-upload-size="40" wx-upload-type="image/bmp,image/png,image/gif,image/jpeg" type="file" wx-upload="/admin/upLoadPhoto" name="file" value="" wx-upload-assign="upload_bp=data.fileUrl" wx-upload-set="upload_bp_doc=data.fileUrl" hidefocus="true" wx-upload-param="type=cover" accept="image/jpeg,image/x-png,image/gif,image/x-ms-bmp">
-                                        <input type="button" class="ui-btn ui-btn-pink ui-btn-xs" value="选择图片">
+                                        <input type="button" class="btn btn-primary" value="选择图片">
                                     </div>
                                     <p>支持JPG,JPEG,GIF,PNG,BMP格式，且不超过5M</p>
                                 </div>
                             </div>
                         </div>
-                        <p class="error-text"></p>
                     </div>
                     <div class="form-btn">
                         <input type="submit" value="保存" class="btn btn-primary" />
                     </div>
-
                 </form>
             </div>
         </section><!-- /.content -->
@@ -288,6 +244,22 @@
         $("#userImg").attr("src",data["data"]["pojos"]["filePath"]);
         $("#coverImg").val(data["data"]["pojos"]["filePath"]);
     }
+    $(document).ready(function(){
+        $(".selectOption").change(function(){
+            var index=$(".selectOption option:checked").index();
+            makeMinKind(index);
+        });
+        makeMinKind(0);
+    });
+    function makeMinKind(index){
+        var str= minKind[index];
+        var minKinValue=str.split(",");
+        $(".minKindSelect").html("");
+        for(var i=0;i<minKinValue.length;i++){
+            $(".minKindSelect").append("<option value='"+minKinValue[i]+"' class='optionKind'>"+minKinValue[i]+"</option>");
+        }
+    }
+    var minKind=[ "小说,传记,动漫,散文", "卡通,绘本,科普百科",  "教材,外语,字典,考试","管理,经济,投资,股票", "社交,心灵鸡汤,职场",  "家居,美食,出行,服饰",  "建筑,医学,农业,电子", "摄影,设计,绘画,音乐","美妆,时尚,数码,影视","音乐,卡通,动漫影视"];
 </script>
 </body>
 </html>

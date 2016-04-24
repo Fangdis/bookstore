@@ -2,8 +2,10 @@ package com.zjnu.fd.bookstore.controller;
 
 import com.zjnu.fd.bookstore.model.OrderModel;
 import com.zjnu.fd.bookstore.po.Address;
+import com.zjnu.fd.bookstore.po.Cart;
 import com.zjnu.fd.bookstore.po.User;
 import com.zjnu.fd.bookstore.service.AddressService;
+import com.zjnu.fd.bookstore.service.CartService;
 import com.zjnu.fd.bookstore.service.OrderService;
 import com.zjnu.fd.bookstore.service.UserService;
 import com.zjnu.fd.bookstore.util.OutPut;
@@ -39,6 +41,8 @@ public class UserController {
     @Resource
     private AddressService addressService;
 
+    @Resource
+    private CartService cartService;
     @RequestMapping("register")
     @ResponseBody
     public String register(@RequestParam("phone") String phone,@RequestParam("password") String password,@RequestParam("code") String code,HttpServletRequest request){
@@ -77,6 +81,8 @@ public class UserController {
         Map map=new HashMap();
         if (user!=null&&user.getPassword().equals(password)){
             session.setAttribute("user",user);
+            List<Cart> list=cartService.listByUserId(user.getId());
+            session.setAttribute("sumCart",list.size());
             map.put("login","success");
         }else
             map.put("login","error");

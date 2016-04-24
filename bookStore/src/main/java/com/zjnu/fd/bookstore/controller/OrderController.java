@@ -10,15 +10,18 @@ import com.zjnu.fd.bookstore.service.CartService;
 import com.zjnu.fd.bookstore.service.OrderRefCartService;
 import com.zjnu.fd.bookstore.service.OrderService;
 import com.zjnu.fd.bookstore.util.DateTimeUtils;
+import com.zjnu.fd.bookstore.util.OutPut;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -46,6 +49,8 @@ public class OrderController {
             return "redirect:/user/loginPage";
         cart.setUserid(user.getId());
         cartService.insert(cart);
+        List<Cart> list=cartService.listByUserId(user.getId());
+        session.setAttribute("sumCart",list.size());
         return "redirect:/order/shopCart";
     }
     @RequestMapping("shopCart")
@@ -98,5 +103,11 @@ public class OrderController {
         orderRefCartService.insert(ids,orderNumber);
         modelAndView.setViewName("redirect:/user/userOrder");
         return modelAndView;
+    }
+    @ResponseBody
+    @RequestMapping("updateCart")
+    public String updateCart(@RequestParam(name = "cartId") Integer id,@RequestParam(name = "num") Integer num){
+        cartService.updateCart(id,num);
+        return OutPut.json(200,"success",new HashMap(),0);
     }
 }

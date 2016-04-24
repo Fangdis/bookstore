@@ -75,7 +75,7 @@
 
 .detailInfo .price {
 	background-color: #f8f8f8;
-	padding: 5px 0;
+	padding: 5px 0 0;
 	margin-bottom: 15px;
 	position: relative;
 }
@@ -130,37 +130,6 @@
 .detailInfo .otherinfo>div {
 	margin-bottom: 8px;
 	margin-top: 10px;
-}
-
-.detailInfo .address {
-	width: 150px;
-	height: 28px;
-	border: 1px solid #cecbce;
-	padding: 0 20px 0 6px;
-	position: relative;
-	cursor: pointer;
-	display: inline-block;
-}
-
-.detailInfo .address span {
-	line-height: 28px;
-	display: block;
-}
-
-.detailInfo .addressInfo {
-	display: inline-block;
-}
-
-.detailInfo .addressInfo span {
-	font-size: 15px;
-	font-weight: 600;
-	padding: 0 15px 0 8px;
-}
-
-.detailInfo .address .icon {
-	position: absolute;
-	top: 4px;
-	right: 0;
 }
 
 .detailInfo .ad {

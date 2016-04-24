@@ -8,10 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Created by xqYang on 2016/4/3.
  */
-@RequestMapping("admin")
+@RequestMapping("")
 @Controller
 public class IndexController {
-    @RequestMapping("index")
+    @RequestMapping("")
     public ModelAndView index(ModelAndView modelAndView){
         modelAndView.setViewName("index");
         return modelAndView;

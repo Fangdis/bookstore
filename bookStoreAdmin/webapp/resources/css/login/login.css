@@ -1,0 +1,43 @@
+body, textarea, input, select, button {
+    font-family: "Microsoft YaHei", "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", Tahoma, Arial, STHeiti, sans-serif;
+}
+
+body {
+    background: #39435C;
+}
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 300px;
+    margin-left: -200px;
+    margin-top: -200px;
+    background-color: #fff;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-title {
+    font-size: 26px;
+    color: #666;
+    font-weight: 500;
+    text-align: center;
+    background-color: #f3f3f3;
+    border-bottom: 1px solid #39435C;
+    border-radius: 3px 3px 0 0;
+    height: 70px;
+    line-height: 70px;
+    letter-spacing: 1pt;
+}
+
+.login-form {
+    margin: 40px 50px;
+}
+
+.login-btn {
+    width: 300px;
+    margin-top: 10px;
+}

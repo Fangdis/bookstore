@@ -14,6 +14,15 @@ public class Cart {
     private String name;
 
     private Float price;
+    private Integer totalBook;
+
+    public Integer getTotalBook() {
+        return totalBook;
+    }
+
+    public void setTotalBook(Integer totalBook) {
+        this.totalBook = totalBook;
+    }
 
     public Integer getId() {
         return id;

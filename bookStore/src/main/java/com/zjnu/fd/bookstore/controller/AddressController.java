@@ -6,7 +6,9 @@ import com.zjnu.fd.bookstore.service.AddressService;
 import com.zjnu.fd.bookstore.util.OutPut;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -32,5 +34,29 @@ public class AddressController {
         address.setUserid(user.getId());
         addressService.insert(address);
         return OutPut.json(200,"success","",0);
+    }
+    @RequestMapping("setMask")
+    public ModelAndView setMask(@RequestParam(name ="addressId" ) Integer id, HttpServletRequest request, ModelAndView modelAndView){
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user==null) {
+            modelAndView.setViewName("redirect:/user/loginPage");
+            return modelAndView;
+        }
+        addressService.setMask(id,user);
+        modelAndView.setViewName("redirect:/user/myAddress");
+        return modelAndView;
+    }
+    @RequestMapping("delete")
+    public ModelAndView delete(@RequestParam(name ="addressId" ) Integer id, HttpServletRequest request, ModelAndView modelAndView){
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user==null) {
+            modelAndView.setViewName("redirect:/user/loginPage");
+            return modelAndView;
+        }
+        addressService.delete(id,user);
+        modelAndView.setViewName("redirect:/user/myAddress");
+        return modelAndView;
     }
 }

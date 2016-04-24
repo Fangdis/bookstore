@@ -9,7 +9,7 @@
 <div class="leftNav">
     <ul class="leftNavItem">
         <h3 class="leftNavTitle">我的</h3>
-        <li class="active"><a href="${ctx}/user/userOrder.html">我的订单</a></li>
+        <li ><a href="${ctx}/user/userOrder.html">我的订单</a></li>
         <%--<li><a href="myEvaluate.html">我的评价</a></li>--%>
         <li><a href="${ctx}/order/shopCart.html">我的购物车</a></li>
     </ul>
