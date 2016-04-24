@@ -4,6 +4,7 @@ import com.zjnu.fd.bookstore.admin.model.OrderModel;
 import com.zjnu.fd.bookstore.admin.service.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -23,5 +24,10 @@ public class OrderController {
         modelAndView.addObject("orders",orderModels);
         modelAndView.setViewName("/orderManage/orderList");
         return modelAndView;
+    }
+    @RequestMapping("update")
+    public String update(@RequestParam("id") Integer id,@RequestParam("status") Integer status){
+        orderService.update(id,status);
+        return "redirect:/order/list";
     }
 }

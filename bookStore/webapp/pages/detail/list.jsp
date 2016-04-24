@@ -34,9 +34,9 @@
     <div class="mainInnerBox">
         <ul class="navList clearfix">
             <li class="allGoods"><a href="javascript:;">精选图书分类</a></li>
-            <li><a href="/">图书首页</a></li>
-            <li><a href="/">新品精选</a></li>
-            <li><a href="/">特价好书</a></li>
+            <li><a href="#">图书首页</a></li>
+            <li><a href="#tab1">新品精选</a></li>
+            <li><a href="#tab2">特价好书</a></li>
         </ul>
     </div>
 </div>

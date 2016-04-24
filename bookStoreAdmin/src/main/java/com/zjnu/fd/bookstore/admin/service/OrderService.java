@@ -16,4 +16,6 @@ public interface OrderService {
     public int insert(Order order);
 
     List<OrderModel> listAll(int beg, int end);
+
+    int update(Integer id, Integer status);
 }

@@ -39,9 +39,8 @@ public class BookServiceImpl implements BookService {
     }
 
     public int update(Book book) {
-        book.setNowtotal(0);
+        book.setNowtotal(book.getTotal());
         book.setPicture(book.getCover());
-        book.setBookType(1);
         if (book.getId()!=null){
             bookMapper.updateByPrimaryKeySelective(book);
         }else bookMapper.insertSelective(book);

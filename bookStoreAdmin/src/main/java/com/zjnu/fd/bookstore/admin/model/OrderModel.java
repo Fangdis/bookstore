@@ -15,6 +15,16 @@ public class OrderModel implements Serializable {
     private String orderNumber;
     private int status;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
+
     public int getUserId() {
         return userId;
     }
@@ -57,4 +67,6 @@ public class OrderModel implements Serializable {
     public void setCart(List<Cart> cart) {
         this.cart = cart;
     }
+
+
 }

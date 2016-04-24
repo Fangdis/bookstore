@@ -50,7 +50,7 @@ public class AdminController {
     }
     private  String uploadFile(MultipartFile file, HttpServletRequest request) throws IOException {
         String fileName = file.getOriginalFilename();
-        String path=request.getServletContext().getRealPath("/imgs/");
+        String path=("E:\\file\\java\\gitshopstore\\bookStore\\webapp\\imgs\\");
         File tempFile = new File(path, new Date().getTime() + fileName.substring(fileName.lastIndexOf(".")));
         if (!tempFile.getParentFile().exists()) {
             tempFile.getParentFile().mkdir();

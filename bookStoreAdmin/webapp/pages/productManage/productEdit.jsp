@@ -84,6 +84,21 @@
                                 </script>
                             </div>
                         </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-10">类别</label>
+                            <div class="col-md-10">
+                                <select class="form-control bookTypeOption" name="bookType" >
+                                    <option value="1">新品精选</option>
+                                    <option value="2">特价好书</option>
+                                </select>
+                                <script>
+                                    $(document).ready(function(){
+                                        console.log("${book.bookType}");
+                                        $(".bookTypeOption option[value='${book.bookType}']").attr("selected","selected");
+                                    });
+                                </script>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-4">

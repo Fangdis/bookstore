@@ -14,6 +14,7 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="shortcut icon" type="text/css" href="../../resources/images/common/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/common/fontello.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/common.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/detail/detail.css">
     <link type="text/css" rel="stylesheet" href="../../resources/js/plugs/wx/wx.css" />
@@ -22,39 +23,8 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
 </head>
 <body>
-<ul class="rightBar">
-    <li class="rightBarItem">
-        <a href="../order/cart.html"><i class="icon-basket"></i>购物车</a>
-    </li>
-    <li class="rightBarItem">
-        <a href=""><i class="icon-basket"></i>优惠券</a>
-    </li>
-    <li class="rightBarItem">
-        <a href=""><i class="icon-basket"></i>优惠券</a>
-    </li>
-</ul>
-<div class="siteHTopBox">
-    <div class="mainInnerBox">
-        <ul class="siteHRight fr clearfix">
-            <li><a href=""><i class="icon icon-list-bullet"></i>我的订单</a></li>
-            <li><a href=""><i class="icon icon-basket"></i>我的购物车 <span class="cart-num">0</span></a></li>
-            <li><a href=""><i class="icon icon-chat"></i>在线客服</a></li>
-            <li><a href=""><i class="icon icon-help-circled"></i>帮助中心</a></li>
-        </ul>
-        <ul class="siteLoginBox fr clearfix">
-            <!-- 未登录 begin -->
-            <!-- <li>欢迎来到HiGo，请</li>
-            <li><a href="" class="pink">登录</a></li>
-            <li><a href="" class="pink">免费注册</a></li> -->
-            <!-- 未登录 end -->
-
-            <!-- 已登录 begin -->
-            <li><a href="">童心未泯_X</a></li>
-            <li><a href="">我的收藏<i class="icon-down-dir"></i></a></li>
-            <!-- 已登录 end -->
-        </ul>
-    </div>
-</div>
+<jsp:include page="${ctx}/pages/common/right.jsp"></jsp:include>
+<jsp:include page="${ctx}/pages/common/head.jsp"></jsp:include>
 <div class="siteMTopBox">
     <div class="mainInnerBox clearfix">
         <jsp:include page="${ctx}/pages/common/top.jsp"></jsp:include>
@@ -64,7 +34,7 @@
     <div class="mainInnerBox">
         <ul class="navList clearfix">
             <li class="allGoods"><a href="javascript:;">精选图书分类</a></li>
-            <li><a href="">图书首页</a></li>
+            <li><a href="/">图书首页</a></li>
             <li><a href="">新品精选</a></li>
             <li><a href="">特价好书</a></li>
         </ul>
@@ -134,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <form  action="${ctx}/order/cart.html" method="post">
+                <form  action="${ctx}/order/cart.html" method="post" id="cartForm">
                     <input type="hidden" name="bookid" value="${detail.id}">
                     <input type="hidden" name="cover" value="${detail.cover}">
                     <input type="hidden" name="name" value="${detail.name}">
@@ -191,7 +161,12 @@
                         <li>商品评价<i>(6)</i></li>
                     </ul>
                     <div class="fr">
-                        <input type="button" class="ui-btn-pink addCart-btn" value="加入购物车">
+                        <a href="javascript:;" class="ui-btn-pink addCart-btn" >加入购物车</a>
+                        <script>
+                            $(".addCart-btn").click(function(){
+                                $("#cartForm").submit();
+                            });
+                        </script>
                     </div>
                 </div>
                 <div class="tabInfo" id="tab1">

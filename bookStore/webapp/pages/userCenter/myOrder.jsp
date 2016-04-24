@@ -16,6 +16,7 @@
     <meta charset="UTF-8">
     <title>菠萝书城</title>
     <link rel="shortcut icon" type="text/css" href="../../resources/images/common/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/common/fontello.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/common.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/userCenter/userCenter.css">
     <link type="text/css" rel="stylesheet" href="../../resources/js/plugs/wx/wx.css" />

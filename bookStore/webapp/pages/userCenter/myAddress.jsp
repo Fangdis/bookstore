@@ -30,9 +30,6 @@
 <div class="siteMTopBox">
     <div class="mainInnerBox clearfix">
         <jsp:include page="${ctx}/pages/common/top.jsp" />
-        <div class="basketBox">
-            <span><i class="icon icon-basket"></i>购物车<i class="num">0</i>件</span><a href="../order/cart.html" class="goPayLink">去结算></a>
-        </div>
     </div>
 </div>
 <div class="siteNavBox">
@@ -81,7 +78,7 @@
                                 <tr class="ui-table-title">
                                     <td colspan="5"></td>
                                     <td>
-                                        <a href="${ctx}/address/delete?addressId=${address.id}" class="icon icon-basket"></a>
+                                        <a href="${ctx}/address/delete?addressId=${address.id}" class="icon icon-trash-empty"></a>
                                     </td>
                                 </tr>
                                 <tr class="goods">
@@ -91,7 +88,12 @@
                                     <td>${address.code}</td>
                                     <td>${address.contantphone}</td>
                                     <td>
-                                        <p><a href="javascript:;" class="pink updateAddress" >修改</a><span style="display: none">${address.id}</span><span style="display: none">${address.province}</span><span style="display: none">${address.city}</span><span style="display: none">${address.posnum}</span></p>
+                                        <p><a href="javascript:;" class="pink updateAddress" >修改</a>
+                                            <span style="display: none">${address.id}</span>
+                                            <span style="display: none">${address.province}</span>
+                                            <span style="display: none">${address.city}</span>
+                                            <span style="display: none">${address.code}</span>
+                                            <span style="display: none">${address.posnum}</span></p>
                                         <p><c:if test="${address.status!=1}">
                                             <a href="${ctx}/address/setMask?addressId=${address.id}" class="pink">设为默认地址</a>
                                         </c:if></p>
@@ -134,7 +136,7 @@
             <input type="text" class="w300" name="code" id="code" wx-validator-rule="required" wx-validator-code-required="邮政编码不能为空" wx-validator-placeholder="邮政编码">
         </div>
         <div class="form-btn">
-            <input type="submit" value="保存并使用" class="ui-btn ui-btn-pink ui-btn-s mr10">
+            <input type="submit" value="保存" class="ui-btn ui-btn-pink ui-btn-s mr10">
             <input type="button" value="取消" class="ui-btn ui-btn-gray ui-btn-s" id="cancelBtn">
         </div>
     </form>
@@ -179,9 +181,11 @@
     });
     $("#cancelBtn").click(function(){
         $(".hide-background, .addAddressBox").hide();
+        window.location.reload(true);
     });
     $(".updateAddress").click(function(){
-        $("#" + "city_region_selector1").city_selector('city',$(this).next().next().next().next().text() );
+        console.log($(this).next().next().next().next().next().text());
+        $("#" + "city_region_selector1").city_selector('city',$(this).next().next().next().next().next().text() );
         $("#province").change(function(){
             $("#province_1").val($(this).find("option:selected").text());
         });
@@ -198,6 +202,7 @@
         $("#province_1").val($(this).next().next().text());
         $("#city_1").val($(this).next().next().next().text());
         $("#streetaddress").val($(this).parent().parent().parent().children("td").eq(2).text());
+        $("#code").val($(this).next().next().next().next().text());
     });
 </script>
 </body>

@@ -67,8 +67,16 @@ public class OrderServiceImpl implements OrderService {
             orderModel.setOrderNumber(orderList.get(i).getOderNumber());
             orderModel.setAddTime(orderList.get(i).getAddTime());
             orderModel.setCart(carts);
+            orderModel.setId(orderList.get(i).getId());
             lists.add(orderModel);
         }
         return lists;
+    }
+
+    public int update(Integer id, Integer status) {
+        Order order = orderMapper.selectByPrimaryKey(id);
+        order.setStatus(status);
+        orderMapper.updateByPrimaryKey(order);
+        return 0;
     }
 }

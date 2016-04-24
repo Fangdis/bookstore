@@ -52,11 +52,12 @@
         <section class="content">
             <div class="panel">
                 <ul class="tabBox clearfix">
-                        <li class="active">全部订单</li>
-                        <li>待付款</li>
-                        <li>待发货</li>
-                        <li>待收货</li>
-                    </ul>
+                    <li class="active">全部订单</li>
+                    <li>待付款</li>
+                    <li>待发货</li>
+                    <li>待收货</li>
+                    <li>已取消</li>
+                </ul>
                 <div class="tabInfo" id="tab1">
                     <table class="table table-hover" width="100%">
                         <colgroup>
@@ -98,7 +99,8 @@
                                         </td>
                                         <td>
                                             <c:if test="${orders.status==1}">
-                                                <input type="button" value="发货" class="btn btn-primary"><input type="button" value="撤销" class="btn btn-primary"></td>
+                                                <a href="${ctx}/order/update.html?id=${orders.id}&status=2" class="btn btn-primary" style="margin-right: 10px;">发货</a>
+                                                <a href="${ctx}/order/update.html?id=${orders.id}&status=4" class="btn btn-primary">取消</a>
                                             </c:if>
                                         </td>
                                     </tr>
@@ -147,8 +149,8 @@
                                             <td></td>
                                         </tr>
                                     </c:forEach>
+                                    <tr><td colspan="7" style="background: #f0f3f4;"></td></tr>
                                 </c:if>
-                                <tr><td colspan="7" style="background: #f0f3f4;"></td></tr>
                             </c:forEach>
                         </tbody>
                     </table>
@@ -189,12 +191,14 @@
                                             <td>${cart.total}</td>
                                             <td><fmt:formatNumber value="${cart.total*cart.price}" pattern="##.##" minFractionDigits="2"/></td>
                                             <td>待发货</td>
-                                            <td><input type="button" value="发货" class="btn btn-primary"></td>
-                                            <%--<td><input type="button" value="撤销" class="btn btn-primary"></td>--%>
+                                            <td>
+                                                <a href="${ctx}/order/update.html?id=${orders.id}&status=2" class="btn btn-primary" style="margin-right: 10px;">发货</a>
+                                                <a href="${ctx}/order/update.html?id=${orders.id}&status=4" class="btn btn-primary">取消</a>
+                                            </td>
                                         </tr>
                                     </c:forEach>
+                                    <tr><td colspan="7" style="background: #f0f3f4;"></td></tr>
                                 </c:if>
-                                <tr><td colspan="7" style="background: #f0f3f4;"></td></tr>
                             </c:forEach>
                         </tbody>
                     </table>
@@ -238,9 +242,54 @@
                                             <td></td>
                                         </tr>
                                     </c:forEach>
+                                    <tr><td colspan="7" style="background: #f0f3f4;"></td></tr>
                                 </c:if>
-                                <tr><td colspan="7" style="background: #f0f3f4;"></td></tr>
                             </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tabInfo" id="tab4" style="display: none;">
+                    <table class="table table-hover" width="100%">
+                        <colgroup>
+                            <col width="5%"></col>
+                            <col width="30%"></col>
+                            <col width="10%"></col>
+                            <col width="10%"></col>
+                            <col width="10%"></col>
+                            <col width="15%"></col>
+                            <col width="20%"></col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>商品编号</th>
+                            <th>商品信息</th>
+                            <th>单价</th>
+                            <th>数量</th>
+                            <th>合计（元）</th>
+                            <th>交易记录</th>
+                            <th>交易操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${orders}" var="orders">
+                            <c:if test="${orders.status==4}">
+                                <tr>
+                                    <td colspan="7" class="tl">订单时间：${orders.addTime}  订单编号：${orders.orderNumber}   用户编号：${orders.userId}</td>
+                                </tr>
+                                <c:forEach items="${orders.cart}" var="cart">
+                                    <tr>
+                                        <td>${cart.bookid}</td>
+                                        <td class="tl">${cart.name}</td>
+                                        <td>${cart.price}</td>
+                                        <td>${cart.total}</td>
+                                        <td><fmt:formatNumber value="${cart.total*cart.price}" pattern="##.##" minFractionDigits="2"/> </td>
+                                        <td>已取消</td>
+                                        <td></td>
+                                    </tr>
+                                </c:forEach>
+                                <tr><td colspan="7" style="background: #f0f3f4;"></td></tr>
+                            </c:if>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

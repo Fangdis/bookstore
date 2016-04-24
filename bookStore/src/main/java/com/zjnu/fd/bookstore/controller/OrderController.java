@@ -41,73 +41,86 @@ public class OrderController {
 
     @Resource
     private OrderService orderService;
+
     @RequestMapping("cart")
-    public String cart(Cart cart, HttpServletRequest request){
+    public String cart(Cart cart, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        if (user==null)
+        if (user == null)
             return "redirect:/user/loginPage";
         cart.setUserid(user.getId());
         cartService.insert(cart);
-        List<Cart> list=cartService.listByUserId(user.getId());
-        session.setAttribute("sumCart",list.size());
+        List<Cart> list = cartService.listByUserId(user.getId());
+        session.setAttribute("sumCart", list.size());
         return "redirect:/order/shopCart";
     }
+
     @RequestMapping("shopCart")
-    public ModelAndView shopCart(ModelAndView modelAndView,HttpServletRequest request){
+    public ModelAndView shopCart(ModelAndView modelAndView, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        if (user==null) {
+        if (user == null) {
             modelAndView.setViewName("redirect:/user/loginPage");
             return modelAndView;
         }
-        List<Cart> list=cartService.listByUserId(user.getId());
-        modelAndView.addObject("cart",list);
+        List<Cart> list = cartService.listByUserId(user.getId());
+        modelAndView.addObject("cart", list);
         modelAndView.setViewName("order/shopCart");
         return modelAndView;
     }
+
     @RequestMapping("delete")
-    public String deleteCart(int id){
+    public String deleteCart(int id, HttpServletRequest request) {
+        HttpSession session = request.getSession();
         cartService.deleteById(id);
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/user/loginPage";
+        }
+        List<Cart> list = cartService.listByUserId(user.getId());
+        session.setAttribute("sumCart", list.size());
         return "redirect:/order/shopCart";
     }
+
     @RequestMapping("shopOrder")
-    public ModelAndView order(ModelAndView modelAndView,@RequestParam("ids") String ids,HttpServletRequest request){
+    public ModelAndView order(ModelAndView modelAndView, @RequestParam("ids") String ids, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        if (user==null) {
+        if (user == null) {
             modelAndView.setViewName("redirect:/user/loginPage");
             return modelAndView;
         }
-        List<Cart> list=cartService.listByUserIdAndIds(user.getId(),ids);
-        modelAndView.addObject("cart",list);
+        List<Cart> list = cartService.listByUserIdAndIds(user.getId(), ids);
+        modelAndView.addObject("cart", list);
         List<Address> addressList = addressService.listByUserId(user.getId());
-        modelAndView.addObject("addressList",addressList);
+        modelAndView.addObject("addressList", addressList);
         modelAndView.setViewName("order/order");
         return modelAndView;
     }
+
     @RequestMapping("makeOrder")
-    public ModelAndView makeOrder(ModelAndView modelAndView,Order order,HttpServletRequest request,@RequestParam("ids") String ids){
+    public ModelAndView makeOrder(ModelAndView modelAndView, Order order, HttpServletRequest request, @RequestParam("ids") String ids) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        if (user==null) {
+        if (user == null) {
             modelAndView.setViewName("redirect:/user/loginPage");
             return modelAndView;
         }
         order.setUserId(user.getId());
         order.setAddTime(DateTimeUtils.getNowDateTime());
-        String orderNumber =String.valueOf( System.currentTimeMillis());
+        String orderNumber = String.valueOf(System.currentTimeMillis());
         order.setOderNumber(orderNumber);
         order.setStatus(0);
         orderService.insert(order);
-        orderRefCartService.insert(ids,orderNumber);
+        orderRefCartService.insert(ids, orderNumber);
         modelAndView.setViewName("redirect:/user/userOrder");
         return modelAndView;
     }
+
     @ResponseBody
     @RequestMapping("updateCart")
-    public String updateCart(@RequestParam(name = "cartId") Integer id,@RequestParam(name = "num") Integer num){
-        cartService.updateCart(id,num);
-        return OutPut.json(200,"success",new HashMap(),0);
+    public String updateCart(@RequestParam(name = "cartId") Integer id, @RequestParam(name = "num") Integer num) {
+        cartService.updateCart(id, num);
+        return OutPut.json(200, "success", new HashMap(), 0);
     }
 }

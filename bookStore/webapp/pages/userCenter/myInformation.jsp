@@ -15,6 +15,7 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="shortcut icon" type="text/css" href="../../resources/images/common/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/common/fontello.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/common.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/userCenter/userCenter.css">
     <link type="text/css" rel="stylesheet" href="../../resources/js/plugs/wx/wx.css" />
@@ -62,7 +63,7 @@
                         <div class="form-item">
                             <label><i class="require">*</i>头像：</label>
                             <div class="updateLogo">
-                                <img src="../../resources/images/common/mrLogo.jpg" id="userImg">
+                                <img src="${(sessionScope.get('user')).avatar}" id="userImg">
                                 <div class="updateLogoInfo">
                                     <div class="updateLogoBtn">
                                         <input wx-upload-size="40" wx-upload-type="image/bmp,image/png,image/gif,image/jpeg" type="file" wx-upload="/user/upLoadPhoto" name="file" value="" wx-upload-assign="upload_bp=data.fileUrl" wx-upload-set="upload_bp_doc=data.fileUrl" hidefocus="true" wx-upload-param="type=cover" accept="image/jpeg,image/x-png,image/gif,image/x-ms-bmp">

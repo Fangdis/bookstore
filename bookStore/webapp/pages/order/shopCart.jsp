@@ -15,6 +15,7 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="shortcut icon" type="text/css" href="../../resources/images/common/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/common/fontello.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/common/common.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/cart/cart.css">
     <link type="text/css" rel="stylesheet" href="../../resources/js/plugs/wx/wx.css" />
@@ -81,7 +82,7 @@
                             <td>${cart.price}</td>
                             <td>
                                 <a href="javascript:;" class="reduce-btn" id="reduceBtn">-</a>
-                                <input type="text" class="buy-num-text" value="${cart.total}" name="total" id="buyNum">
+                                <input type="text" class="buy-num-text buyNum" value="${cart.total}" name="total">
                                 <a href="javascript:;" class="add-btn" id="addBtn">+</a>
                                 <span style="display: none">${cart.totalBook}</span>
                                 <b style="display: none">${cart.id}</b>
@@ -135,8 +136,10 @@
                 var price=$(this).children("td").eq(2).text();
                 var num=$(this).children("td").eq(3).children("input").val();
                 var totalPrice=parseFloat(parseFloat(price).toFixed(2)*num);
-                $(this).children("td").eq(4).text(totalPrice);
-                total=total+totalPrice;
+                $(this).children("td").eq(4).text(totalPrice.toFixed(2));
+                if($(this).children("td").children("input").is(":checked")){
+                    total=total+totalPrice;
+                }
             });
             $(".totalNum").text("￥"+parseFloat(total).toFixed(2));
         }
@@ -161,23 +164,29 @@
             });
             window.location.href=url+"?ids="+encodeURI(ids);
         });
-
-        $('#reduceBtn').click(function(){
+        $(".goods").children("td").children("input[type='checkbox']").click(function(){
+            var total=0;
+            $(".goods").children("td").children("input").each(function(){
+                if($(this).is(":checked")){
+                    total+=parseFloat($(this).parent().parent().children("td").eq(4).text());
+                }
+            });
+            $(".totalNum").text("￥"+parseFloat(total).toFixed(2));
+        });
+        $('.reduce-btn').click(function(){
             var count = $(this).siblings("span").text();
             var cartId=$(this).siblings("b").text();
-            if($('#buyNum').val()>1){
-                $('#buyNum').val($('#buyNum').val()-1);
-                count = count + 1;
+            if($(this).next().val()>1){
+                $(this).next().val( $(this).next().val()-1);
                 updateCart(cartId,-1);
             }
         });
-        $('#addBtn').click(function(){
+        $('.add-btn').click(function(){
             var count = $(this).siblings("span").text();
             var cartId=$(this).siblings("b").text();
-            if($('#buyNum').val()<count){
-                $('#buyNum').val(Number($('#buyNum').val())+1);
+            if($(this).prev().val()<count){
+                $(this).prev().val(Number($(this).prev().val())+1);
                  updateCart(cartId,1);
-                count = count - 1;
             }
         });
         function updateCart(cartId,num){

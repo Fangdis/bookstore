@@ -48,7 +48,7 @@
                 <dl>
                     <dt><a href="${ctx}/product/list?kind=文学">文学</a></dt>
                     <dd>
-                        <a href="${ctx}/product/list?kind=文艺&minKind=小说" class="pink">小说</a><a href="${ctx}/product/list?kind=文艺&minKind=青春文学">传记</a><a href="${ctx}/product/list?kind=文艺&minKind=传记">动漫</a><a href="${ctx}/product/list?kind=文艺&minKind=传记" class="pink">散文</a>
+                        <a href="${ctx}/product/list?kind=文学&minKind=小说" class="pink">小说</a><a href="${ctx}/product/list?kind=文学&minKind=青春文学">传记</a><a href="${ctx}/product/list?kind=文学&minKind=传记">动漫</a><a href="${ctx}/product/list?kind=文学&minKind=传记" class="pink">散文</a>
                     </dd>
                 </dl>
             </li>

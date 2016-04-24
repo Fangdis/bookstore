@@ -55,17 +55,17 @@
                     <form class="updatePswForm" method="post" action="${ctx}/user/updatePsw" wx-validator wx-validator-error-tag="p" wx-validator-ajax autocomplete="off"  name="updatePswForm">
                         <div class="form-item">
                             <label><i class="require">*</i>原始密码：</label>
-                            <input type="text" placeholder="请输入原始密码" class="w300" name="oldPassword">
+                            <input type="password" placeholder="请输入原始密码" class="w300" name="oldPassword">
                             <p class="error-text"></p>
                         </div>
                         <div class="form-item">
                             <label><i class="require">*</i>新密码：</label>
-                            <input type="text" placeholder="请输入新密码" class="w300" name="password">
+                            <input type="password" placeholder="请输入新密码" class="w300" name="password">
                             <p class="error-text"></p>
                         </div>
                         <div class="form-item">
                             <label><i class="require">*</i>确认密码：</label>
-                            <input type="text" placeholder="请输入确认密码" class="w300" name="newPassword">
+                            <input type="password" placeholder="请输入确认密码" class="w300" name="newPassword">
                             <p class="error-text"></p>
                         </div>
                         <div class="form-btn">
@@ -90,9 +90,9 @@
 <script>
     function  updatePswForm(data){
         if(data["desc"]=="success"){
-            alert("修改成功");
+            wx.alert("修改成功");
         }else{
-            alert("密码有误");
+            wx.alert("密码有误");
         }
        window.location.reload(true);
     }
