@@ -63,7 +63,7 @@
             <div class="productList clearfix">
                 <c:forEach items="${books}" var="book">
                     <div class="item">
-                        <a href="${ctx}/detail/detail.html?id=${book.id}"><img src="${ctx}/${book.cover}"></a>
+                        <a href="${ctx}/detail/detail.html?id=${book.id}"><img src="${book.cover}"></a>
                         <p class="money">￥${book.price}</p>
                         <a href="../detail/detail.html"><p class="info">${book.name}</p></a>
                     </div>

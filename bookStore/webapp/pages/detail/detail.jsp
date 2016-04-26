@@ -53,10 +53,10 @@
         </ul>
         <div class="productDetailBox clearfix">
             <div class="picInfo">
-                <img src="${ctx}/${detail.cover}">
+                <img src="${detail.cover}">
                 <ul class="thumbnailList clearfix">
-                    <li><img src="${ctx}/${detail.picture}"></li>
-                    <li><img src="${ctx}/${detail.picture}"></li>
+                    <li><img src="${detail.picture}"></li>
+                    <li><img src="${detail.picture}"></li>
                 </ul>
             </div>
             <div class="detailInfo">

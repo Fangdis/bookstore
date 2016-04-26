@@ -36,6 +36,11 @@
         <tomcat-maven-plugin.version>1.1</tomcat-maven-plugin.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>[7.0.0, 7.0.99]</version>
+        </dependency>
         <!-- jsonObject 所需 begin -->
         <dependency>
             <groupId>com.github.zhanhb</groupId>

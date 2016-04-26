@@ -126,9 +126,9 @@
         <div class="floorBox clearfix" id="lastedList">
             <c:forEach items="${newBook}" var="newBook">
                 <div class="item">
-                    <a href="${ctx}/detail/detail.html?id=${newBook.id}"><img src="${ctx}/${newBook.cover}"></a>
+                    <a href="${ctx}/detail/detail.html?id=${newBook.id}"><img src="${newBook.cover}"></a>
                     <p class="money">￥<fmt:formatNumber value="${newBook.price*newBook.discount}" pattern="##.##" minFractionDigits="2" /> </p>
-                    <a href="${ctx}/detail/detail.html"><p class="info">${newBook.name}</p></a>
+                    <a href="${ctx}/detail/detail.html?id=${newBook.id}"><p class="info">${newBook.name}</p></a>
                 </div>
             </c:forEach>
         </div>
@@ -136,9 +136,9 @@
         <div class="floorBox clearfix">
             <c:forEach items="${bargainBook}" var="bargainBook">
                 <div class="item">
-                    <a href="../detail/detail.html?id=${bargainBook.id}"><img src="${ctx}/${bargainBook.cover}"></a>
+                    <a href="../detail/detail.html?id=${bargainBook.id}"><img src="${bargainBook.cover}"></a>
                     <p class="money">￥<fmt:formatNumber value="${bargainBook.price*bargainBook.discount}" pattern="##.##" minFractionDigits="2" /></p>
-                    <a href="../detail/detail.html"><p class="info">${bargainBook.name}</p></a>
+                    <a href="../detail/detail.html?id=${bargainBook.id}"><p class="info">${bargainBook.name}</p></a>
                 </div>
             </c:forEach>
         </div>

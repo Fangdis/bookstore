@@ -23,7 +23,7 @@
         <ul class="sidebar-menu">
             <li >
                 <a href="${ctx}/product/list.html">
-                    <i class="fa fa-dashboard"></i> <span>商品管理</span>
+                    <i class="fa fa-dashboard"></i> <span>图书管理</span>
                 </a>
             </li>
             <li>
@@ -33,7 +33,7 @@
             </li>
             <li>
                 <a href="${ctx}/user/list.html">
-                    <i class="fa fa-globe"></i> <span>用户管理</span>
+                    <i class="fa fa-globe"></i> <span>会员管理</span>
                 </a>
             </li>
         </ul>
